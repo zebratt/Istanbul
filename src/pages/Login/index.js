@@ -1,6 +1,5 @@
 import './style.scss';
 import React, { Component } from 'react';
-import Header from 'components/Header';
 import { LOGIN } from 'utils/urls';
 import { connect } from 'react-redux';
 import actions from './action';
@@ -42,18 +41,21 @@ class Login extends Component {
             return alert('用户名或密码不得为空！');
         }
 
-        axios
-            .post(LOGIN, {
-                username,
-                password
-            })
-            .then(res => {
-                if (res.status === 0) {
-                    updateLogin(true);
-                } else {
-                    alert(res.message);
-                }
-            });
+        //TODO: for mock
+        updateLogin(true);
+
+        // axios
+        //     .post(LOGIN, {
+        //         username,
+        //         password
+        //     })
+        //     .then(res => {
+        //         if (res.status === 0) {
+        //             updateLogin(true);
+        //         } else {
+        //             alert(res.message);
+        //         }
+        //     });
     }
 
     render() {
@@ -66,7 +68,6 @@ class Login extends Component {
 
         return (
             <section className="g-page" id="Login">
-                <Header title={'欢迎回来'} />
                 <div className="main">
                     <div className="input-box">
                         <div className="left">
@@ -96,9 +97,9 @@ class Login extends Component {
                             />
                         </div>
                     </div>
-                    <div className="button" onClick={::this.onSubmitHandler}>
-                        立即登录
-                    </div>
+                    <button className="button" onClick={::this.onSubmitHandler}>
+                        登录
+                    </button>
                     <div className="register">
                         <Link to="/register">立即注册</Link>
                     </div>

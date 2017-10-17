@@ -1,57 +1,59 @@
 @import "../../styles/common";
 
-#Login{
-    .main{
-        padding-top: 150px;
+#Login {
+  .main {
+    padding-top: 150px;
 
-        .input-box{
-            display: flex;
-            margin: 20px auto;
-            width: 60%;
-            border-bottom: $commonBorderColor solid 1px;
-            line-height: 30px;
+    .input-box {
+      display: flex;
+      margin: 20px auto;
+      width: 60%;
+      border-bottom: $commonBorderColor solid 1px;
+      line-height: 30px;
 
-            .left{
-                flex: 0 0 30px;
+      .left {
+        flex: 0 0 30px;
 
-                .icon{
-                    font-size: 22px;
-                    color: $commonFontColor;
-                }
-            }
-
-            .right{
-                flex-grow: 1;
-
-                input{
-                    border: 0;
-                    background: $commonBackgroundColor;
-                    width: 100%;
-                    font-size: 16px;
-                    outline: none;
-                }
-            }
+        .icon {
+          font-size: 22px;
+          color: $commonFontColor;
         }
+      }
 
-        .button{
-            width: 60%;
-            background: $commonColorGreen;
-            margin: 50px auto;
-            color: white;
-            text-align: center;
-            line-height: 35px;
-            font-size: 14px;
-            border-radius: 3px;
+      .right {
+        flex-grow: 1;
+
+        input {
+          border: 0;
+          background: $commonBackgroundColor;
+          width: 100%;
+          font-size: 16px;
+          outline: none;
         }
-
-        .register{
-            text-align: center;
-            margin-top: 50px;
-            font-size: 12px;
-
-            a{
-                color: $commonFontColor;
-            }
-        }
+      }
     }
+
+    .button {
+      display: block;
+      background: $commonColorGreen;
+      margin: 50px auto;
+      width: 200px;
+      border: 0;
+      color: white;
+      text-align: center;
+      line-height: 35px;
+      font-size: 14px;
+      border-radius: 3px;
+    }
+
+    .register {
+      text-align: center;
+      margin-top: 50px;
+      font-size: 12px;
+
+      a {
+        color: $commonFontColor;
+      }
+    }
+  }
 }

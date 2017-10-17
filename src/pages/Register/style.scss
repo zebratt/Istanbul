@@ -1,43 +1,42 @@
 @import "../../styles/common";
 
 #Register {
-    .main {
-        padding: 20px;
+  .main {
+    padding: 20px;
 
-        .row {
-            padding: 5px;
-            display: flex;
-            line-height: 30px;
-            color: $commonFontColor;
+    .row {
+      padding: 5px;
+      display: flex;
+      line-height: 30px;
+      color: $commonFontColor;
 
-            .label {
-                flex: 0 0 80px;
-                font-size: 13px;
-            }
+      .label {
+        flex: 0 0 80px;
+        font-size: 13px;
+      }
 
-            .input {
-                flex-grow: 1;
-                border-bottom: $commonBorderColor solid 1px;
+      .input {
+        flex-grow: 1;
+        border-bottom: $commonBorderColor solid 1px;
 
-                input {
-                    border: 0;
-                    background: $commonBackgroundColor;
-                    width: 100%;
-                    font-size: 16px;
-                    outline: none;
-                }
-            }
+        input {
+          border: 0;
+          background: $commonBackgroundColor;
+          width: 100%;
+          font-size: 16px;
+          outline: none;
         }
+      }
     }
+  }
 
-    .button {
-        width: 60%;
-        background: $commonColorGreen;
-        margin: 50px auto;
-        color: white;
-        text-align: center;
-        line-height: 35px;
-        font-size: 14px;
-        border-radius: 3px;
-    }
+  .button {
+    background: $commonColorGreen;
+    margin: 50px auto;
+    color: white;
+    text-align: center;
+    line-height: 35px;
+    font-size: 14px;
+    border-radius: 3px;
+  }
 }

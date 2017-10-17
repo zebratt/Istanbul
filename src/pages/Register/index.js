@@ -1,11 +1,9 @@
 import './style.scss';
 import React from 'react';
-import Header from 'components/Header';
 
 const Register = () => {
     return (
         <div className="g-page" id="Register">
-            <Header title={'注册'} iconBack />
             <div className="main">
                 <div className="row">
                     <div className="label">昵称：</div>
