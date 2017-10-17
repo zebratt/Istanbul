@@ -1,0 +1,77 @@
+@import "../../styles/carousel";
+@import "../../styles/common";
+
+#Home{
+    .recent{
+        display: flex;
+        color: $commonFontColor;
+        line-height: 35px;
+        border-bottom: $commonBorderColor solid 1px;
+        background: white;
+
+        .left, .right{
+            text-align: center;
+            flex: 0 0 30px;
+        }
+
+        .left{
+            color: $commonColorGreen;
+        }
+
+        .right{
+            transform: rotate(180deg);
+        }
+
+        .middle{
+            flex-grow: 1;
+            font-size: 13px;
+        }
+    }
+
+    .body{
+        .row{
+            display: flex;
+
+            .left, .right{
+                flex: 0 0 50%;
+                padding: 10px;
+                box-sizing: border-box;
+
+                .title{
+                    line-height: 32px;
+                    text-align: center;
+                    color: white;
+                    font-size: 13px;
+                }
+
+                .red{
+                    background: #FC6E51;
+                }
+
+                .orange{
+                    background: #FFB646;
+                }
+
+                .blue{
+                    background: #6F65FB;
+                }
+
+                .green{
+                    background: #84BE48;
+                }
+
+                .content{
+                    background: white;
+                    font-size: 12px;
+                    height: 100%;
+
+                    .li{
+                        margin: 3px 4px 0;
+                        border-bottom: $commonBorderColor dashed 1px;
+                        padding: 6px;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,23 @@
+.c-listview{
+    overflow: hidden;
+
+    .head-tip{
+        margin-top: -25px;
+        line-height: 25px;
+        color: #333;
+        text-align: center;
+        font-size: 13px;
+    }
+
+    .arrow-reverse{
+        transform: rotate(-180deg);
+        transition: all 0.2s;
+    }
+
+    .foot-tip{
+        line-height: 25px;
+        color: #333;
+        text-align: center;
+        font-size: 13px;
+    }
+}

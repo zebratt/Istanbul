@@ -1,0 +1,17 @@
+.backtop{
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    border: #fafafa solid 1px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 30px;
+    background: rgba(175, 175, 175, 0.49);
+    color: #fff;
+
+    .i-back{
+        transform: rotate(90deg);
+    }
+}

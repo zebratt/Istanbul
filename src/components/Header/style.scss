@@ -1,0 +1,28 @@
+@import "../../styles/common";
+
+.m-header{
+    display: flex;
+    height: 44px;
+    line-height: 44px;
+    background: $commonColorGreen;
+    color: white;
+    text-align: center;
+
+    .left{
+        flex: 0 0 40px;
+        font-size: 22px;
+    }
+
+    .right{
+        flex: 0 0 40px;
+        font-size: 22px;
+    }
+
+    .active{
+        background: #6bbd7b;;
+    }
+
+    .middle{
+        flex-grow: 1;
+    }
+}

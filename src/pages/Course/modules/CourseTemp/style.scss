@@ -1,0 +1,39 @@
+@import "../../../../styles/common";
+
+#Skeleton{
+    .nav{
+        line-height: 40px;
+        display: flex;
+        font-size: 13px;
+
+        .tab{
+            flex-grow: 1;
+            flex-shrink: 1;
+            text-align: center;
+            border-right: $commonBorderColor solid 1px;
+            text-decoration: none;
+            color: #5f5f5f;
+        }
+
+        .tab.active{
+            color: white;
+            background: #FFB647;
+        }
+    }
+
+    .section{
+        .title{
+            line-height: 40px;
+            text-align: center;
+            border: $commonBorderColor solid 1px;
+            background: #f3f3f3;
+            color: #5f5f5f;
+            font-size: 13px;
+        }
+
+        .body{
+            height: 500px;
+            padding: 10px;
+        }
+    }
+}

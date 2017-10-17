@@ -1,0 +1,61 @@
+@import "../../styles/common";
+
+#Audit{
+    padding-bottom: 40px;
+
+    .main{
+        border-top: $commonBorderColor solid 1px;
+        border-left: $commonBorderColor solid 1px;
+
+        .row{
+            display: flex;
+            line-height: 30px;
+            text-align: center;
+            color: $commonFontColor;
+            font-size: 13px;
+
+            .checkbox{
+                flex: 0 0 40px;
+                border-right: $commonBorderColor solid 1px;
+                border-bottom: $commonBorderColor solid 1px;
+            }
+
+            .id{
+                flex-grow: 1;
+                border-right: $commonBorderColor solid 1px;
+                border-bottom: $commonBorderColor solid 1px;
+            }
+
+            .nickname{
+                flex: 0 0 120px;
+                border-right: $commonBorderColor solid 1px;
+                border-bottom: $commonBorderColor solid 1px;
+            }
+        }
+
+        .title{
+            font-size: 14px;
+        }
+    }
+
+    .btns{
+        display: flex;
+        width: 100%;
+        position: fixed;
+        bottom: 0;
+        color: white;
+        font-size: 14px;
+        line-height: 40px;
+        text-align: center;
+
+        .confirm{
+            flex-grow: 1;
+            background: #84BE48;
+        }
+
+        .reject{
+            flex-grow: 1;
+            background: #FC6E51;
+        }
+    }
+}
