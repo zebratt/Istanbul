@@ -18,29 +18,11 @@ import { init } from 'utils/global';
 
 init();
 
-const HomeRoute = ({ component: Component, ...rest }) => {
-    const { login: { loginStatus } } = store.getState();
-
-    return (
-        <Route
-            {...rest}
-            render={props =>
-                loginStatus
-                    ? <Component {...props} />
-                    : <Redirect
-                          to={{
-                              pathname: '/login'
-                          }}
-                      />}
-        />
-    );
-};
-
 const App = () => {
     return (
         <Router>
             <div id="App">
-                <HomeRoute exact path="/" component={Home} />
+                <Route exact path="/" component={Home} />
                 <Route exact path="/login" component={Login} />
                 <Route exact path="/register" component={Register} />
             </div>

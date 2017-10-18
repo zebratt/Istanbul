@@ -2,7 +2,16 @@
 @import "../../styles/common";
 
 #Home{
-  img{
-    height: 300px;
+  .header{
+    color: #888;
+    line-height: 30px;
+    font-size: 14px;
+    padding: 0 150px;
+    background: #F5F5F5;
+    border-bottom: #e5e5e5 solid 1px;
+  }
+
+  .banner{
+    height: 360px;
   }
 }
