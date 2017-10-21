@@ -7,7 +7,9 @@ const Home = () => {
   return (
     <div className="g-page" id="Home">
       <div className="header">
-        <span>服务热线：123123123</span>
+        <div className="content">
+          <span>服务热线：123123123</span>
+        </div>
       </div>
       <Carousel
         emulateTouch
@@ -18,9 +20,9 @@ const Home = () => {
         interval={3000}
         showStatus={false}
       >
-        <img className="banner" src="http://www.dyb98.com/i/dyb/banner1.jpg" />
-        <img className="banner" src="http://www.dyb98.com/i/dyb/banner2.jpg" />
-        <img className="banner" src="http://www.dyb98.com/i/dyb/banner3.png" />
+        <div className="banner pic1" />
+        <div className="banner pic2" />
+        <div className="banner pic3" />
       </Carousel>
     </div>
   );
