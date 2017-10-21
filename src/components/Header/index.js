@@ -1,56 +1,27 @@
+/**
+ * @fileOverView: header
+ * @author: xuejian.xu
+ * @date: 2017/10/21.
+ */
+
 import './style.scss';
-import React, { Component } from 'react';
-import propTypes from 'prop-types';
+import React, {Component} from 'react';
 
-class Header extends Component {
-    static propTypes = {
-        title: propTypes.string,
-        iconLeft: propTypes.object,
-        iconRight: propTypes.object,
-        iconBack: propTypes.bool
-    };
-
-    leftClickHandler() {
-        const { iconLeft, iconBack } = this.props;
-
-        if (iconLeft && iconLeft.handler) {
-            return iconLeft.handler();
-        }
-
-        if (iconBack) {
-            return history.go(-1);
-        }
-    }
-
-    rightClickHandler() {
-        const { iconRight } = this.props;
-
-        if (iconRight && iconRight.handler) {
-            iconRight.handler();
-        }
-    }
-
-    render() {
-        const { title, iconLeft, iconRight, iconBack } = this.props;
-        const leftCtn = iconLeft
-            ? <span className={`icon ${iconLeft.name}`} />
-            : iconBack ? <span className="icon i-back" /> : null;
-        const rightCtn = iconRight
-            ? <span className={`icon ${iconRight.name}`} />
-            : null;
-
-        return (
-            <div className="m-header">
-                <div className="left" onClick={::this.leftClickHandler}>
-                    {leftCtn}
-                </div>
-                <div className="middle">{title}</div>
-                <div className="right" onClick={::this.rightClickHandler}>
-                    {rightCtn}
-                </div>
-            </div>
-        );
-    }
+class Header extends Component{
+  render(){
+    return (
+      <div id="Header">
+        <div className="content">
+          <span>服务热线：123123123</span>
+          <div className="right">
+            <span>登陆</span>
+            <span>|</span>
+            <span>注册</span>
+          </div>
+        </div>
+      </div>
+    )
+  }
 }
 
 export default Header;

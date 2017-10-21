@@ -2,15 +2,14 @@ import './style.scss';
 import React from 'react';
 
 import { Carousel } from 'react-responsive-carousel';
+import NavBar from 'components/NavBar';
+import Header from 'components/Header/index';
 
 const Home = () => {
   return (
     <div className="g-page" id="Home">
-      <div className="header">
-        <div className="content">
-          <span>服务热线：123123123</span>
-        </div>
-      </div>
+      <Header />
+      <NavBar />
       <Carousel
         emulateTouch
         showArrows={false}

@@ -10,8 +10,7 @@ import store from './store';
 
 // Pages
 import Home from 'pages/Home';
-import Login from 'pages/Login';
-import Register from 'pages/Register';
+import StockBuy from 'pages/StockBuy';
 
 // Global variables
 import { init } from 'utils/global';
@@ -23,8 +22,7 @@ const App = () => {
         <Router>
             <div id="App">
                 <Route exact path="/" component={Home} />
-                <Route exact path="/login" component={Login} />
-                <Route exact path="/register" component={Register} />
+                <Route exact path="/stockbuy" component={StockBuy} />
             </div>
         </Router>
     );

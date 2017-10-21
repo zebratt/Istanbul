@@ -1,36 +1,21 @@
 @import "../../styles/carousel";
 @import "../../styles/common";
 
-#Home{
-  .header{
-    background: #F5F5F5;
-    border-bottom: #e5e5e5 solid 1px;
-
-    .content{
-      width: 1000px;
-      margin: 0 auto;
-      font-size: 14px;
-      line-height: 32px;
-      color: #888;
-    }
-  }
-
-  .banner{
+#Home {
+  .banner {
     height: 360px;
+    background-size: auto 100%;
   }
 
-  .pic1{
+  .pic1 {
     background: url("http://www.dyb98.com/i/dyb/banner1.jpg") no-repeat center;
-    background-size: auto 100%;
   }
 
-  .pic2{
+  .pic2 {
     background: url("http://www.dyb98.com/i/dyb/banner2.jpg") no-repeat center;
-    background-size: auto 100%;
   }
 
-  .pic3{
+  .pic3 {
     background: url("http://www.dyb98.com/i/dyb/banner3.png") no-repeat center;
-    background-size: auto 100%;
   }
 }
