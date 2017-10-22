@@ -1,0 +1,25 @@
+#StockBuy{
+  .main{
+    width: 1000px;
+    margin: 40px auto;
+
+    .nav{
+      background: #CE2629;
+
+      li{
+        background: #CE2629;
+        color: #fff;
+        display: inline-block;
+        width: 242px;
+        line-height: 42px;
+        border-right: #fff solid 1px;
+        text-align: center;
+        font-size: 17px;
+
+        .delimiter{
+          margin: 0 5px;
+        }
+      }
+    }
+  }
+}
