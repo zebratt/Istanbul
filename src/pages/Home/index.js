@@ -23,6 +23,23 @@ const Home = () => {
         <div className="banner pic2" />
         <div className="banner pic3" />
       </Carousel>
+      <div className="login">
+        <div className="content">
+          <div className="title">登陆点赢宝</div>
+          <div className="label">账号:</div>
+          <input className="input" type="text" placeholder="请输入用户名" />
+          <div className="label">密码:</div>
+          <input className="input" type="password" placeholder="请输入密码" />
+          <div className="buttons">
+            <div className="left">
+              <button className="btn">登录</button>
+            </div>
+            <div className="right">
+              <button className="btn">注册</button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
