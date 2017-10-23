@@ -35,24 +35,60 @@ class StockBuy extends Component {
                   <span>6.471</span>
                 </div>
                 <div className="trade-info">
-                  <div className="sales">
-                    <ul>
-                      <li>1</li>
-                      <li>1</li>
-                      <li>1</li>
-                      <li>1</li>
-                      <li>1</li>
-                    </ul>
-                  </div>
-                  <div className="boughts">
-                    <ul>
-                      <li>2</li>
-                      <li>2</li>
-                      <li>2</li>
-                      <li>2</li>
-                      <li>2</li>
-                    </ul>
-                  </div>
+                  <ul>
+                    <li>
+                      <span>卖⑤</span>
+                      <span className="trade-price">6.58</span>
+                      <span>8000</span>
+                    </li>
+                    <li>
+                      <span>卖⑤</span>
+                      <span className="trade-price">6.58</span>
+                      <span>8000</span>
+                    </li>
+                    <li>
+                      <span>卖⑤</span>
+                      <span className="trade-price">6.58</span>
+                      <span>8000</span>
+                    </li>
+                    <li>
+                      <span>卖⑤</span>
+                      <span className="trade-price">6.58</span>
+                      <span>8000</span>
+                    </li>
+                    <li>
+                      <span>卖⑤</span>
+                      <span className="trade-price">6.58</span>
+                      <span>8000</span>
+                    </li>
+                  </ul>
+                  <ul>
+                    <li>
+                      <span>买⑤</span>
+                      <span className="trade-price">6.58</span>
+                      <span>8000</span>
+                    </li>
+                    <li>
+                      <span>买⑤</span>
+                      <span className="trade-price">6.58</span>
+                      <span>8000</span>
+                    </li>
+                    <li>
+                      <span>买⑤</span>
+                      <span className="trade-price">6.58</span>
+                      <span>8000</span>
+                    </li>
+                    <li>
+                      <span>买⑤</span>
+                      <span className="trade-price">6.58</span>
+                      <span>8000</span>
+                    </li>
+                    <li>
+                      <span>买⑤</span>
+                      <span className="trade-price">6.58</span>
+                      <span>8000</span>
+                    </li>
+                  </ul>
                 </div>
               </div>
             </div>

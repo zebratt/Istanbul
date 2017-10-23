@@ -13,10 +13,10 @@
         color: #fff;
         display: inline-block;
         width: 242px;
-        line-height: 42px;
+        line-height: 50px;
         border-right: #fff solid 1px;
         text-align: center;
-        font-size: 17px;
+        font-size: 18px;
 
         .delimiter {
           margin: 0 5px;
@@ -60,6 +60,26 @@
 
           .trade-info {
             flex-basis: 190px;
+            color: #888;
+            font-size: 12px;
+
+            ul{
+              margin-top: 12px;
+
+              li{
+                text-align: center;
+
+                span{
+                  display: inline-block;
+                  margin: 4px 10px;
+                }
+
+                .trade-price{
+                  color: #00a800 ;
+                }
+              }
+            }
+
           }
         }
       }
