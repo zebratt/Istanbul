@@ -1,12 +1,14 @@
-#StockBuy{
-  .main{
+#StockBuy {
+  .main {
     width: 1000px;
     margin: 40px auto;
+    border-radius: 2px;
+    border: 1px solid #dcdcdc;
 
-    .nav{
+    .nav {
       background: #CE2629;
 
-      li{
+      li {
         background: #CE2629;
         color: #fff;
         display: inline-block;
@@ -16,9 +18,57 @@
         text-align: center;
         font-size: 17px;
 
-        .delimiter{
+        .delimiter {
           margin: 0 5px;
         }
+      }
+    }
+
+    .body {
+      padding: 40px 50px;
+      box-sizing: border-box;
+      display: flex;
+
+      .left {
+        flex-basis: 64.5%;
+        border-right: 1px solid #f1f1f1;
+        position: relative;
+        padding-right: 60px;
+        box-sizing: border-box;
+
+        .stock-name {
+          padding-bottom: 10px;
+          border-bottom: 1px solid #f1f1f1;
+          line-height: 1;
+
+          .name {
+            color: #333;
+            font-size: 30px;
+          }
+        }
+
+        .prices {
+          display: flex;
+
+          .main-price {
+            flex-grow: 1;
+            color: #00a800;
+            line-height: 208px;
+            text-align: center;
+            font-size: 48px;
+          }
+
+          .trade-info {
+            flex-basis: 190px;
+          }
+        }
+      }
+
+      .right {
+        flex-grow: 1;
+        padding-left: 18px;
+        color: #434343;
+        box-sizing: border-box;
       }
     }
   }

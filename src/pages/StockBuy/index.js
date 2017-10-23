@@ -24,7 +24,39 @@ class StockBuy extends Component {
             </ul>
           </div>
           <div className="body">
-
+            <div className="left">
+              <div className="header">
+                <div className="stock-name">
+                  <span className="name">东风汽车</span>
+                </div>
+              </div>
+              <div className="prices">
+                <div className="main-price">
+                  <span>6.471</span>
+                </div>
+                <div className="trade-info">
+                  <div className="sales">
+                    <ul>
+                      <li>1</li>
+                      <li>1</li>
+                      <li>1</li>
+                      <li>1</li>
+                      <li>1</li>
+                    </ul>
+                  </div>
+                  <div className="boughts">
+                    <ul>
+                      <li>2</li>
+                      <li>2</li>
+                      <li>2</li>
+                      <li>2</li>
+                      <li>2</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="right">right panel</div>
           </div>
         </div>
       </div>
