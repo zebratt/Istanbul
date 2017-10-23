@@ -105,7 +105,6 @@ class StockBuy extends Component {
             <div className="panel-right">
               <div>
                 <span>买入金额</span>
-                <span className="float-right">今天还可以买入</span>
               </div>
               <ul className="buy-prices">
                 <li>1万</li>
