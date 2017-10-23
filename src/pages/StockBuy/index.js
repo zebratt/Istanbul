@@ -18,13 +18,19 @@ class StockBuy extends Component {
         <div className="main">
           <div className="nav">
             <ul>
-              <li>01<span className="delimiter">|</span>点买区</li>
-              <li>02<span className="delimiter">|</span>点卖区</li>
-              <li>03<span className="delimiter">|</span>结算区</li>
+              <li>
+                01<span className="delimiter">|</span>点买区
+              </li>
+              <li>
+                02<span className="delimiter">|</span>点卖区
+              </li>
+              <li>
+                03<span className="delimiter">|</span>结算区
+              </li>
             </ul>
           </div>
           <div className="body">
-            <div className="left">
+            <div className="panel-left">
               <div className="header">
                 <div className="stock-name">
                   <span className="name">东风汽车</span>
@@ -91,8 +97,27 @@ class StockBuy extends Component {
                   </ul>
                 </div>
               </div>
+              <div className="switch">
+                <div className="switch-left active">分时</div>
+                <div className="switch-right">k线</div>
+              </div>
             </div>
-            <div className="right">right panel</div>
+            <div className="panel-right">
+              <div>
+                <span>买入金额</span>
+                <span className="float-right">今天还可以买入</span>
+              </div>
+              <ul className="buy-prices">
+                <li>1万</li>
+                <li>2万</li>
+                <li>3万</li>
+                <li>5万</li>
+                <li>10万</li>
+                <li>20万</li>
+                <li>30万</li>
+                <li>50万</li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>

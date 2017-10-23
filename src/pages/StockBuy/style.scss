@@ -29,7 +29,7 @@
       box-sizing: border-box;
       display: flex;
 
-      .left {
+      .panel-left {
         flex-basis: 64.5%;
         border-right: 1px solid #f1f1f1;
         position: relative;
@@ -54,7 +54,6 @@
             flex-grow: 1;
             color: #00a800;
             line-height: 208px;
-            text-align: center;
             font-size: 48px;
           }
 
@@ -82,13 +81,61 @@
 
           }
         }
+
+        .switch{
+          display: flex;
+          margin: 20px 0;
+          border: #CE2629 solid 1px;
+          border-radius: 5px;
+          text-align: center;
+          color: #666;
+
+          .switch-left{
+            flex-basis: 50%;
+            line-height: 36px;
+          }
+
+          .switch-right{
+            flex-basis: 50%;
+            line-height: 36px;
+          }
+
+          .active{
+            background: #CE2629;
+            color: #fff;
+          }
+        }
       }
 
-      .right {
-        flex-grow: 1;
+      .panel-right {
+        font-size: 14px;
+        flex-basis: 35.5%;
         padding-left: 18px;
         color: #434343;
         box-sizing: border-box;
+
+        .float-right{
+          float: right;
+        }
+
+        .buy-prices{
+          margin-top: 20px;
+
+          li{
+            display: inline-block;
+            width: 73px;
+            height: 38px;
+            border: 1px solid #e1e1e1;
+            color: #434343;
+            line-height: 38px;
+            text-align: center;
+            position: relative;
+            margin-bottom: 14px;
+            cursor: pointer;
+            margin-right: 2px;
+            box-sizing: border-box;
+          }
+        }
       }
     }
   }
