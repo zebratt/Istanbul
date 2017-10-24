@@ -2,41 +2,15 @@
 
 #Register {
   .main {
-    padding: 20px;
+    background: url("http://www.dyb98.com/i/niucelue/reg-banner.jpg") no-repeat center;
+    height: 450px;
+    margin: 0;
+    box-sizing: border-box;
+    padding: 50px;
 
-    .row {
-      padding: 5px;
-      display: flex;
-      line-height: 30px;
-      color: $commonFontColor;
-
-      .label {
-        flex: 0 0 80px;
-        font-size: 13px;
-      }
-
-      .input {
-        flex-grow: 1;
-        border-bottom: $commonBorderColor solid 1px;
-
-        input {
-          border: 0;
-          background: $commonBackgroundColor;
-          width: 100%;
-          font-size: 16px;
-          outline: none;
-        }
-      }
+    .content{
+      width: 1000px;
+      margin: 0 auto;
     }
-  }
-
-  .button {
-    background: $commonColorGreen;
-    margin: 50px auto;
-    color: white;
-    text-align: center;
-    line-height: 35px;
-    font-size: 14px;
-    border-radius: 3px;
   }
 }

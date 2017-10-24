@@ -12,8 +12,14 @@
     .right{
       float: right;
 
-      span{
+      a{
+        text-decoration: none;
+        color: #555;
         margin: 0 8px;
+
+        &:visited{
+          color: #555;
+        }
       }
     }
   }

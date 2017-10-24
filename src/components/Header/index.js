@@ -6,6 +6,7 @@
 
 import './style.scss';
 import React, {Component} from 'react';
+import {Link} from 'react-router-dom';
 
 class Header extends Component{
   render(){
@@ -14,9 +15,9 @@ class Header extends Component{
         <div className="content">
           <span>服务热线：123123123</span>
           <div className="right">
-            <span>登陆</span>
+            <Link to='/home'>登陆</Link>
             <span>|</span>
-            <span>注册</span>
+            <Link to='/register'>注册</Link>
           </div>
         </div>
       </div>
