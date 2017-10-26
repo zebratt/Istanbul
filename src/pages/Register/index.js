@@ -28,7 +28,8 @@ class Register extends Component{
 
     axios.post(URL_REGISTER, {
       customerPhone: phone,
-      password: password
+      password: password,
+      customerName: phone
     }).then((res)=>{
       if(res.code == 1){
         console.log('success!');
