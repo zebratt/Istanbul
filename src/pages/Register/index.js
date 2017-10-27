@@ -1,42 +1,51 @@
 import './style.scss';
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import NavBar from '../../components/NavBar/index';
-import Header from "../../components/Header/index";
-import {URL_REGISTER} from '../../utils/urls';
+import Header from '../../components/Header/index';
+import { URL_REGISTER } from '../../utils/urls';
+import qs from 'qs';
+import {notification} from 'antd';
 
-class Register extends Component{
+class Register extends Component {
   state = {
     phone: '',
     password: '',
     passwordConfirm: ''
-  }
+  };
 
-  onNextHandler(){
-    const {phone, password, passwordConfirm} = this.state;
+  onNextHandler() {
+    const { phone, password, passwordConfirm } = this.state;
 
-    if(!/\d{11}/.test(phone)){
-      return alert('手机号格式有误，请重新输入!');
+    if (!/\d{11}/.test(phone)) {
+      return notification.warning({
+        message: '手机号格式有误，请重新输入！'
+      })
     }
 
-    if(!password){
+    if (!password) {
       return alert('密码不能为空！');
     }
 
-    if(password !== passwordConfirm){
+    if (password !== passwordConfirm) {
       return alert('两次密码不一致，请重新输入！');
     }
 
-    axios.post(URL_REGISTER, {
-      customerPhone: phone,
-      password: password,
-      customerName: phone
-    }).then((res)=>{
-      if(res.code == 1){
-        console.log('success!');
-      }else{
-        alert(res.msg);
-      }
-    })
+    axios
+      .post(
+        URL_REGISTER,
+        qs.stringify({
+          customerPhone: phone,
+          password: password,
+          customerName: phone
+        })
+      )
+      .then(res => {
+        if (res.code == 1) {
+
+        } else {
+          alert(res.msg);
+        }
+      });
   }
 
   onChangeHandler(eve) {
@@ -56,18 +65,18 @@ class Register extends Component{
       case 'password-confirm':
         this.setState({
           passwordConfirm: eve.target.value
-        })
+        });
 
         break;
     }
   }
 
   render() {
-    const {phone, password, passwordConfirm} = this.state;
+    const { phone, password, passwordConfirm } = this.state;
 
     return (
       <div className="g-page" id="Register">
-        <Header/>
+        <Header />
         <NavBar />
         <div className="main">
           <div className="content">
@@ -75,16 +84,35 @@ class Register extends Component{
               <div className="title">注册</div>
               <div className="form">
                 <div className="item">
-                  <input className="phone" type="text" value={phone} maxLength={11} placeholder="请输入手机号" onChange={::this.onChangeHandler}/>
+                  <input
+                    className="phone"
+                    type="text"
+                    value={phone}
+                    maxLength={11}
+                    placeholder="请输入手机号"
+                    onChange={::this.onChangeHandler}
+                  />
                 </div>
                 <div className="item">
-                  <input className="password" type="password" maxLength={16} placeholder="请输入密码，长度不小于6位" onChange={::this.onChangeHandler}/>
+                  <input
+                    className="password"
+                    type="password"
+                    maxLength={16}
+                    placeholder="请输入密码，长度不小于6位"
+                    onChange={::this.onChangeHandler}
+                  />
                 </div>
                 <div className="item">
-                  <input className="password-confirm" type="password" maxLength={16} placeholder="请再次输入密码" onChange={::this.onChangeHandler}/>
+                  <input
+                    className="password-confirm"
+                    type="password"
+                    maxLength={16}
+                    placeholder="请再次输入密码"
+                    onChange={::this.onChangeHandler}
+                  />
                 </div>
                 <div className="agree">
-                  <input type="checkbox"/>
+                  <input type="checkbox" />
                   <span>我已阅兵并同意</span><span>《系统服务协议》</span>
                 </div>
                 <button className="btn-next" onClick={::this.onNextHandler}>下一步</button>
@@ -95,6 +123,6 @@ class Register extends Component{
       </div>
     );
   }
-};
+}
 
 export default Register;
