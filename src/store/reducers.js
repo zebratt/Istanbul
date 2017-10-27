@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 
 // reducers
-import login from 'pages/Login/reducer';
+import home from 'pages/Home/reducer';
 
-export default combineReducers({ login });
+export default combineReducers({ Home: home });

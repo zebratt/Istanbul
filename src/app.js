@@ -3,7 +3,7 @@ import 'styles/main.scss';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { HashRouter as Router, Route, Redirect } from 'react-router-dom';
+import { HashRouter as Router, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 
 // Init Store

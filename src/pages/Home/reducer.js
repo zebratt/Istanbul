@@ -5,7 +5,7 @@ const initState = {
     loginStatus: false
 };
 
-export default handleActions(
+const reducer = handleActions(
     {
         [UPDATE_LOGIN]: (state, action) => {
             const { status } = action.payload;
@@ -15,3 +15,5 @@ export default handleActions(
     },
     initState
 );
+
+export default reducer;

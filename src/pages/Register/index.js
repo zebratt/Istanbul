@@ -23,11 +23,15 @@ class Register extends Component {
     }
 
     if (!password) {
-      return alert('密码不能为空！');
+      return notification.warning({
+        message: '密码不能为空！'
+      })
     }
 
     if (password !== passwordConfirm) {
-      return alert('两次密码不一致，请重新输入！');
+      return notification.warning({
+        message: '两次密码输入不一致，请重新输入！'
+      })
     }
 
     axios
@@ -41,9 +45,16 @@ class Register extends Component {
       )
       .then(res => {
         if (res.code == 1) {
-
+          notification.success({
+            message: '注册成功！',
+            onClose: ()=>{
+              location.replace('#/');
+            }
+          })
         } else {
-          alert(res.msg);
+          notification.error({
+            message: res.msg
+          })
         }
       });
   }
