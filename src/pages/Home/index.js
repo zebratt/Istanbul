@@ -10,12 +10,21 @@ import { bindActionCreators } from 'redux';
 import actions from './action';
 import { URL_LOGIN } from '../../utils/urls';
 import qs from 'qs';
+import Cookies from 'js-cookie';
 
 class Home extends Component {
   state = {
     username: '',
     password: ''
   };
+
+  componentDidMount(){
+    const token = Cookies.get('TOKEN');
+
+    if(token){
+      this.props.updateLogin(true, token);
+    }
+  }
 
   onLoginHandler() {
     const { username, password } = this.state;
@@ -37,10 +46,16 @@ class Home extends Component {
       )
       .then(res => {
         if (res.code == 1) {
+          const {data: {token}} = res;
+
           notification.success({
             message: '登陆成功！'
           });
-          updateLogin(true);
+
+          //用户登陆信息保存30天
+          Cookies.set('TOKEN', token, { expires: 30 });
+
+          updateLogin(true, token);
         } else {
           notification.error({
             message: res.msg
