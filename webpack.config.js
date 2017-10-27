@@ -80,7 +80,7 @@ module.exports = {
       name: 'vendors'
     }),
     new HtmlWebpackPlugin({
-      title: 'Neutron',
+      title: '点赢宝',
       template: 'dist/index.ejs'
     }),
     new webpack.HotModuleReplacementPlugin()
