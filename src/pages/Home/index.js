@@ -9,7 +9,6 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import actions from './action';
 import { URL_LOGIN } from '../../utils/urls';
-import qs from 'qs';
 import Cookies from 'js-cookie';
 
 class Home extends Component {
@@ -18,10 +17,10 @@ class Home extends Component {
     password: ''
   };
 
-  componentDidMount(){
+  componentDidMount() {
     const token = Cookies.get('TOKEN');
 
-    if(token){
+    if (token) {
       this.props.updateLogin(true, token);
     }
   }
@@ -37,16 +36,13 @@ class Home extends Component {
     }
 
     axios
-      .post(
-        URL_LOGIN,
-        qs.stringify({
-          customerName: username,
-          password: password
-        })
-      )
+      .post(URL_LOGIN, {
+        customerName: username,
+        password: password
+      })
       .then(res => {
         if (res.code == 1) {
-          const {data: {token}} = res;
+          const { data: { token } } = res;
 
           notification.success({
             message: '登陆成功！'

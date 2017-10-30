@@ -3,8 +3,7 @@ import React, { Component } from 'react';
 import NavBar from '../../components/NavBar/index';
 import Header from '../../components/Header/index';
 import { URL_REGISTER } from '../../utils/urls';
-import qs from 'qs';
-import {notification} from 'antd';
+import { notification } from 'antd';
 
 class Register extends Component {
   state = {
@@ -19,42 +18,39 @@ class Register extends Component {
     if (!/\d{11}/.test(phone)) {
       return notification.warning({
         message: '手机号格式有误，请重新输入！'
-      })
+      });
     }
 
     if (!password) {
       return notification.warning({
         message: '密码不能为空！'
-      })
+      });
     }
 
     if (password !== passwordConfirm) {
       return notification.warning({
         message: '两次密码输入不一致，请重新输入！'
-      })
+      });
     }
 
     axios
-      .post(
-        URL_REGISTER,
-        qs.stringify({
-          customerPhone: phone,
-          password: password,
-          customerName: phone
-        })
-      )
+      .post(URL_REGISTER, {
+        customerPhone: phone,
+        password: password,
+        customerName: phone
+      })
       .then(res => {
         if (res.code == 1) {
           notification.success({
             message: '注册成功！',
-            onClose: ()=>{
+            onClose: () => {
               location.replace('#/');
             }
-          })
+          });
         } else {
           notification.error({
             message: res.msg
-          })
+          });
         }
       });
   }

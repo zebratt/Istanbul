@@ -8,8 +8,17 @@ import './style.scss';
 import React, { Component } from 'react';
 import NavBar from 'components/NavBar/index';
 import Header from '../../components/Header/index';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import actions from './action';
 
 class StockBuy extends Component {
+  componentDidMount(){
+    const {getStockData} = this.props;
+
+    getStockData('sh600036');
+  }
+
   render() {
     return (
       <div id="StockBuy">
@@ -188,4 +197,15 @@ class StockBuy extends Component {
   }
 }
 
-export default StockBuy;
+const mapStateToProps = (state)=>{
+  const {StockBuy} = state;
+
+  return StockBuy;
+}
+
+const mapDispatchToProps = (dispatch)=>{
+  return bindActionCreators(actions, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(StockBuy);
+
