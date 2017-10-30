@@ -3,7 +3,12 @@
  */
 
 import { createActions } from 'redux-actions';
-import { GET_STOCK_DATA, UPDATE_BUY_PRICES_INDEX, UPDATE_STOP_LOSS_RATES_INDEX } from './contants';
+import {
+  GET_STOCK_DATA,
+  UPDATE_BUY_PRICES_INDEX,
+  UPDATE_STOP_LOSS_RATES_INDEX,
+  UPDATE_PROTOCOL_STATUS
+} from './contants';
 import { URL_STOCK_DATA } from '../../utils/urls';
 import { notification } from 'antd';
 
@@ -27,7 +32,8 @@ const reducer = createActions({
     }
   },
   [UPDATE_BUY_PRICES_INDEX]: nextIndex => nextIndex,
-  [UPDATE_STOP_LOSS_RATES_INDEX]: nextIndex => nextIndex
+  [UPDATE_STOP_LOSS_RATES_INDEX]: nextIndex => nextIndex,
+  [UPDATE_PROTOCOL_STATUS]: status => status
 });
 
 export default reducer;

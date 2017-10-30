@@ -12,6 +12,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import actions from './action';
 import classNames from 'classnames';
+import { notification } from 'antd';
 
 // 买入金额
 const buyPrices = [1, 2, 3, 5, 10, 20, 30, 50];
@@ -26,22 +27,61 @@ class StockBuy extends Component {
     getStockData('sh600036');
   }
 
+  onPurchaseClick() {
+    const { protocolStatus } = this.props;
+
+    if (!protocolStatus) {
+      notification.warning({
+        message: '请先接受条款'
+      });
+    }
+  }
+
   render() {
-    const { stockData: { data }, buyPricesIndex, updateBuyPricesIndex, stopLossRatesIndex, updateStopLossRatesIndex } = this.props;
+    const {
+      stockData: { data },
+      buyPricesIndex,
+      updateBuyPricesIndex,
+      stopLossRatesIndex,
+      updateStopLossRatesIndex,
+      protocolStatus,
+      updateProtocolStatus
+    } = this.props;
 
     if (!data) {
       return null;
     }
 
     // 履约保证金
-    // 当选择L1和L2时   K = L * 1.25  (K取天花板数)
-    // 当选择L3时 K= F * 0.2
+    // 当选择第一个或第二个止损条件时   K = L * 1.25  (K取天花板数)
+    // 当选择第三个时 K= F * 0.2
     let performingPrice = 0;
 
-    if(stopLossRatesIndex < 2){
+    if (stopLossRatesIndex < 2) {
       performingPrice = Math.ceil(stopLossRates[stopLossRatesIndex] * 12500);
-    }else{
+    } else {
       performingPrice = buyPrices[buyPricesIndex] * 2000;
+    }
+
+    // 递延条件
+    // 当选择第一个止损条件时， 递延条件 =   - 保证金 * 0.52
+    // 当选择第二个止损条件时， 递延条件 =   - 保证金 * 0.64
+    // 当选择第三个止损条件时， 递延条件 =   - 保证金 * 0.7
+    let deferCondition = 0;
+
+    switch (stopLossRatesIndex) {
+      case 0:
+        deferCondition = (performingPrice * 0.52).toFixed(0);
+
+        break;
+      case 1:
+        deferCondition = (performingPrice * 0.64).toFixed(0);
+
+        break;
+      case 2:
+        deferCondition = (performingPrice * 0.7).toFixed(0);
+
+        break;
     }
 
     return (
@@ -216,7 +256,9 @@ class StockBuy extends Component {
                   <span>触发止盈</span>
                 </div>
                 <div className="hold-time-right">
-                  <div className="item active">{buyPrices[buyPricesIndex] * 5000}</div>
+                  <div className="item active">
+                    {buyPrices[buyPricesIndex] * 5000}
+                  </div>
                 </div>
               </div>
               <div className="hold-time">
@@ -225,19 +267,23 @@ class StockBuy extends Component {
                 </div>
               </div>
               <ul className="amounts">
-                {
-                  stopLossRates.map((rate, idx)=>{
-                    const classes = classNames({
-                      active: idx === stopLossRatesIndex
-                    })
+                {stopLossRates.map((rate, idx) => {
+                  const classes = classNames({
+                    active: idx === stopLossRatesIndex
+                  });
 
-                    return (
-                      <li key={rate} className={classes} onClick={()=>{
+                  return (
+                    <li
+                      key={rate}
+                      className={classes}
+                      onClick={() => {
                         updateStopLossRatesIndex(idx);
-                      }}>-{(rate * 10000 * buyPrices[buyPricesIndex]).toFixed(0)}</li>
-                    )
-                  })
-                }
+                      }}
+                    >
+                      -{(rate * 10000 * buyPrices[buyPricesIndex]).toFixed(0)}
+                    </li>
+                  );
+                })}
               </ul>
               <div className="hold-time">
                 <div className="hold-time-left">
@@ -260,7 +306,7 @@ class StockBuy extends Component {
                   <span>递延条件</span>
                 </div>
                 <div className="hold-time-right">
-                  浮动盈亏大于<em>-650</em>
+                  浮动盈亏大于<em>-{deferCondition}</em>
                 </div>
               </div>
               <div className="hold-time">
@@ -272,10 +318,30 @@ class StockBuy extends Component {
                 </div>
               </div>
               <div>
-                <input type="checkbox" />
+                <input
+                  className="checkbox"
+                  type="checkbox"
+                  checked={protocolStatus}
+                  onChange={() => {
+                    updateProtocolStatus(!protocolStatus);
+                  }}
+                />
                 <span>我已阅读并签署以下协议</span>
               </div>
-              <button className="btn-buy">点买</button>
+              <div className="protocol-row">
+                <a href="http://www.dyb98.com/Policy/protocol_1" target="_blank">
+                  《点赢宝点买人参与沪深A股交易合作涉及费用及资费标准》
+                </a>
+                <a href="http://www.dyb98.com/Policy/protocol_2" target="_blank">
+                  《点赢宝投资人与点买人参与沪深A股交易合作协议》
+                </a>
+                <a href="http://www.dyb98.com/Policy/protocol_3" target="_blank">
+                  《点赢宝服务协议》
+                </a>
+              </div>
+              <button className="btn-buy" onClick={::this.onPurchaseClick}>
+                点买
+              </button>
             </div>
           </div>
         </div>
