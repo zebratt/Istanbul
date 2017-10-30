@@ -20,6 +20,12 @@ class StockBuy extends Component {
   }
 
   render() {
+    const {stockData: {data}} = this.props;
+
+    if(!data){
+      return null;
+    }
+
     return (
       <div id="StockBuy">
         <Header />
@@ -42,66 +48,66 @@ class StockBuy extends Component {
             <div className="panel-left">
               <div className="header">
                 <div className="stock-name">
-                  <span className="name">东风汽车</span>
+                  <span className="name">{data.name}</span>
                 </div>
               </div>
               <div className="prices">
                 <div className="main-price">
-                  <span>6.471</span>
+                  <span>{data.nowPri}</span>
                 </div>
                 <div className="trade-info">
                   <ul>
                     <li>
                       <span>卖⑤</span>
-                      <span className="trade-price">6.58</span>
-                      <span>8000</span>
+                      <span className="trade-price">{data.sellFivePri}</span>
+                      <span>{data.sellFive}</span>
                     </li>
                     <li>
-                      <span>卖⑤</span>
-                      <span className="trade-price">6.58</span>
-                      <span>8000</span>
+                      <span>卖④</span>
+                      <span className="trade-price">{data.sellFourPri}</span>
+                      <span>{data.sellFour}</span>
                     </li>
                     <li>
-                      <span>卖⑤</span>
-                      <span className="trade-price">6.58</span>
-                      <span>8000</span>
+                      <span>卖③</span>
+                      <span className="trade-price">{data.sellThreePri}</span>
+                      <span>{data.sellThree}</span>
                     </li>
                     <li>
-                      <span>卖⑤</span>
-                      <span className="trade-price">6.58</span>
-                      <span>8000</span>
+                      <span>卖②</span>
+                      <span className="trade-price">{data.sellTwoPri}</span>
+                      <span>{data.sellTwo}</span>
                     </li>
                     <li>
-                      <span>卖⑤</span>
-                      <span className="trade-price">6.58</span>
-                      <span>8000</span>
+                      <span>卖①</span>
+                      <span className="trade-price">{data.sellOnePri}</span>
+                      <span>{data.sellOne}</span>
                     </li>
                   </ul>
                   <ul>
                     <li>
-                      <span>买⑤</span>
-                      <span className="trade-price">6.58</span>
-                      <span>8000</span>
+                      <span>买①</span>
+                      <span className="trade-price">{data.buyOnePri}</span>
+                      <span>{data.buyOne}</span>
+                    </li>
+                    <li>
+                      <span>买②</span>
+                      <span className="trade-price">{data.buyTwoPri}</span>
+                      <span>{data.buyTwo}</span>
+                    </li>
+                    <li>
+                      <span>买③</span>
+                      <span className="trade-price">{data.buyThreePri}</span>
+                      <span>{data.buyThree}</span>
+                    </li>
+                    <li>
+                      <span>买④</span>
+                      <span className="trade-price">{data.buyFourPri}</span>
+                      <span>{data.buyFour}</span>
                     </li>
                     <li>
                       <span>买⑤</span>
-                      <span className="trade-price">6.58</span>
-                      <span>8000</span>
-                    </li>
-                    <li>
-                      <span>买⑤</span>
-                      <span className="trade-price">6.58</span>
-                      <span>8000</span>
-                    </li>
-                    <li>
-                      <span>买⑤</span>
-                      <span className="trade-price">6.58</span>
-                      <span>8000</span>
-                    </li>
-                    <li>
-                      <span>买⑤</span>
-                      <span className="trade-price">6.58</span>
-                      <span>8000</span>
+                      <span className="trade-price">{data.buyFivePri}</span>
+                      <span>{data.buyFive}</span>
                     </li>
                   </ul>
                 </div>
