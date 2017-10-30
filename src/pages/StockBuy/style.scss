@@ -132,6 +132,12 @@
             margin-right: 2px;
             box-sizing: border-box;
           }
+
+          li.active{
+            color: #9a0000;
+            background-color: #feeeef;
+            border-color: #d42b2e;
+          }
         }
 
         .efficiency{
@@ -173,6 +179,12 @@
               margin-right: 9px;
               cursor: pointer;
             }
+
+            .active{
+              color: #9a0000;
+              background-color: #feeeef;
+              border-color: #d42b2e;
+            }
           }
         }
 
@@ -192,6 +204,12 @@
             position: relative;
             margin-right: 2px;
             cursor: pointer;
+          }
+
+          .active{
+            color: #9a0000;
+            background-color: #feeeef;
+            border-color: #d42b2e;
           }
         }
 

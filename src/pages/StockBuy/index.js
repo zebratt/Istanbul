@@ -8,22 +8,40 @@ import './style.scss';
 import React, { Component } from 'react';
 import NavBar from 'components/NavBar/index';
 import Header from '../../components/Header/index';
-import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import actions from './action';
+import classNames from 'classnames';
+
+// 买入金额
+const buyPrices = [1, 2, 3, 5, 10, 20, 30, 50];
+
+// 出发止损金额
+const stopLossRates = [0.1, 0.1333, 0.17];
 
 class StockBuy extends Component {
-  componentDidMount(){
-    const {getStockData} = this.props;
+  componentDidMount() {
+    const { getStockData } = this.props;
 
     getStockData('sh600036');
   }
 
   render() {
-    const {stockData: {data}} = this.props;
+    const { stockData: { data }, buyPricesIndex, updateBuyPricesIndex, stopLossRatesIndex, updateStopLossRatesIndex } = this.props;
 
-    if(!data){
+    if (!data) {
       return null;
+    }
+
+    // 履约保证金
+    // 当选择L1和L2时   K = L * 1.25  (K取天花板数)
+    // 当选择L3时 K= F * 0.2
+    let performingPrice = 0;
+
+    if(stopLossRatesIndex < 2){
+      performingPrice = Math.ceil(stopLossRates[stopLossRatesIndex] * 12500);
+    }else{
+      performingPrice = buyPrices[buyPricesIndex] * 2000;
     }
 
     return (
@@ -48,66 +66,110 @@ class StockBuy extends Component {
             <div className="panel-left">
               <div className="header">
                 <div className="stock-name">
-                  <span className="name">{data.name}</span>
+                  <span className="name">
+                    {data.name}
+                  </span>
                 </div>
               </div>
               <div className="prices">
                 <div className="main-price">
-                  <span>{data.nowPri}</span>
+                  <span>
+                    {data.nowPri}
+                  </span>
                 </div>
                 <div className="trade-info">
                   <ul>
                     <li>
                       <span>卖⑤</span>
-                      <span className="trade-price">{data.sellFivePri}</span>
-                      <span>{data.sellFive}</span>
+                      <span className="trade-price">
+                        {data.sellFivePri}
+                      </span>
+                      <span>
+                        {data.sellFive}
+                      </span>
                     </li>
                     <li>
                       <span>卖④</span>
-                      <span className="trade-price">{data.sellFourPri}</span>
-                      <span>{data.sellFour}</span>
+                      <span className="trade-price">
+                        {data.sellFourPri}
+                      </span>
+                      <span>
+                        {data.sellFour}
+                      </span>
                     </li>
                     <li>
                       <span>卖③</span>
-                      <span className="trade-price">{data.sellThreePri}</span>
-                      <span>{data.sellThree}</span>
+                      <span className="trade-price">
+                        {data.sellThreePri}
+                      </span>
+                      <span>
+                        {data.sellThree}
+                      </span>
                     </li>
                     <li>
                       <span>卖②</span>
-                      <span className="trade-price">{data.sellTwoPri}</span>
-                      <span>{data.sellTwo}</span>
+                      <span className="trade-price">
+                        {data.sellTwoPri}
+                      </span>
+                      <span>
+                        {data.sellTwo}
+                      </span>
                     </li>
                     <li>
                       <span>卖①</span>
-                      <span className="trade-price">{data.sellOnePri}</span>
-                      <span>{data.sellOne}</span>
+                      <span className="trade-price">
+                        {data.sellOnePri}
+                      </span>
+                      <span>
+                        {data.sellOne}
+                      </span>
                     </li>
                   </ul>
                   <ul>
                     <li>
                       <span>买①</span>
-                      <span className="trade-price">{data.buyOnePri}</span>
-                      <span>{data.buyOne}</span>
+                      <span className="trade-price">
+                        {data.buyOnePri}
+                      </span>
+                      <span>
+                        {data.buyOne}
+                      </span>
                     </li>
                     <li>
                       <span>买②</span>
-                      <span className="trade-price">{data.buyTwoPri}</span>
-                      <span>{data.buyTwo}</span>
+                      <span className="trade-price">
+                        {data.buyTwoPri}
+                      </span>
+                      <span>
+                        {data.buyTwo}
+                      </span>
                     </li>
                     <li>
                       <span>买③</span>
-                      <span className="trade-price">{data.buyThreePri}</span>
-                      <span>{data.buyThree}</span>
+                      <span className="trade-price">
+                        {data.buyThreePri}
+                      </span>
+                      <span>
+                        {data.buyThree}
+                      </span>
                     </li>
                     <li>
                       <span>买④</span>
-                      <span className="trade-price">{data.buyFourPri}</span>
-                      <span>{data.buyFour}</span>
+                      <span className="trade-price">
+                        {data.buyFourPri}
+                      </span>
+                      <span>
+                        {data.buyFour}
+                      </span>
                     </li>
                     <li>
                       <span>买⑤</span>
-                      <span className="trade-price">{data.buyFivePri}</span>
-                      <span>{data.buyFive}</span>
+                      <span className="trade-price">
+                        {data.buyFivePri}
+                      </span>
+                      <span>
+                        {data.buyFive}
+                      </span>
                     </li>
                   </ul>
                 </div>
@@ -122,14 +184,23 @@ class StockBuy extends Component {
                 <span>买入金额</span>
               </div>
               <ul className="buy-prices">
-                <li>1万</li>
-                <li>2万</li>
-                <li>3万</li>
-                <li>5万</li>
-                <li>10万</li>
-                <li>20万</li>
-                <li>30万</li>
-                <li>50万</li>
+                {buyPrices.map((price, idx) => {
+                  const classes = classNames({
+                    active: idx === buyPricesIndex
+                  });
+
+                  return (
+                    <li
+                      key={price}
+                      className={classes}
+                      onClick={() => {
+                        updateBuyPricesIndex(idx);
+                      }}
+                    >
+                      {price}万
+                    </li>
+                  );
+                })}
               </ul>
               <div className="efficiency">资金使用率 可买入-股，资金利用率-%</div>
               <div className="hold-time">
@@ -137,7 +208,7 @@ class StockBuy extends Component {
                   <span>持仓时间</span>
                 </div>
                 <div className="hold-time-right">
-                  <div className="item">T+1|D</div>
+                  <div className="item active">T+1|D</div>
                 </div>
               </div>
               <div className="hold-time">
@@ -145,7 +216,7 @@ class StockBuy extends Component {
                   <span>触发止盈</span>
                 </div>
                 <div className="hold-time-right">
-                  <div className="item">5000</div>
+                  <div className="item active">{buyPrices[buyPricesIndex] * 5000}</div>
                 </div>
               </div>
               <div className="hold-time">
@@ -154,16 +225,26 @@ class StockBuy extends Component {
                 </div>
               </div>
               <ul className="amounts">
-                <li>-1000</li>
-                <li>-1300</li>
-                <li>-1700</li>
+                {
+                  stopLossRates.map((rate, idx)=>{
+                    const classes = classNames({
+                      active: idx === stopLossRatesIndex
+                    })
+
+                    return (
+                      <li key={rate} className={classes} onClick={()=>{
+                        updateStopLossRatesIndex(idx);
+                      }}>-{(rate * 10000 * buyPrices[buyPricesIndex]).toFixed(0)}</li>
+                    )
+                  })
+                }
               </ul>
               <div className="hold-time">
                 <div className="hold-time-left">
                   <span>交易综合费</span>
                 </div>
                 <div className="hold-time-right">
-                  <strong>45</strong>元（包括前两日）
+                  <strong>{buyPrices[buyPricesIndex] * 45}</strong>元（包括前两日）
                 </div>
               </div>
               <div className="hold-time">
@@ -171,7 +252,7 @@ class StockBuy extends Component {
                   <span>履约保证金</span>
                 </div>
                 <div className="hold-time-right">
-                  <strong>1250</strong>元
+                  <strong>{performingPrice}</strong>元
                 </div>
               </div>
               <div className="hold-time">
@@ -187,11 +268,11 @@ class StockBuy extends Component {
                   <span>递延费</span>
                 </div>
                 <div className="hold-time-right">
-                  <em>18</em>元/天
+                  <em>{buyPrices[buyPricesIndex] * 18}</em>元/天
                 </div>
               </div>
               <div>
-                <input type="checkbox"/>
+                <input type="checkbox" />
                 <span>我已阅读并签署以下协议</span>
               </div>
               <button className="btn-buy">点买</button>
@@ -203,15 +284,14 @@ class StockBuy extends Component {
   }
 }
 
-const mapStateToProps = (state)=>{
-  const {StockBuy} = state;
+const mapStateToProps = state => {
+  const { StockBuy } = state;
 
   return StockBuy;
-}
+};
 
-const mapDispatchToProps = (dispatch)=>{
+const mapDispatchToProps = dispatch => {
   return bindActionCreators(actions, dispatch);
-}
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(StockBuy);
-
