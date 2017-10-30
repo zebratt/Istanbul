@@ -40,10 +40,53 @@
           padding-bottom: 10px;
           border-bottom: 1px solid #f1f1f1;
           line-height: 1;
+          position: relative;
 
           .name {
             color: #333;
             font-size: 30px;
+          }
+
+          .choose{
+            float: right;
+            background-color: #FFF;
+            font-size: 16px;
+            margin-top: 3px;
+            color: #067ADD;
+            cursor: pointer;
+          }
+
+          .choose-stock{
+            display: flex;
+            position: absolute;
+            box-sizing: border-box;
+            left: 0;
+            top: 0;
+            height: 35px;
+            width: 250px;
+            border: #e5e5e5 solid 1px;
+            background: #fff;
+
+            .choose-stock-left{
+              flex-basis: 200px;
+              padding: 4px;
+
+              input{
+                width: 100%;
+                height: 100%;
+                border: 0;
+                outline: none;
+              }
+            }
+
+            .choose-stock-right{
+              flex-basis: 50px;
+              background: #C72125;
+              color: #fff;
+              text-align: center;
+              line-height: 35px;
+              cursor: pointer;
+            }
           }
         }
 

@@ -21,6 +21,10 @@ const buyPrices = [1, 2, 3, 5, 10, 20, 30, 50];
 const stopLossRates = [0.1, 0.1333, 0.17];
 
 class StockBuy extends Component {
+  state = {
+    chooseStockVisible: false
+  };
+
   componentDidMount() {
     const { getStockData } = this.props;
 
@@ -31,7 +35,7 @@ class StockBuy extends Component {
     const { protocolStatus } = this.props;
 
     if (!protocolStatus) {
-      notification.warning({
+      return notification.warning({
         message: '请先接受条款'
       });
     }
@@ -47,6 +51,8 @@ class StockBuy extends Component {
       protocolStatus,
       updateProtocolStatus
     } = this.props;
+
+    const { chooseStockVisible } = this.state;
 
     if (!data) {
       return null;
@@ -92,13 +98,16 @@ class StockBuy extends Component {
           <div className="nav">
             <ul>
               <li>
-                01<span className="delimiter">|</span>点买区
+                <span>01</span>
+                <span className="delimiter">|</span>点买区
               </li>
               <li>
-                02<span className="delimiter">|</span>点卖区
+                <span>02</span>
+                <span className="delimiter">|</span>点卖区
               </li>
               <li>
-                03<span className="delimiter">|</span>结算区
+                <span>03</span>
+                <span className="delimiter">|</span>结算区
               </li>
             </ul>
           </div>
@@ -107,8 +116,34 @@ class StockBuy extends Component {
               <div className="header">
                 <div className="stock-name">
                   <span className="name">
-                    {data.name}
+                    {data.name}({data.gid})
                   </span>
+                  <span
+                    className="choose"
+                    onClick={() => {
+                      this.setState({
+                        chooseStockVisible: !chooseStockVisible
+                      });
+                    }}
+                  >
+                    选择股票
+                  </span>
+                  {chooseStockVisible &&
+                    <div className="choose-stock">
+                      <div className="choose-stock-left">
+                        <input type="text" />
+                      </div>
+                      <div
+                        className="choose-stock-right"
+                        onClick={() => {
+                          this.setState({
+                            chooseStockVisible: false
+                          });
+                        }}
+                      >
+                        取消
+                      </div>
+                    </div>}
                 </div>
               </div>
               <div className="prices">
