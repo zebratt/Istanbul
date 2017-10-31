@@ -3,15 +3,16 @@ import { UPDATE_LOGIN } from './contants';
 
 const initState = {
   loginStatus: false,
-  token: ''
+  token: '',
+  customerId: ''
 };
 
 const reducer = handleActions(
   {
     [UPDATE_LOGIN]: (state, action) => {
-      const { status, token } = action.payload;
+      const { status, token, customerId } = action.payload;
 
-      return { loginStatus: status, token: token };
+      return { loginStatus: status, token: token, customerId: customerId };
     }
   },
   initState

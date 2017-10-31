@@ -2,10 +2,11 @@ import { createActions } from 'redux-actions';
 import { UPDATE_LOGIN } from './contants';
 
 export default createActions({
-  [UPDATE_LOGIN]: (status, token) => {
+  [UPDATE_LOGIN]: (status, token, customerId) => {
     return {
       status,
-      token
+      token,
+      customerId
     };
   }
 });

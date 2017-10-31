@@ -19,9 +19,10 @@ class Home extends Component {
 
   componentDidMount() {
     const token = Cookies.get('TOKEN');
+    const customerId = Cookies.get('CUSTOMER_ID');
 
     if (token) {
-      this.props.updateLogin(true, token);
+      this.props.updateLogin(true, token, customerId);
     }
   }
 
@@ -42,7 +43,7 @@ class Home extends Component {
       })
       .then(res => {
         if (res.code == 1) {
-          const { data: { token } } = res;
+          const { data: { token, cwpCustomers: {customerId} } } = res;
 
           notification.success({
             message: '登陆成功！'
@@ -50,8 +51,9 @@ class Home extends Component {
 
           //用户登陆信息保存30天
           Cookies.set('TOKEN', token, { expires: 30 });
+          Cookies.set('CUSTOMER_ID', customerId, {expires: 30})
 
-          updateLogin(true, token);
+          updateLogin(true, token, customerId);
         } else {
           notification.error({
             message: res.msg

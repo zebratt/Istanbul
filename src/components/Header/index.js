@@ -11,20 +11,25 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import actions from 'pages/Home/action';
 import Cookies from 'js-cookie';
-import {notification} from 'antd';
+import { notification } from 'antd';
 
 class Header extends Component {
-  onQuitHandler(){
+  onQuitHandler() {
     Cookies.remove('TOKEN');
-    this.props.updateLogin(false, '');
+    Cookies.remove('CUSTOMER_ID');
+
+    this.props.updateLogin(false, '', '');
+
     notification.success({
       message: '退出成功！'
-    })
+    });
   }
 
   render() {
     const { loginStatus } = this.props;
-    const loginBtnContent = loginStatus ? <a onClick={::this.onQuitHandler} href="javascript:void(0)">退出</a> : <Link to="/">登陆</Link>;
+    const loginBtnContent = loginStatus
+      ? <a onClick={::this.onQuitHandler} href="javascript:void(0)">退出</a>
+      : <Link to="/">登陆</Link>;
 
     return (
       <div id="Header">
