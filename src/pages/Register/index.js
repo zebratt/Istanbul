@@ -43,6 +43,7 @@ class Register extends Component {
         if (res.code == 1) {
           notification.success({
             message: '注册成功！',
+            duration: 1,
             onClose: () => {
               location.replace('#/');
             }

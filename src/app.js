@@ -1,10 +1,12 @@
 //styles
 import 'styles/main.scss';
 
-import React from 'react';
+import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import { HashRouter as Router, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
+import actions from './pages/Home/action';
+import Cookies from 'js-cookie';
 
 // Init Store
 import store from './store';
@@ -19,16 +21,27 @@ import { init } from 'utils/global';
 
 init();
 
-const App = () => {
-  return (
-    <Router>
-      <div id="App">
-        <Route exact path="/" component={Home} />
-        <Route exact path="/stockbuy" component={StockBuy} />
-        <Route exact path="/register" component={Register} />
-      </div>
-    </Router>
-  );
+class App extends Component{
+  componentDidMount(){
+    const token = Cookies.get('TOKEN');
+    const customerId = Cookies.get('CUSTOMER_ID');
+
+    if(token){
+      store.dispatch(actions.updateLogin(true, token, customerId))
+    }
+  }
+
+  render() {
+    return (
+      <Router>
+        <div id="App">
+          <Route exact path="/" component={Home}/>
+          <Route exact path="/stockbuy" component={StockBuy}/>
+          <Route exact path="/register" component={Register}/>
+        </div>
+      </Router>
+    );
+  }
 };
 
 ReactDOM.render(

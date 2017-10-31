@@ -13,6 +13,7 @@ import { bindActionCreators } from 'redux';
 import actions from './action';
 import classNames from 'classnames';
 import { notification, Modal } from 'antd';
+import {URL_PURCHASE} from '../../utils/urls';
 
 // 买入金额
 const buyPrices = [1, 2, 3, 5, 10, 20, 30, 50];
@@ -33,7 +34,13 @@ class StockBuy extends Component {
   }
 
   onPurchaseClick(buyAmount) {
-    const { protocolStatus } = this.props;
+    const { protocolStatus, loginStatus } = this.props;
+
+    if (!loginStatus) {
+      return notification.warning({
+        message: '请先登录'
+      });
+    }
 
     if (!protocolStatus) {
       return notification.warning({
@@ -52,8 +59,45 @@ class StockBuy extends Component {
     });
   }
 
-  onPurchaseConfirm() {
-    alert('success!');
+  /**
+   * 确认购买
+   * @param performingPrice 履约保证金
+   * @param stopProfit 触发止盈
+   * @param tradeCost 综合费
+   * @param deferCost 每日递延费
+   * @param deferCondition 递延条件
+   */
+  onPurchaseConfirm(performingPrice, stopProfit, tradeCost, deferCost, deferCondition) {
+    const { stockData: { data }, customerId, token, stopLossRatesIndex, buyPricesIndex } = this.props;
+    const { gid } = data;
+    const lossAmount = -(stopLossRates[stopLossRatesIndex] * 10000 * buyPrices[buyPricesIndex]).toFixed(0);
+
+    axios.post(URL_PURCHASE, {
+      customerId: customerId,
+      stockCode: gid,
+      requiredMargin: performingPrice,
+      profitAmount: stopProfit,
+      lossAmount: lossAmount,
+      totalCharges: tradeCost,
+      dayilyDeferredCharge: deferCost,
+      buyMoney: buyPricesIndex,
+      deferredCondition: deferCondition,
+      client_token: token
+    }).then((res)=>{
+      if(res.code == 1){
+        notification.success({
+          message: '报单成功！'
+        });
+
+        this.setState({
+          confirmModalVisible: false
+        })
+      }else{
+        notification.error({
+          message: res.msg
+        })
+      }
+    })
   }
 
   render() {
@@ -72,6 +116,9 @@ class StockBuy extends Component {
     if (!data) {
       return null;
     }
+
+    // 触发止盈
+    let stopProfit = buyPrices[buyPricesIndex] * 5000;
 
     // 履约保证金
     // 当选择第一个或第二个止损条件时   K = L * 1.25  (K取天花板数)
@@ -92,15 +139,15 @@ class StockBuy extends Component {
 
     switch (stopLossRatesIndex) {
       case 0:
-        deferCondition = (performingPrice * 0.52).toFixed(0);
+        deferCondition = -(performingPrice * 0.52).toFixed(0);
 
         break;
       case 1:
-        deferCondition = (performingPrice * 0.64).toFixed(0);
+        deferCondition = -(performingPrice * 0.64).toFixed(0);
 
         break;
       case 2:
-        deferCondition = (performingPrice * 0.7).toFixed(0);
+        deferCondition = -(performingPrice * 0.7).toFixed(0);
 
         break;
     }
@@ -111,6 +158,12 @@ class StockBuy extends Component {
 
     // 资金使用率
     let moneyUsage = (data.nowPri * buyAmount / (buyPrices[buyPricesIndex] * 100)).toFixed(2);
+
+    // 交易综合费
+    let tradeCost = buyPrices[buyPricesIndex] * 45;
+
+    // 每日递延费
+    let deferCost = buyPrices[buyPricesIndex] * 18;
 
     return (
       <div id="StockBuy">
@@ -314,7 +367,7 @@ class StockBuy extends Component {
                 </div>
                 <div className="hold-time-right">
                   <div className="item active">
-                    {buyPrices[buyPricesIndex] * 5000}
+                    {stopProfit}
                   </div>
                 </div>
               </div>
@@ -347,7 +400,7 @@ class StockBuy extends Component {
                   <span>交易综合费</span>
                 </div>
                 <div className="hold-time-right">
-                  <strong>{buyPrices[buyPricesIndex] * 45}</strong>元（包括前两日）
+                  <strong>{tradeCost}</strong>元（包括前两日）
                 </div>
               </div>
               <div className="hold-time">
@@ -363,7 +416,7 @@ class StockBuy extends Component {
                   <span>递延条件</span>
                 </div>
                 <div className="hold-time-right">
-                  浮动盈亏大于<em>-{deferCondition}</em>
+                  浮动盈亏大于<em>{deferCondition}</em>
                 </div>
               </div>
               <div className="hold-time">
@@ -371,7 +424,7 @@ class StockBuy extends Component {
                   <span>递延费</span>
                 </div>
                 <div className="hold-time-right">
-                  <em>{buyPrices[buyPricesIndex] * 18}</em>元/天
+                  <em>{deferCost}</em>元/天
                 </div>
               </div>
               <div>
@@ -410,7 +463,9 @@ class StockBuy extends Component {
         <Modal
           title={'点买确认'}
           visible={confirmModalVisible}
-          onOk={::this.onPurchaseConfirm}
+          onOk={() => {
+            this.onPurchaseConfirm(performingPrice, stopProfit, tradeCost, deferCost, deferCondition);
+          }}
           onCancel={() => {
             this.setState({
               confirmModalVisible: false
@@ -429,9 +484,9 @@ class StockBuy extends Component {
 }
 
 const mapStateToProps = state => {
-  const { StockBuy } = state;
+  const { StockBuy, Home } = state;
 
-  return StockBuy;
+  return Object.assign({}, StockBuy, Home);
 };
 
 const mapDispatchToProps = dispatch => {

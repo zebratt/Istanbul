@@ -17,15 +17,6 @@ class Home extends Component {
     password: ''
   };
 
-  componentDidMount() {
-    const token = Cookies.get('TOKEN');
-    const customerId = Cookies.get('CUSTOMER_ID');
-
-    if (token) {
-      this.props.updateLogin(true, token, customerId);
-    }
-  }
-
   onLoginHandler() {
     const { username, password } = this.state;
     const { updateLogin } = this.props;
