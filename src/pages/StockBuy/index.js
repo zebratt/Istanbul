@@ -12,7 +12,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import actions from './action';
 import classNames from 'classnames';
-import { notification } from 'antd';
+import { notification, Modal } from 'antd';
 
 // 买入金额
 const buyPrices = [1, 2, 3, 5, 10, 20, 30, 50];
@@ -22,7 +22,8 @@ const stopLossRates = [0.1, 0.1333, 0.17];
 
 class StockBuy extends Component {
   state = {
-    chooseStockVisible: false
+    chooseStockVisible: false,
+    confirmModalVisible: false
   };
 
   componentDidMount() {
@@ -31,7 +32,7 @@ class StockBuy extends Component {
     getStockData('sh600036');
   }
 
-  onPurchaseClick() {
+  onPurchaseClick(buyAmount) {
     const { protocolStatus } = this.props;
 
     if (!protocolStatus) {
@@ -39,6 +40,20 @@ class StockBuy extends Component {
         message: '请先接受条款'
       });
     }
+
+    if (!buyAmount) {
+      return notification.warning({
+        message: '购买数量不可为0'
+      });
+    }
+
+    this.setState({
+      confirmModalVisible: true
+    });
+  }
+
+  onPurchaseConfirm() {
+    alert('success!');
   }
 
   render() {
@@ -52,7 +67,7 @@ class StockBuy extends Component {
       updateProtocolStatus
     } = this.props;
 
-    const { chooseStockVisible } = this.state;
+    const { chooseStockVisible, confirmModalVisible } = this.state;
 
     if (!data) {
       return null;
@@ -89,6 +104,13 @@ class StockBuy extends Component {
 
         break;
     }
+
+    // 当前可买入数量，向下取整百
+    let buyAmount = '-';
+    buyAmount = parseInt(buyPrices[buyPricesIndex] * 10000 / data.nowPri / 100) * 100;
+
+    // 资金使用率
+    let moneyUsage = (data.nowPri * buyAmount / (buyPrices[buyPricesIndex] * 100)).toFixed(2);
 
     return (
       <div id="StockBuy">
@@ -277,7 +299,7 @@ class StockBuy extends Component {
                   );
                 })}
               </ul>
-              <div className="efficiency">资金使用率 可买入-股，资金利用率-%</div>
+              <div className="efficiency">资金使用率 可买入{buyAmount}股，资金利用率{moneyUsage}%</div>
               <div className="hold-time">
                 <div className="hold-time-left">
                   <span>持仓时间</span>
@@ -374,12 +396,33 @@ class StockBuy extends Component {
                   《点赢宝服务协议》
                 </a>
               </div>
-              <button className="btn-buy" onClick={::this.onPurchaseClick}>
+              <button
+                className="btn-buy"
+                onClick={() => {
+                  this.onPurchaseClick(buyAmount);
+                }}
+              >
                 点买
               </button>
             </div>
           </div>
         </div>
+        <Modal
+          title={'点买确认'}
+          visible={confirmModalVisible}
+          onOk={::this.onPurchaseConfirm}
+          onCancel={() => {
+            this.setState({
+              confirmModalVisible: false
+            });
+          }}
+        >
+          <p>交易品种：{data.name}{data.gid}</p>
+          <p>交易本金：{buyPrices[buyPricesIndex]}万元</p>
+          <p>持仓时间：截止至下个交易日15：00：00</p>
+          <p>交易数量：{buyAmount}</p>
+          <p>市价：五档最优成交</p>
+        </Modal>
       </div>
     );
   }
