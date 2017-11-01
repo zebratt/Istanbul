@@ -13,7 +13,7 @@ import { bindActionCreators } from 'redux';
 import actions from './action';
 import classNames from 'classnames';
 import { notification, Modal } from 'antd';
-import {URL_PURCHASE} from '../../utils/urls';
+import { URL_PURCHASE } from '../../utils/urls';
 
 // 买入金额
 const buyPrices = [1, 2, 3, 5, 10, 20, 30, 50];
@@ -24,7 +24,8 @@ const stopLossRates = [0.1, 0.1333, 0.17];
 class StockBuy extends Component {
   state = {
     chooseStockVisible: false,
-    confirmModalVisible: false
+    confirmModalVisible: false,
+    stockQueryStr: ''
   };
 
   componentDidMount() {
@@ -72,32 +73,34 @@ class StockBuy extends Component {
     const { gid } = data;
     const lossAmount = -(stopLossRates[stopLossRatesIndex] * 10000 * buyPrices[buyPricesIndex]).toFixed(0);
 
-    axios.post(URL_PURCHASE, {
-      customerId: customerId,
-      stockCode: gid,
-      requiredMargin: performingPrice,
-      profitAmount: stopProfit,
-      lossAmount: lossAmount,
-      totalCharges: tradeCost,
-      dayilyDeferredCharge: deferCost,
-      buyMoney: buyPricesIndex,
-      deferredCondition: deferCondition,
-      client_token: token
-    }).then((res)=>{
-      if(res.code == 1){
-        notification.success({
-          message: '报单成功！'
-        });
+    axios
+      .post(URL_PURCHASE, {
+        customerId: customerId,
+        stockCode: gid,
+        requiredMargin: performingPrice,
+        profitAmount: stopProfit,
+        lossAmount: lossAmount,
+        totalCharges: tradeCost,
+        dayilyDeferredCharge: deferCost,
+        buyMoney: buyPricesIndex,
+        deferredCondition: deferCondition,
+        client_token: token
+      })
+      .then(res => {
+        if (res.code == 1) {
+          notification.success({
+            message: '报单成功！'
+          });
 
-        this.setState({
-          confirmModalVisible: false
-        })
-      }else{
-        notification.error({
-          message: res.msg
-        })
-      }
-    })
+          this.setState({
+            confirmModalVisible: false
+          });
+        } else {
+          notification.error({
+            message: res.msg
+          });
+        }
+      });
   }
 
   render() {
@@ -108,10 +111,12 @@ class StockBuy extends Component {
       stopLossRatesIndex,
       updateStopLossRatesIndex,
       protocolStatus,
-      updateProtocolStatus
+      updateProtocolStatus,
+      getStockSuggest,
+      suggests
     } = this.props;
 
-    const { chooseStockVisible, confirmModalVisible } = this.state;
+    const { chooseStockVisible, confirmModalVisible, stockQueryStr } = this.state;
 
     if (!data) {
       return null;
@@ -206,7 +211,19 @@ class StockBuy extends Component {
                   {chooseStockVisible &&
                     <div className="choose-stock">
                       <div className="choose-stock-left">
-                        <input type="text" />
+                        <input
+                          type="text"
+                          value={stockQueryStr}
+                          onChange={eve => {
+                            let {target: {value}} = eve;
+
+                            this.setState({
+                              stockQueryStr: value
+                            });
+
+                            getStockSuggest(value);
+                          }}
+                        />
                       </div>
                       <div
                         className="choose-stock-right"

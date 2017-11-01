@@ -7,9 +7,10 @@ import {
   GET_STOCK_DATA,
   UPDATE_BUY_PRICES_INDEX,
   UPDATE_STOP_LOSS_RATES_INDEX,
-  UPDATE_PROTOCOL_STATUS
+  UPDATE_PROTOCOL_STATUS,
+  GET_STOCK_SUGGEST
 } from './contants';
-import { URL_STOCK_DATA } from '../../utils/urls';
+import { URL_STOCK_DATA, URL_SUGGEST } from '../../utils/urls';
 import { notification } from 'antd';
 
 const reducer = createActions({
@@ -33,7 +34,13 @@ const reducer = createActions({
   },
   [UPDATE_BUY_PRICES_INDEX]: nextIndex => nextIndex,
   [UPDATE_STOP_LOSS_RATES_INDEX]: nextIndex => nextIndex,
-  [UPDATE_PROTOCOL_STATUS]: status => status
+  [UPDATE_PROTOCOL_STATUS]: status => status,
+  [GET_STOCK_SUGGEST]: async (queryStr)=>{
+    const res = await axios.get(URL_SUGGEST + queryStr);
+    const resStr = res.match(/\".+\"/)[0].slice(1,-1);
+
+    return resStr.split(';');
+  }
 });
 
 export default reducer;
