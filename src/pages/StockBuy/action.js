@@ -36,6 +36,10 @@ const reducer = createActions({
   [UPDATE_STOP_LOSS_RATES_INDEX]: nextIndex => nextIndex,
   [UPDATE_PROTOCOL_STATUS]: status => status,
   [GET_STOCK_SUGGEST]: async (queryStr)=>{
+    if(!queryStr){
+      return [];
+    }
+
     const res = await axios.get(URL_SUGGEST + queryStr);
     const resStr = res.match(/\".+\"/)[0].slice(1,-1);
 

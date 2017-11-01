@@ -60,6 +60,19 @@ class StockBuy extends Component {
     });
   }
 
+  onStockItemClick(code) {
+    const { getStockData } = this.props;
+
+    this.setState(
+      {
+        chooseStockVisible: false
+      },
+      () => {
+        getStockData(code);
+      }
+    );
+  }
+
   /**
    * 确认购买
    * @param performingPrice 履约保证金
@@ -215,7 +228,7 @@ class StockBuy extends Component {
                           type="text"
                           value={stockQueryStr}
                           onChange={eve => {
-                            let {target: {value}} = eve;
+                            let { target: { value } } = eve;
 
                             this.setState({
                               stockQueryStr: value
@@ -224,6 +237,33 @@ class StockBuy extends Component {
                             getStockSuggest(value);
                           }}
                         />
+                        {!!suggests.length &&
+                          <table className="suggests">
+                            <tr className="title">
+                              <td width="50%">名称</td>
+                              <td width="25%">代码</td>
+                              <td width="25%">简拼</td>
+                            </tr>
+                            {suggests.map(suggest => {
+                              const items = suggest.split(',');
+
+                              return (
+                                <tr className="item"
+                                    onClick={()=>{this.onStockItemClick(items[3])}}
+                                >
+                                  <td>
+                                    {items[4]}
+                                  </td>
+                                  <td>
+                                    {items[3]}
+                                  </td>
+                                  <td>
+                                    {items[5]}
+                                  </td>
+                                </tr>
+                              );
+                            })}
+                          </table>}
                       </div>
                       <div
                         className="choose-stock-right"
@@ -369,7 +409,9 @@ class StockBuy extends Component {
                   );
                 })}
               </ul>
-              <div className="efficiency">资金使用率 可买入{buyAmount}股，资金利用率{moneyUsage}%</div>
+              <div className="efficiency">
+                资金使用率 可买入{buyAmount}股，资金利用率{moneyUsage}%
+              </div>
               <div className="hold-time">
                 <div className="hold-time-left">
                   <span>持仓时间</span>
@@ -489,10 +531,17 @@ class StockBuy extends Component {
             });
           }}
         >
-          <p>交易品种：{data.name}{data.gid}</p>
-          <p>交易本金：{buyPrices[buyPricesIndex]}万元</p>
+          <p>
+            交易品种：{data.name}
+            {data.gid}
+          </p>
+          <p>
+            交易本金：{buyPrices[buyPricesIndex]}万元
+          </p>
           <p>持仓时间：截止至下个交易日15：00：00</p>
-          <p>交易数量：{buyAmount}</p>
+          <p>
+            交易数量：{buyAmount}
+          </p>
           <p>市价：五档最优成交</p>
         </Modal>
       </div>

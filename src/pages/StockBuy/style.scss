@@ -77,6 +77,29 @@
                 border: 0;
                 outline: none;
               }
+
+              .suggests{
+                position: absolute;
+                top: 39px;
+                width: 250px;
+                border: #e5e5e5 solid 1px;
+                left: 0;
+                background: #fff;
+                line-height: 28px;
+
+                td{
+                  padding-left: 10px;
+                }
+
+                .title{
+                  font-size: 14px;
+                }
+
+                .item:hover{
+                  background: #888;
+                  color: #fff;
+                }
+              }
             }
 
             .choose-stock-right{
