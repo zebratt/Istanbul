@@ -102,7 +102,7 @@ class StockBuy extends Component {
       .then(res => {
         if (res.code == 1) {
           notification.success({
-            message: '报单成功！'
+            message: '购买成功！'
           });
 
           this.setState({
