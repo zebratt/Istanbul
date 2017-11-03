@@ -17,10 +17,17 @@
         border-right: #fff solid 1px;
         text-align: center;
         font-size: 18px;
+        cursor: pointer;
+
 
         .delimiter {
           margin: 0 5px;
         }
+      }
+
+      .tab-active{
+        background: #F9F9F9;
+        color: #CE2629;
       }
     }
 
