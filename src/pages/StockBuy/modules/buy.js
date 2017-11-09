@@ -136,7 +136,7 @@ class Buy extends Component {
     let performingPrice = 0;
 
     if (stopLossRatesIndex < 2) {
-      performingPrice = Math.ceil(stopLossRates[stopLossRatesIndex] * 12500);
+      performingPrice = Math.ceil(stopLossRates[stopLossRatesIndex] * buyPrices[buyPricesIndex]  * 12500);
     } else {
       performingPrice = buyPrices[buyPricesIndex] * 2000;
     }
