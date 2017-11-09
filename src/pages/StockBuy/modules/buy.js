@@ -176,7 +176,7 @@ class Buy extends Component {
     let deferCost = buyPrices[buyPricesIndex] * 18;
 
     return (
-      <div className="body">
+      <div className="body buy">
         <div className="panel-left">
           <div className="header">
             <div className="stock-name">

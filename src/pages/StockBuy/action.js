@@ -8,9 +8,10 @@ import {
   UPDATE_BUY_PRICES_INDEX,
   UPDATE_STOP_LOSS_RATES_INDEX,
   UPDATE_PROTOCOL_STATUS,
-  GET_STOCK_SUGGEST
+  GET_STOCK_SUGGEST,
+  GET_POSITION_DATA,
 } from './contants';
-import { URL_STOCK_DATA, URL_SUGGEST } from '../../utils/urls';
+import { URL_STOCK_DATA, URL_SUGGEST, URL_POSITION_DATA } from '../../utils/urls';
 import { notification } from 'antd';
 
 const reducer = createActions({
@@ -44,6 +45,22 @@ const reducer = createActions({
     const resStr = res.match(/\".+\"/)[0].slice(1,-1);
 
     return resStr.split(';');
+  },
+  [GET_POSITION_DATA]: async (customerId, token)=>{
+    const res = await axios.post(URL_POSITION_DATA, {
+      customerId: customerId,
+      client_token: token,
+      pageNumber: 0,
+      pagzSize: 20
+    });
+
+    if(res.code == 1){
+      return res.data;
+    }else{
+      notification.error({
+        message: res.message
+      })
+    }
   }
 });
 

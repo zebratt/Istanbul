@@ -33,10 +33,13 @@
       }
     }
 
+    .buy{
+      display: flex;
+    }
+
     .body {
       padding: 40px 50px;
       box-sizing: border-box;
-      display: flex;
 
       .panel-left {
         flex-basis: 64.5%;
