@@ -7,3 +7,4 @@ export const URL_SUGGEST = '/suggest/type=111&key=' //股票建议接口
 // Sell
 export const URL_POSITION_DATA = '/serverInterface/buy/queryPositionData' //持仓
 export const URL_SELL_OUT_STOCK = '/serverInterface/buy/sellOutStockOrder' //卖出
+export const URL_CLINCH_RECORD = '/serverInterface/clinchRecord/queryHistoryClinchRecord' //历史记录

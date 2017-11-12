@@ -7,3 +7,4 @@ export const GET_STOCK_SUGGEST = 'GET_STOCK_SUGGEST';
 // Sell
 export const GET_POSITION_DATA = 'GET_POSITION_DATA';
 export const SELL_OUT_STOCK = 'SELL_OUT_STOCK';
+export const GET_CLINCH_RECORD = 'GET_CLINCH_RECORD';
