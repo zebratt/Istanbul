@@ -1,0 +1,24 @@
+#StockBuy{
+  .body{
+    .table{
+      width: 100%;
+      margin-top: 10px;
+      text-align: center;
+
+      .title{
+        line-height: 30px;
+      }
+
+      .btn-sell{
+        width: 80px;
+        height: 35px;
+        background-color: #CE2629;
+        font-size: 16px;
+        margin: 5px 0;
+        color: #fff;
+        border: 0;
+        cursor: pointer;
+      }
+    }
+  }
+}
