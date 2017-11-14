@@ -1087,6 +1087,7 @@ var URL_SUGGEST = exports.URL_SUGGEST = '/suggest/type=111&key='; //股票建议
 // Sell
 var URL_POSITION_DATA = exports.URL_POSITION_DATA = '/serverInterface/buy/queryPositionData'; //持仓
 var URL_SELL_OUT_STOCK = exports.URL_SELL_OUT_STOCK = '/serverInterface/buy/sellOutStockOrder'; //卖出
+var URL_CLINCH_RECORD = exports.URL_CLINCH_RECORD = '/serverInterface/clinchRecord/queryHistoryClinchRecord'; //历史记录
 
 /***/ }),
 /* 61 */
@@ -3449,6 +3450,7 @@ var GET_STOCK_SUGGEST = exports.GET_STOCK_SUGGEST = 'GET_STOCK_SUGGEST';
 // Sell
 var GET_POSITION_DATA = exports.GET_POSITION_DATA = 'GET_POSITION_DATA';
 var SELL_OUT_STOCK = exports.SELL_OUT_STOCK = 'SELL_OUT_STOCK';
+var GET_CLINCH_RECORD = exports.GET_CLINCH_RECORD = 'GET_CLINCH_RECORD';
 
 /***/ }),
 /* 172 */
@@ -9421,7 +9423,7 @@ var reducer = (0, _reduxActions.createActions)((_createActions = {}, _defineProp
               customerId: customerId,
               client_token: token,
               pageNumber: 0,
-              pagzSize: 20
+              pageSize: 20
             });
 
           case 2:
@@ -9436,7 +9438,7 @@ var reducer = (0, _reduxActions.createActions)((_createActions = {}, _defineProp
 
           case 7:
             _notification3.default.error({
-              message: res.message
+              message: res.msg
             });
 
           case 8:
@@ -9449,6 +9451,47 @@ var reducer = (0, _reduxActions.createActions)((_createActions = {}, _defineProp
 
   return function (_x3, _x4) {
     return _ref3.apply(this, arguments);
+  };
+}()), _defineProperty(_createActions, _contants.GET_CLINCH_RECORD, function () {
+  var _ref4 = _asyncToGenerator( /*#__PURE__*/_regenerator2.default.mark(function _callee4(customerId, token) {
+    var res;
+    return _regenerator2.default.wrap(function _callee4$(_context4) {
+      while (1) {
+        switch (_context4.prev = _context4.next) {
+          case 0:
+            _context4.next = 2;
+            return axios.post(_urls.URL_CLINCH_RECORD, {
+              customerId: customerId,
+              client_token: token,
+              pageNumber: 0,
+              pageSize: 20
+            });
+
+          case 2:
+            res = _context4.sent;
+
+            if (!(res.code == 1)) {
+              _context4.next = 7;
+              break;
+            }
+
+            return _context4.abrupt('return', res.data);
+
+          case 7:
+            _notification3.default.error({
+              message: res.msg
+            });
+
+          case 8:
+          case 'end':
+            return _context4.stop();
+        }
+      }
+    }, _callee4, undefined);
+  }));
+
+  return function (_x5, _x6) {
+    return _ref4.apply(this, arguments);
   };
 }()), _createActions));
 
@@ -10806,12 +10849,231 @@ var Settle = function (_Component) {
   }
 
   _createClass(Settle, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var _props = this.props,
+          customerId = _props.customerId,
+          token = _props.token,
+          getClinchRecord = _props.getClinchRecord;
+
+
+      if (!customerId) {
+        return;
+      }
+
+      getClinchRecord(customerId, token);
+    }
+  }, {
     key: "render",
     value: function render() {
+      var _props2 = this.props,
+          customerId = _props2.customerId,
+          token = _props2.token,
+          historyData = _props2.historyData;
+      var content = historyData.content;
+
+
+      if (!customerId) {
+        return _react2.default.createElement(
+          "div",
+          { className: "body" },
+          _react2.default.createElement(
+            "div",
+            null,
+            "\u8BF7\u5148\u767B\u5F55!"
+          )
+        );
+      }
+
+      if (!content) {
+        return null;
+      }
+
       return _react2.default.createElement(
         "div",
         { className: "body" },
-        "Settle tab"
+        _react2.default.createElement(
+          "table",
+          { className: "table" },
+          _react2.default.createElement(
+            "thead",
+            null,
+            _react2.default.createElement(
+              "tr",
+              { className: "title" },
+              _react2.default.createElement(
+                "td",
+                null,
+                "\u6210\u4EA4\u8BB0\u5F55ID"
+              ),
+              _react2.default.createElement(
+                "td",
+                null,
+                "\u59D4\u6258ID"
+              ),
+              _react2.default.createElement(
+                "td",
+                null,
+                "\u80A1\u7968\u4EE3\u7801"
+              ),
+              _react2.default.createElement(
+                "td",
+                null,
+                "\u80A1\u7968\u540D\u79F0"
+              ),
+              _react2.default.createElement(
+                "td",
+                null,
+                "\u4EA4\u6613\u65B9\u5411"
+              ),
+              _react2.default.createElement(
+                "td",
+                null,
+                "\u6210\u4EA4\u65F6\u95F4"
+              ),
+              _react2.default.createElement(
+                "td",
+                null,
+                "\u6210\u4EA4\u4EF7\u683C"
+              ),
+              _react2.default.createElement(
+                "td",
+                null,
+                "\u6210\u4EA4\u6570\u91CF"
+              ),
+              _react2.default.createElement(
+                "td",
+                null,
+                "\u6210\u4EA4\u603B\u989D"
+              ),
+              _react2.default.createElement(
+                "td",
+                null,
+                "\u4EA4\u6613\u8D39"
+              ),
+              _react2.default.createElement(
+                "td",
+                null,
+                "\u5370\u82B1\u7A0E"
+              ),
+              _react2.default.createElement(
+                "td",
+                null,
+                "\u8FC7\u6237\u8D39"
+              ),
+              _react2.default.createElement(
+                "td",
+                null,
+                "\u5176\u4ED6\u8D39\u7528"
+              ),
+              _react2.default.createElement(
+                "td",
+                null,
+                "\u5907\u6CE8\u4FE1\u606F"
+              ),
+              _react2.default.createElement(
+                "td",
+                null,
+                "\u6301\u4ED3ID"
+              ),
+              _react2.default.createElement(
+                "td",
+                null,
+                "\u65B9\u6848ID"
+              )
+            )
+          ),
+          _react2.default.createElement(
+            "tbody",
+            null,
+            content.map(function (item) {
+              return _react2.default.createElement(
+                "tr",
+                { key: item.clinchRecordId },
+                _react2.default.createElement(
+                  "td",
+                  null,
+                  item.clinchRecordId
+                ),
+                _react2.default.createElement(
+                  "td",
+                  null,
+                  item.entrustId
+                ),
+                _react2.default.createElement(
+                  "td",
+                  null,
+                  item.stockCode
+                ),
+                _react2.default.createElement(
+                  "td",
+                  null,
+                  item.stockName
+                ),
+                _react2.default.createElement(
+                  "td",
+                  null,
+                  item.tradeDirection
+                ),
+                _react2.default.createElement(
+                  "td",
+                  null,
+                  item.clinchTime
+                ),
+                _react2.default.createElement(
+                  "td",
+                  null,
+                  item.clinchPrice
+                ),
+                _react2.default.createElement(
+                  "td",
+                  null,
+                  item.clinchNum
+                ),
+                _react2.default.createElement(
+                  "td",
+                  null,
+                  item.totalValue
+                ),
+                _react2.default.createElement(
+                  "td",
+                  null,
+                  item.transactionFee
+                ),
+                _react2.default.createElement(
+                  "td",
+                  null,
+                  item.stampDuty
+                ),
+                _react2.default.createElement(
+                  "td",
+                  null,
+                  item.transferFee
+                ),
+                _react2.default.createElement(
+                  "td",
+                  null,
+                  item.otherCharges
+                ),
+                _react2.default.createElement(
+                  "td",
+                  null,
+                  item.remark
+                ),
+                _react2.default.createElement(
+                  "td",
+                  null,
+                  item.positionId
+                ),
+                _react2.default.createElement(
+                  "td",
+                  null,
+                  item.schemeId
+                )
+              );
+            })
+          )
+        )
       );
     }
   }]);
@@ -10856,7 +11118,8 @@ var initState = {
   stopLossRatesIndex: 0,
   protocolStatus: true,
   suggests: [],
-  sellData: {}
+  sellData: {},
+  historyData: {}
 };
 
 exports.default = (0, _reduxActions.handleActions)((_handleActions = {}, _defineProperty(_handleActions, _contants.GET_STOCK_DATA, function (state, action) {
@@ -10910,6 +11173,14 @@ exports.default = (0, _reduxActions.handleActions)((_handleActions = {}, _define
   var nState = (0, _cloneDeep3.default)(state);
 
   nState.sellData = payload;
+
+  return nState;
+}), _defineProperty(_handleActions, _contants.GET_CLINCH_RECORD, function (state, action) {
+  var payload = action.payload;
+
+  var nState = (0, _cloneDeep3.default)(state);
+
+  nState.historyData = payload;
 
   return nState;
 }), _handleActions), initState);
@@ -11012,6 +11283,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 var config = exports.config = {
   host: 'http://106.14.193.187',
+  // host: 'http://local.test.com',
   appKey: '8c1cd1675ae0c5302d8e0d5aa633d49c'
 };
 

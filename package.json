@@ -5,7 +5,7 @@
     "author": "xuejian.xu",
     "license": "MIT",
     "scripts": {
-        "dist": "webpack",
+        "dist": "webpack --env prod",
         "dev": "webpack-dev-server --open --env dev",
         "start": "npm run dev",
         "icon": "node icons/index.js"
