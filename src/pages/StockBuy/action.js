@@ -52,7 +52,7 @@ const reducer = createActions({
       customerId: customerId,
       client_token: token,
       pageNumber: 0,
-      pagzSize: 20
+      pageSize: 20
     });
 
     if(res.code == 1){
