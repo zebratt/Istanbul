@@ -16,6 +16,11 @@ module.exports = merge(common, {
       title: '点赢宝',
       template: 'dist/index.ejs'
     }),
-    new webpack.HotModuleReplacementPlugin()
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: JSON.stringify('develop')
+      }
+    })
   ]
-})
+});
