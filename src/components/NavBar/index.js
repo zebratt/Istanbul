@@ -29,18 +29,8 @@ class NavBar extends Component{
               </NavLink>
             </li>
             <li>
-              <NavLink isActive={this.isActive} to="/aaa">
-                <span>免费体验</span>
-              </NavLink>
-            </li>
-            <li>
-              <NavLink isActive={this.isActive} to="/bbb">
-                <span>手机版</span>
-              </NavLink>
-            </li>
-            <li>
-              <NavLink isActive={this.isActive} to="/ccc">
-                <span>帮助中心</span>
+              <NavLink isActive={this.isActive} to="/personal">
+                <span>个人中心</span>
               </NavLink>
             </li>
           </ul>

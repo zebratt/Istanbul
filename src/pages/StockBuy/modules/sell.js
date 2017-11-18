@@ -51,7 +51,7 @@ class Sell extends Component {
         <div className="tip">
           当前持仓所需递延费<span className="red">{dayDeference}</span>元(周末及节假日免费),持仓盈利总计：<span className="red">{sumProfit}</span>元
         </div>
-        <table className="table">
+        <table className="sell-table">
           <thead>
             <tr className="title">
               <td>股票代码</td>

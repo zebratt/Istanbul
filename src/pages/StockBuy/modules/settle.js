@@ -2,6 +2,7 @@
  * Created by xuejian.xu on 2017/11/3.
  */
 
+import './settle.scss';
 import React, {Component} from 'react';
 
 class Settle extends Component{
@@ -33,7 +34,7 @@ class Settle extends Component{
 
     return (
       <div className="body">
-        <table className="table">
+        <table className="settle-table">
           <thead>
             <tr className="title">
               <td>成交记录ID</td>

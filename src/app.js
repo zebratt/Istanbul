@@ -15,6 +15,7 @@ import store from './store';
 import Home from 'pages/Home';
 import StockBuy from 'pages/StockBuy';
 import Register from 'pages/Register';
+import Personal from 'pages/PersonalCenter';
 
 // Global variables
 import { init } from 'utils/global';
@@ -22,7 +23,7 @@ import { init } from 'utils/global';
 init();
 
 class App extends Component{
-  componentDidMount(){
+  componentWillMount(){
     const token = Cookies.get('TOKEN');
     const customerId = Cookies.get('CUSTOMER_ID');
 
@@ -38,6 +39,7 @@ class App extends Component{
           <Route exact path="/" component={Home}/>
           <Route exact path="/stockbuy" component={StockBuy}/>
           <Route exact path="/register" component={Register}/>
+          <Route exact path="/personal" component={Personal}/>
         </div>
       </Router>
     );
