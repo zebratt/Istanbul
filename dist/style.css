@@ -3746,13 +3746,13 @@ html, body {
     color: #CE2629;
     margin: 0 2px; }
 
-#StockBuy .body .table {
+#StockBuy .body .sell-table {
   width: 100%;
   margin-top: 10px;
   text-align: center; }
-  #StockBuy .body .table .title {
+  #StockBuy .body .sell-table .title {
     line-height: 30px; }
-  #StockBuy .body .table .btn-sell {
+  #StockBuy .body .sell-table .btn-sell {
     width: 80px;
     height: 35px;
     background-color: #CE2629;
@@ -5163,6 +5163,13 @@ html, body {
     border-width: 6px;
   }
 }
+#StockBuy .body .settle-table {
+  width: 100%;
+  margin-top: 10px;
+  text-align: center;
+  line-height: 20px; }
+  #StockBuy .body .settle-table .title {
+    line-height: 30px; }
 html, body {
   background: #FAFAFA; }
 
@@ -5245,3 +5252,89 @@ html, body {
           margin-top: 20px;
           font-size: 16px;
           cursor: pointer; }
+#PersonalCenter .main {
+  display: flex;
+  width: 1000px;
+  margin: 40px auto;
+  border: 1px solid #e5e5e5;
+  background: #F4F0F0; }
+  #PersonalCenter .main .menu {
+    min-width: 200px;
+    height: 600px; }
+    #PersonalCenter .main .menu .title {
+      line-height: 50px;
+      background: #D22E34;
+      color: #fff;
+      font-size: 16px;
+      text-align: center; }
+    #PersonalCenter .main .menu .profile {
+      box-sizing: border-box;
+      padding: 20px;
+      height: 120px;
+      border-bottom: #e5e5e5 solid 1px; }
+    #PersonalCenter .main .menu .menus .item {
+      line-height: 45px;
+      text-align: center;
+      font-size: 14px;
+      cursor: pointer; }
+    #PersonalCenter .main .menu .menus .active {
+      color: #D22E34; }
+  #PersonalCenter .main .content {
+    background: #fff;
+    flex: 1;
+    border-left: 1px solid #e5e5e5;
+    padding: 20px; }
+#MyHome .top {
+  display: flex;
+  width: 100%;
+  margin-top: 30px; }
+  #MyHome .top .flex-1 {
+    flex-basis: 25%;
+    text-align: center; }
+  #MyHome .top .balance {
+    border: #D22E34 solid 6px;
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    text-align: center;
+    box-sizing: border-box;
+    padding-top: 50px;
+    font-size: 16px;
+    margin: 0 auto; }
+  #MyHome .top .coupon {
+    font-size: 16px;
+    box-sizing: border-box;
+    padding-top: 50px; }
+  #MyHome .top .red {
+    color: #D22E34; }
+  #MyHome .top .btn {
+    width: 80%;
+    line-height: 40px;
+    color: #fff;
+    border-radius: 5px;
+    border: 0;
+    margin-top: 42px;
+    font-size: 16px; }
+  #MyHome .top .btn-charge {
+    background: #2EBFE0; }
+  #MyHome .top .btn-withdraw {
+    background: #D22E34; }
+
+#MyHome .title {
+  margin-top: 50px;
+  padding: 10px 0; }
+
+#MyHome .table {
+  width: 100%;
+  text-align: center;
+  line-height: 25px; }
+  #MyHome .table tr.title {
+    font-weight: bold; }
+
+#MyHome .table-nav {
+  margin-top: 20px;
+  text-align: right; }
+  #MyHome .table-nav span {
+    margin: 0 5px; }
+  #MyHome .table-nav .btn {
+    margin: 0 10px; }
