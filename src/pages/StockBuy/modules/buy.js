@@ -17,13 +17,20 @@ class Buy extends Component {
   state = {
     chooseStockVisible: false,
     confirmModalVisible: false,
-    stockQueryStr: ''
+    stockQueryStr: '',
+    currentStockCode: 'sh600036' // 默认为招商银行
   };
 
   componentDidMount() {
     const { getStockData } = this.props;
+    const { currentStockCode} = this.state;
 
-    getStockData('sh600036');
+    getStockData(currentStockCode);
+
+    //暂时间隔一分钟拉取一次数据
+    window.setInterval(()=>{
+      getStockData(currentStockCode)
+    }, 60000);
   }
 
   onPurchaseClick(buyAmount) {
@@ -52,12 +59,17 @@ class Buy extends Component {
     });
   }
 
+  /**
+   * 搜索建议条目点击
+   * @param code
+   */
   onStockItemClick(code) {
     const { getStockData } = this.props;
 
     this.setState(
       {
-        chooseStockVisible: false
+        chooseStockVisible: false,
+        currentStockCode: code
       },
       () => {
         getStockData(code);
@@ -126,6 +138,16 @@ class Buy extends Component {
     if (!data) {
       return null;
     }
+
+    const tradePriceClasses = classNames({
+      'trade-price': true,
+      'red': data.increPer > 0
+    })
+
+    const mainPriceClasses = classNames({
+      'main-price': true,
+      'red': data.increPer > 0
+    })
 
     // 触发止盈
     let stopProfit = buyPrices[buyPricesIndex] * 5000;
@@ -254,7 +276,7 @@ class Buy extends Component {
             </div>
           </div>
           <div className="prices">
-            <div className="main-price">
+            <div className={mainPriceClasses}>
               <span>
                 {data.nowPri}
               </span>
@@ -263,7 +285,7 @@ class Buy extends Component {
               <ul>
                 <li>
                   <span>卖⑤</span>
-                  <span className="trade-price">
+                  <span className={tradePriceClasses}>
                     {data.sellFivePri}
                   </span>
                   <span>
@@ -272,7 +294,7 @@ class Buy extends Component {
                 </li>
                 <li>
                   <span>卖④</span>
-                  <span className="trade-price">
+                  <span className={tradePriceClasses}>
                     {data.sellFourPri}
                   </span>
                   <span>
@@ -281,7 +303,7 @@ class Buy extends Component {
                 </li>
                 <li>
                   <span>卖③</span>
-                  <span className="trade-price">
+                  <span className={tradePriceClasses}>
                     {data.sellThreePri}
                   </span>
                   <span>
@@ -290,7 +312,7 @@ class Buy extends Component {
                 </li>
                 <li>
                   <span>卖②</span>
-                  <span className="trade-price">
+                  <span className={tradePriceClasses}>
                     {data.sellTwoPri}
                   </span>
                   <span>
@@ -299,7 +321,7 @@ class Buy extends Component {
                 </li>
                 <li>
                   <span>卖①</span>
-                  <span className="trade-price">
+                  <span className={tradePriceClasses}>
                     {data.sellOnePri}
                   </span>
                   <span>
@@ -310,7 +332,7 @@ class Buy extends Component {
               <ul>
                 <li>
                   <span>买①</span>
-                  <span className="trade-price">
+                  <span className={tradePriceClasses}>
                     {data.buyOnePri}
                   </span>
                   <span>
@@ -319,7 +341,7 @@ class Buy extends Component {
                 </li>
                 <li>
                   <span>买②</span>
-                  <span className="trade-price">
+                  <span className={tradePriceClasses}>
                     {data.buyTwoPri}
                   </span>
                   <span>
@@ -328,7 +350,7 @@ class Buy extends Component {
                 </li>
                 <li>
                   <span>买③</span>
-                  <span className="trade-price">
+                  <span className={tradePriceClasses}>
                     {data.buyThreePri}
                   </span>
                   <span>
@@ -337,7 +359,7 @@ class Buy extends Component {
                 </li>
                 <li>
                   <span>买④</span>
-                  <span className="trade-price">
+                  <span className={tradePriceClasses}>
                     {data.buyFourPri}
                   </span>
                   <span>
@@ -346,7 +368,7 @@ class Buy extends Component {
                 </li>
                 <li>
                   <span>买⑤</span>
-                  <span className="trade-price">
+                  <span className={tradePriceClasses}>
                     {data.buyFivePri}
                   </span>
                   <span>

@@ -126,7 +126,7 @@ class Sell extends Component {
           visible={sellModalVisible}
           onOk={()=>{
             axios.post(URL_SELL_OUT_STOCK, {
-              positionIds: this.item.positionId,
+              positionId: this.item.positionId,
               client_token: token
             }).then((res)=>{
               if(res.code == 1){

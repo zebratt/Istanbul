@@ -3857,6 +3857,8 @@ html, body {
           color: #00a800;
           line-height: 208px;
           font-size: 48px; }
+        #StockBuy .main .body .panel-left .prices .red {
+          color: #C72125; }
         #StockBuy .main .body .panel-left .prices .trade-info {
           flex-basis: 190px;
           color: #888;
@@ -3870,6 +3872,8 @@ html, body {
                 margin: 2px 10px; }
               #StockBuy .main .body .panel-left .prices .trade-info ul li .trade-price {
                 color: #00a800; }
+              #StockBuy .main .body .panel-left .prices .trade-info ul li .red {
+                color: #C72125; }
       #StockBuy .main .body .panel-left .switch {
         display: flex;
         margin: 20px 0;
@@ -5203,11 +5207,33 @@ html, body {
             height: 40px;
             line-height: 21px;
             color: #444444; }
+        #Register .main .content .register-box .form .verify {
+          display: flex; }
+          #Register .main .content .register-box .form .verify .left {
+            flex: 1; }
+          #Register .main .content .register-box .form .verify .right {
+            box-sizing: border-box;
+            width: 50%;
+            text-align: right; }
+            #Register .main .content .register-box .form .verify .right .btn-verify {
+              background: #d42b2e;
+              color: #fff;
+              border: 0;
+              width: 80%;
+              font-size: 13px;
+              cursor: pointer;
+              border-radius: 0;
+              height: 100%; }
+            #Register .main .content .register-box .form .verify .right .disabled {
+              background: #888; }
         #Register .main .content .register-box .form .agree {
           font-size: 12px;
           color: #999; }
           #Register .main .content .register-box .form .agree span {
             margin-left: 6px; }
+          #Register .main .content .register-box .form .agree .checkbox {
+            -webkit-appearance: checkbox;
+            cursor: pointer; }
         #Register .main .content .register-box .form .btn-next {
           line-height: 36px;
           display: block;

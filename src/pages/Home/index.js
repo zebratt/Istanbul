@@ -45,6 +45,8 @@ class Home extends Component {
           Cookies.set('CUSTOMER_ID', customerId, {expires: 30})
 
           updateLogin(true, token, customerId);
+
+          location.replace('#/stockbuy');
         } else {
           notification.error({
             message: res.msg

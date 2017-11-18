@@ -23,6 +23,8 @@ class Header extends Component {
     notification.success({
       message: '退出成功！'
     });
+
+    location.replace('#/');
   }
 
   render() {
