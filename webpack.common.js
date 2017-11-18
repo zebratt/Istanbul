@@ -1,9 +1,8 @@
 const path = require('path');
 const webpack = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-module.exports = {
+let commonConfig = {
   entry: {
     main: path.resolve(__dirname, 'src/app'),
     vendors: ['react', 'react-dom', 'redux', 'react-redux', 'react-router-dom']
@@ -72,23 +71,11 @@ module.exports = {
     extensions: ['.js']
   },
   plugins: [
-    new webpack.DefinePlugin({
-      'process.env.NODE_ENV': '"develop"'
-    }),
     new ExtractTextPlugin('style.css'),
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendors'
-    }),
-    new HtmlWebpackPlugin({
-      title: '点赢宝',
-      template: 'dist/index.ejs'
-    }),
-    new webpack.HotModuleReplacementPlugin()
-  ],
-  devServer: {
-    hot: true,
-    contentBase: path.resolve(__dirname, 'dist'),
-    port: 9999
-  },
-  devtool: 'cheap-module-eval-source-map'
+    })
+  ]
 };
+
+module.exports = commonConfig;
