@@ -9,7 +9,7 @@ export default createActions({
       customerId: customerId,
       client_token: client_token,
       pageNumber: pageIndex,
-      pageSize: 20
+      pageSize: 10
     });
 
     if(res.code != 1){

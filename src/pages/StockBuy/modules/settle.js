@@ -37,8 +37,6 @@ class Settle extends Component{
         <table className="settle-table">
           <thead>
             <tr className="title">
-              <td>成交记录ID</td>
-              <td>委托ID</td>
               <td>股票代码</td>
               <td>股票名称</td>
               <td>交易方向</td>
@@ -59,8 +57,6 @@ class Settle extends Component{
           {content.map((item)=>{
             return (
               <tr key={item.clinchRecordId}>
-                <td>{item.clinchRecordId}</td>
-                <td>{item.entrustId}</td>
                 <td>{item.stockCode}</td>
                 <td>{item.stockName}</td>
                 <td>{item.tradeDirection}</td>

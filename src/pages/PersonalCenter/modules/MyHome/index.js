@@ -50,11 +50,6 @@ class MyHome extends Component{
             </div>
           </div>
           <div className="flex-1">
-            <div className="coupon">
-              <p>我的抵用券</p>
-            </div>
-          </div>
-          <div className="flex-1">
             <button className="btn btn-charge">充值</button>
           </div>
           <div className="flex-1">
@@ -65,8 +60,6 @@ class MyHome extends Component{
         <table className="table">
           <thead>
             <tr className="title">
-              <td>资金明细ID</td>
-              <td>客户ID</td>
               <td>流向</td>
               <td>变动金额</td>
               <td>剩余金额</td>
@@ -80,8 +73,6 @@ class MyHome extends Component{
 
             return (
               <tr key={item.fundsDetailsId}>
-                <td>{item.fundsDetailsId}</td>
-                <td>{item.customerId}</td>
                 <td>{flowWay}</td>
                 <td>{item.amountChange}</td>
                 <td>{item.amountResidual}</td>

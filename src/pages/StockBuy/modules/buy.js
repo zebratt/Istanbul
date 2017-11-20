@@ -28,9 +28,9 @@ class Buy extends Component {
     getStockData(currentStockCode);
 
     //暂时间隔一分钟拉取一次数据
-    window.setInterval(()=>{
-      getStockData(currentStockCode)
-    }, 60000);
+    // window.setInterval(()=>{
+      // getStockData(currentStockCode)
+    // }, 3000);
   }
 
   onPurchaseClick(buyAmount) {
