@@ -10,7 +10,6 @@ module.exports = merge(common, {
     filename: '[name].[chunkhash:8].js',
   },
   plugins: [
-    new ExtractTextPlugin('style.[contenthash:8].css'),
     new HtmlWebpackPlugin({
       title: '点赢宝',
       template: 'dist/index.ejs'
