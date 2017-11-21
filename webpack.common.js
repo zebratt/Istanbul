@@ -9,7 +9,9 @@ let commonConfig = {
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: '[name].js'
+    filename: '[name].[hash:8].js',
+    chunkFilename: '[name].[chunkhash:8].js',
+    sourceMapFilename: '[name].map'
   },
   module: {
     rules: [
@@ -71,7 +73,7 @@ let commonConfig = {
     extensions: ['.js']
   },
   plugins: [
-    new ExtractTextPlugin('style.css'),
+    new ExtractTextPlugin('style.[contenthash:8].css'),
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendors'
     })

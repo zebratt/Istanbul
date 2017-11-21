@@ -48,6 +48,7 @@
         "url-loader": "^0.5.9",
         "webfonts-generator": "^0.4.0",
         "webpack": "^2.6.1",
+        "webpack-dashboard": "^1.0.2",
         "webpack-dev-server": "^2.4.5",
         "webpack-merge": "^4.1.1"
     }
