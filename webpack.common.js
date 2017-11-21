@@ -7,12 +7,6 @@ let commonConfig = {
     main: path.resolve(__dirname, 'src/app'),
     vendors: ['react', 'react-dom', 'redux', 'react-redux', 'react-router-dom']
   },
-  output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: '[name].[hash:8].js',
-    chunkFilename: '[name].[chunkhash:8].js',
-    sourceMapFilename: '[name].map'
-  },
   module: {
     rules: [
       {
