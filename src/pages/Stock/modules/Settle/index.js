@@ -9,6 +9,14 @@ import { bindActionCreators } from 'redux';
 import actions from './action';
 import { Modal, DatePicker } from 'antd';
 
+const orderStatusList = [
+  '匹配中',
+  '匹配失败',
+  '已持仓',
+  '平仓中',
+  '已平仓'
+]
+
 class Settle extends Component {
   state = {
     modalData: {},
@@ -159,7 +167,7 @@ class Settle extends Component {
                     {item.clinchStockQuantity}
                   </td>
                   <td>
-                    {item.orderStatus}
+                    {orderStatusList[item.orderStatus]}
                   </td>
                   <td>
                     {item.buyLimit}
@@ -235,7 +243,7 @@ class Settle extends Component {
               <tr>
                 <td>点买单的状态</td>
                 <td>
-                  {modalData.orderStatus}
+                  {orderStatusList[modalData.orderStatus]}
                 </td>
                 <td>点买额度</td>
                 <td>
