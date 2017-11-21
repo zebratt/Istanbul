@@ -10,7 +10,6 @@ axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded
 
 axios.interceptors.request.use(config => {
   Object.assign(config, {
-    url: CONFIG.host + config.url,
     data: qs.stringify(config.data)
   });
 
