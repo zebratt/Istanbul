@@ -16,7 +16,6 @@ import { notification } from 'antd';
 class Header extends Component {
   onQuitHandler() {
     Cookies.remove('TOKEN');
-    Cookies.remove('CUSTOMER_ID');
 
     this.props.updateLogin(false, '', '');
 

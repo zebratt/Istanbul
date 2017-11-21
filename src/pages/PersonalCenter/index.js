@@ -45,29 +45,21 @@ class PersonalCenter extends Component {
     });
   }
 
-  render() {
-    const { currentTabKey, currentComp } = this.state;
-    let contentBody = null;
-
+  renderBody(currentTabKey) {
     switch (currentTabKey) {
       case 'MyHome':
-        contentBody = <MyHome {...this.props} />;
-
-        break;
+        return <MyHome {...this.props} />;
       case 'BankCard':
-        contentBody = <BankCard {...this.props} />;
-
-        break;
+        return <BankCard {...this.props} />;
       case 'AccountSafe':
-        contentBody = <AccountSafe {...this.props} />;
-
-        break;
-
+        return <AccountSafe {...this.props} />;
       case 'Promote':
-        contentBody = <Promote {...this.props} />;
-
-        break;
+        return <Promote {...this.props} />;
     }
+  }
+
+  render() {
+    const { currentTabKey, currentComp } = this.state;
 
     return (
       <div id="PersonalCenter">
@@ -93,7 +85,7 @@ class PersonalCenter extends Component {
             </div>
           </div>
           <div className="content">
-            {contentBody}
+            {this.renderBody(currentTabKey)}
           </div>
         </div>
       </div>

@@ -25,10 +25,9 @@ init();
 class App extends Component{
   componentWillMount(){
     const token = Cookies.get('TOKEN');
-    const customerId = Cookies.get('CUSTOMER_ID');
 
     if(token){
-      store.dispatch(actions.updateLogin(true, token, customerId))
+      store.dispatch(actions.queryCustomerByToken(token));
     }
   }
 
