@@ -49,8 +49,6 @@ class Settle extends Component{
               <td>过户费</td>
               <td>其他费用</td>
               <td>备注信息</td>
-              <td>持仓ID</td>
-              <td>方案ID</td>
             </tr>
           </thead>
           <tbody>
@@ -69,8 +67,6 @@ class Settle extends Component{
                 <td>{item.transferFee}</td>
                 <td>{item.otherCharges}</td>
                 <td>{item.remark}</td>
-                <td>{item.positionId}</td>
-                <td>{item.schemeId}</td>
               </tr>
             )
           })}

@@ -30,22 +30,19 @@ class StockBuy extends Component {
     currentTabKey: 'buy'
   };
 
-  render() {
-    const { currentTabKey } = this.state;
-
-    let bodyCtn = null;
-
+  renderBody(currentTabKey) {
     switch (currentTabKey) {
       case 'buy':
-        bodyCtn = <Buy {...this.props} />;
-        break;
+        return <Buy {...this.props} />;
       case 'sell':
-        bodyCtn = <Sell {...this.props} />;
-        break;
+        return <Sell {...this.props} />;
       case 'settle':
-        bodyCtn = <Settle {...this.props} />;
-        break;
+        return <Settle {...this.props} />;
     }
+  }
+
+  render() {
+    const { currentTabKey } = this.state;
 
     return (
       <div id="StockBuy">
@@ -57,7 +54,7 @@ class StockBuy extends Component {
               {tabs.map((tab, idx) => {
                 const classes = classNames({
                   'tab-active': tab.key === currentTabKey
-                })
+                });
 
                 return (
                   <li
@@ -76,7 +73,7 @@ class StockBuy extends Component {
               })}
             </ul>
           </div>
-          {bodyCtn}
+          {this.renderBody(currentTabKey)}
         </div>
       </div>
     );
