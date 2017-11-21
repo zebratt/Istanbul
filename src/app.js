@@ -13,7 +13,7 @@ import store from './store';
 
 // Pages
 import Home from 'pages/Home';
-import StockBuy from 'pages/StockBuy';
+import Stock from 'pages/Stock';
 import Register from 'pages/Register';
 import Personal from 'pages/PersonalCenter';
 
@@ -36,7 +36,7 @@ class App extends Component{
       <Router>
         <div id="App">
           <Route exact path="/" component={Home}/>
-          <Route exact path="/stockbuy" component={StockBuy}/>
+          <Route exact path="/stock" component={Stock}/>
           <Route exact path="/register" component={Register}/>
           <Route exact path="/personal" component={Personal}/>
         </div>

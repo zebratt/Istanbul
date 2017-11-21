@@ -34,7 +34,7 @@ class MyHome extends Component{
   }
 
   render(){
-    const {fundDetails, customerId, currentPageIndex, totalPages} = this.props;
+    const {fundDetails, customerId, currentPageIndex, totalPages, cwpCustomers} = this.props;
 
     if(!customerId){
       return <div>请先登录！</div>
@@ -46,7 +46,7 @@ class MyHome extends Component{
           <div className="flex-1">
             <div className="balance">
               <p>账户余额</p>
-              <p className="red">123</p>
+              <p className="red">{cwpCustomers.cwpFunds.balance}</p>
             </div>
           </div>
           <div className="flex-1">

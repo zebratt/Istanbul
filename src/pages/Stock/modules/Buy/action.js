@@ -9,10 +9,8 @@ import {
   UPDATE_STOP_LOSS_RATES_INDEX,
   UPDATE_PROTOCOL_STATUS,
   GET_STOCK_SUGGEST,
-  GET_POSITION_DATA,
-  GET_CLINCH_RECORD
 } from './contants';
-import { URL_STOCK_DATA, URL_SUGGEST, URL_POSITION_DATA, URL_CLINCH_RECORD } from '../../utils/urls';
+import { URL_STOCK_DATA, URL_SUGGEST } from '../../../../utils/urls';
 import { notification } from 'antd';
 
 const reducer = createActions({
@@ -46,38 +44,6 @@ const reducer = createActions({
     const resStr = res.match(/\".+\"/)[0].slice(1,-1);
 
     return resStr.split(';');
-  },
-  [GET_POSITION_DATA]: async (customerId, token)=>{
-    const res = await axios.post(URL_POSITION_DATA, {
-      customerId: customerId,
-      client_token: token,
-      pageNumber: 0,
-      pageSize: 50
-    });
-
-    if(res.code == 1){
-      return res.data;
-    }else{
-      notification.error({
-        message: res.msg
-      })
-    }
-  },
-  [GET_CLINCH_RECORD]: async (customerId, token)=>{
-    const res = await axios.post(URL_CLINCH_RECORD, {
-      customerId: customerId,
-      client_token: token,
-      pageNumber: 0,
-      pageSize: 50
-    });
-
-    if(res.code == 1){
-      return res.data;
-    }else{
-      notification.error({
-        message: res.msg
-      })
-    }
   }
 });
 

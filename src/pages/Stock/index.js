@@ -2,13 +2,10 @@ import './style.scss';
 import React, { Component } from 'react';
 import NavBar from 'components/NavBar/index';
 import Header from '../../components/Header/index';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import actions from './action';
 import classNames from 'classnames';
-import Buy from './modules/buy';
-import Sell from './modules/sell';
-import Settle from './modules/settle';
+import Buy from './modules/Buy';
+import Sell from './modules/Sell';
+import Settle from './modules/Settle';
 
 const tabs = [
   {
@@ -25,7 +22,7 @@ const tabs = [
   }
 ];
 
-class StockBuy extends Component {
+class Stock extends Component {
   state = {
     currentTabKey: 'buy'
   };
@@ -33,11 +30,11 @@ class StockBuy extends Component {
   renderBody(currentTabKey) {
     switch (currentTabKey) {
       case 'buy':
-        return <Buy {...this.props} />;
+        return <Buy />;
       case 'sell':
-        return <Sell {...this.props} />;
+        return <Sell />;
       case 'settle':
-        return <Settle {...this.props} />;
+        return <Settle />;
     }
   }
 
@@ -45,7 +42,7 @@ class StockBuy extends Component {
     const { currentTabKey } = this.state;
 
     return (
-      <div id="StockBuy">
+      <div id="Stock">
         <Header />
         <NavBar />
         <div className="main">
@@ -80,14 +77,4 @@ class StockBuy extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  const { StockBuy, Home } = state;
-
-  return Object.assign({}, StockBuy, Home);
-};
-
-const mapDispatchToProps = dispatch => {
-  return bindActionCreators(actions, dispatch);
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(StockBuy);
+export default Stock;

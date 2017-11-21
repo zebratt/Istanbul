@@ -11,6 +11,9 @@ export const URL_POSITION_DATA = '/serverInterface/buy/queryPositionData' //持�
 export const URL_SELL_OUT_STOCK = '/serverInterface/buy/sellOutStockOrder' //卖出
 export const URL_CLINCH_RECORD = '/serverInterface/clinchRecord/queryHistoryClinchRecord' //历史记录
 
+// Settle
+export const URL_QUERY_SCHEME_DATA = '/serverInterface/buy/querySchemeData' // 平仓
+
 // MyHome
 export const URL_QUERY_FUNDS_DETAILS = '/serverInterface/homePage/queryFundsDetails' //资金明细
 

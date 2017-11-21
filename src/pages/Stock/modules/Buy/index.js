@@ -5,7 +5,11 @@
 import React, { Component } from 'react';
 import classNames from 'classnames';
 import { notification, Modal } from 'antd';
-import { URL_PURCHASE } from '../../../utils/urls';
+import { URL_PURCHASE } from '../../../../utils/urls';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import actions from './action';
+import './style.scss';
 
 // 买入金额
 const buyPrices = [1, 2, 3, 5, 10, 20, 30, 50];
@@ -29,7 +33,7 @@ class Buy extends Component {
 
     //暂时间隔一分钟拉取一次数据
     // window.setInterval(()=>{
-      // getStockData(currentStockCode)
+    // getStockData(currentStockCode)
     // }, 3000);
   }
 
@@ -198,7 +202,7 @@ class Buy extends Component {
     let deferCost = buyPrices[buyPricesIndex] * 18;
 
     return (
-      <div className="body buy">
+      <div id="Buy">
         <div className="panel-left">
           <div className="header">
             <div className="stock-name">
@@ -216,63 +220,63 @@ class Buy extends Component {
                 选择股票
               </span>
               {chooseStockVisible &&
-                <div className="choose-stock">
-                  <div className="choose-stock-left">
-                    <input
-                      type="text"
-                      value={stockQueryStr}
-                      onChange={eve => {
-                        let { target: { value } } = eve;
+              <div className="choose-stock">
+                <div className="choose-stock-left">
+                  <input
+                    type="text"
+                    value={stockQueryStr}
+                    onChange={eve => {
+                      let { target: { value } } = eve;
 
-                        this.setState({
-                          stockQueryStr: value
-                        });
-
-                        getStockSuggest(value);
-                      }}
-                    />
-                    {!!suggests.length &&
-                      <table className="suggests">
-                        <tr className="title">
-                          <td width="50%">名称</td>
-                          <td width="25%">代码</td>
-                          <td width="25%">简拼</td>
-                        </tr>
-                        {suggests.map(suggest => {
-                          const items = suggest.split(',');
-
-                          return (
-                            <tr
-                              className="item"
-                              onClick={() => {
-                                this.onStockItemClick(items[3]);
-                              }}
-                            >
-                              <td>
-                                {items[4]}
-                              </td>
-                              <td>
-                                {items[3]}
-                              </td>
-                              <td>
-                                {items[5]}
-                              </td>
-                            </tr>
-                          );
-                        })}
-                      </table>}
-                  </div>
-                  <div
-                    className="choose-stock-right"
-                    onClick={() => {
                       this.setState({
-                        chooseStockVisible: false
+                        stockQueryStr: value
                       });
+
+                      getStockSuggest(value);
                     }}
-                  >
-                    取消
-                  </div>
-                </div>}
+                  />
+                  {!!suggests.length &&
+                  <table className="suggests">
+                    <tr className="title">
+                      <td width="50%">名称</td>
+                      <td width="25%">代码</td>
+                      <td width="25%">简拼</td>
+                    </tr>
+                    {suggests.map(suggest => {
+                      const items = suggest.split(',');
+
+                      return (
+                        <tr
+                          className="item"
+                          onClick={() => {
+                            this.onStockItemClick(items[3]);
+                          }}
+                        >
+                          <td>
+                            {items[4]}
+                          </td>
+                          <td>
+                            {items[3]}
+                          </td>
+                          <td>
+                            {items[5]}
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  </table>}
+                </div>
+                <div
+                  className="choose-stock-right"
+                  onClick={() => {
+                    this.setState({
+                      chooseStockVisible: false
+                    });
+                  }}
+                >
+                  取消
+                </div>
+              </div>}
             </div>
           </div>
           <div className="prices">
@@ -544,4 +548,14 @@ class Buy extends Component {
   }
 }
 
-export default Buy;
+const mapStateToProps = state => {
+  const { Buy, Home } = state;
+
+  return Object.assign({}, Buy, Home);
+};
+
+const mapDispatchToProps = dispatch => {
+  return bindActionCreators(actions, dispatch);
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Buy);

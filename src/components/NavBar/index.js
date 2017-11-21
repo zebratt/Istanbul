@@ -24,7 +24,7 @@ class NavBar extends Component{
               </NavLink>
             </li>
             <li>
-              <NavLink isActive={this.isActive} to="/stockbuy">
+              <NavLink isActive={this.isActive} to="/stock">
                 <span>A股点买</span>
               </NavLink>
             </li>

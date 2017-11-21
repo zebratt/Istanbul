@@ -1,0 +1,35 @@
+#Sell {
+  padding: 40px 50px;
+  box-sizing: border-box;
+
+  .tip {
+    font-size: 14px;
+
+    .red {
+      font-size: 15px;
+      color: #ce2629;
+      margin: 0 2px;
+    }
+  }
+
+  .sell-table {
+    width: 100%;
+    margin-top: 20px;
+    text-align: center;
+
+    .title {
+      line-height: 30px;
+    }
+
+    .btn-sell {
+      width: 80px;
+      height: 35px;
+      background-color: #ce2629;
+      font-size: 16px;
+      margin: 5px 0;
+      color: #fff;
+      border: 0;
+      cursor: pointer;
+    }
+  }
+}

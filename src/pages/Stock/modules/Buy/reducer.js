@@ -5,8 +5,6 @@ import {
   UPDATE_STOP_LOSS_RATES_INDEX,
   UPDATE_PROTOCOL_STATUS,
   GET_STOCK_SUGGEST,
-  GET_POSITION_DATA,
-  GET_CLINCH_RECORD
 } from './contants';
 import _cloneDeep from 'lodash/cloneDeep';
 
@@ -15,9 +13,7 @@ const initState = {
   buyPricesIndex: 0,
   stopLossRatesIndex: 0,
   protocolStatus: true,
-  suggests: [],
-  sellData: {},
-  historyData: {}
+  suggests: []
 };
 
 export default handleActions(
@@ -64,22 +60,6 @@ export default handleActions(
       const nState = _cloneDeep(state);
 
       nState.suggests = suggests;
-
-      return nState;
-    },
-    [GET_POSITION_DATA]: (state, action)=> {
-      const {payload} = action;
-      const nState = _cloneDeep(state);
-
-      nState.sellData = payload;
-
-      return nState;
-    },
-    [GET_CLINCH_RECORD]: (state, action )=>{
-      const {payload} = action;
-      const nState = _cloneDeep(state);
-
-      nState.historyData = payload;
 
       return nState;
     }
