@@ -12,7 +12,7 @@ module.exports = merge(common, {
   plugins: [
     new HtmlWebpackPlugin({
       title: '点赢宝',
-      template: 'dist/index.ejs'
+      template: 'template.ejs'
     }),
     new webpack.DefinePlugin({
       'process.env': {
