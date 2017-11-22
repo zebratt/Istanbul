@@ -12,6 +12,7 @@ import { bindActionCreators } from 'redux';
 import actions from 'pages/Home/action';
 import Cookies from 'js-cookie';
 import { notification } from 'antd';
+import _get from 'lodash/get';
 
 class Header extends Component {
   onQuitHandler() {
@@ -27,16 +28,17 @@ class Header extends Component {
   }
 
   render() {
-    const { loginStatus } = this.props;
+    const { loginStatus, cwpCustomers } = this.props;
     const loginBtnContent = loginStatus
       ? <a onClick={::this.onQuitHandler} href="javascript:void(0)">退出</a>
       : <Link to="/">登陆</Link>;
+    const name = _get(cwpCustomers, 'customerName');
 
     return (
       <div id="Header">
         <div className="content">
-          <span>服务热线：123123123</span>
           <div className="right">
+            {name && <span>欢迎: {name}</span>}
             {loginBtnContent}
             <span>|</span>
             <Link to="/register">注册</Link>
@@ -48,9 +50,9 @@ class Header extends Component {
 }
 
 const mapStateToProps = state => {
-  const { Home: { loginStatus } } = state;
+  const { Home: { loginStatus, cwpCustomers} } = state;
 
-  return { loginStatus };
+  return { loginStatus, cwpCustomers };
 };
 
 const mapDispatchToProps = dispatch => {
