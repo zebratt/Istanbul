@@ -9,6 +9,7 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import actions from './action';
+import _get from 'lodash/get';
 
 class MyHome extends Component{
   componentDidMount(){
@@ -46,7 +47,7 @@ class MyHome extends Component{
           <div className="flex-1">
             <div className="balance">
               <p>账户余额</p>
-              <p className="red">{cwpCustomers.cwpFunds.balance}</p>
+              <p className="red">{_get(cwpCustomers, 'cwpFunds.balance', '获取失败')}</p>
             </div>
           </div>
           <div className="flex-1">
