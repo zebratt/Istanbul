@@ -134,13 +134,13 @@ class Settle extends Component {
             <tr className="title">
               <td>股票代码</td>
               <td>股票名称</td>
-              <td>买入成交价格</td>
-              <td>卖出成交价格</td>
-              <td>点买股票数量</td>
-              <td>成交股票数量</td>
+              <td>买入价格</td>
+              <td>卖出价格</td>
+              <td>成交数量</td>
               <td>点买单的状态</td>
-              <td>点买额度</td>
-              <td>创建时间</td>
+              <td>卖出时间</td>
+              <td>方案总盈亏</td>
+              <td>盈利分配</td>
               <td>操作</td>
             </tr>
           </thead>
@@ -161,19 +161,19 @@ class Settle extends Component {
                     {item.sellOutPrice}
                   </td>
                   <td>
-                    {item.buyStockQuantity}
-                  </td>
-                  <td>
                     {item.clinchStockQuantity}
                   </td>
                   <td>
                     {orderStatusList[item.orderStatus]}
                   </td>
                   <td>
-                    {item.buyLimit}
+                    {item.creationTime}
                   </td>
                   <td>
-                    {item.creationTime}
+                    {item.sumProfitLoss}
+                  </td>
+                  <td>
+                    {item.customerProfitLoss}
                   </td>
                   <td>
                     <button
