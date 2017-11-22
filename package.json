@@ -5,7 +5,7 @@
     "author": "xuejian.xu",
     "license": "MIT",
     "scripts": {
-        "dist": "webpack --config webpack.prod.js",
+        "dist": "rm -rf dist/* && webpack --config webpack.prod.js && zip ~/Desktop/bundle.zip dist/*",
         "dev": "webpack-dev-server --open --config webpack.dev.js",
         "start": "npm run dev",
         "icon": "node icons/index.js"
