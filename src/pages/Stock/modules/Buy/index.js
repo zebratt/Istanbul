@@ -23,13 +23,11 @@ class Buy extends Component {
   state = {
     chooseStockVisible: false,
     confirmModalVisible: false,
-    stockQueryStr: '',
-    currentStockCode: 'sh600036' // 默认为招商银行
+    stockQueryStr: ''
   };
 
   componentDidMount() {
-    const { getStockData } = this.props;
-    const { currentStockCode} = this.state;
+    const { getStockData, currentStockCode } = this.props;
 
     getStockData(currentStockCode);
 
@@ -39,10 +37,12 @@ class Buy extends Component {
     // }, 3000);
   }
 
-  componentWillReceiveProps(){
-    // if(this.chartDom){
-    //   Charts(this.chartDom);
-    // }
+  componentWillReceiveProps(nextProps){
+    const {stockData: {data}} = nextProps;
+  }
+
+  renderCharts(stockCode, yestodEndPri){
+    renderChartLine(this.chartDom, stockCode, yestodEndPri);
   }
 
   onPurchaseClick(buyAmount) {
@@ -76,14 +76,14 @@ class Buy extends Component {
    * @param code
    */
   onStockItemClick(code) {
-    const { getStockData } = this.props;
+    const { getStockData, updateCurrentStockCode } = this.props;
 
     this.setState(
       {
-        chooseStockVisible: false,
-        currentStockCode: code
+        chooseStockVisible: false
       },
       () => {
+        updateCurrentStockCode(code);
         getStockData(code);
       }
     );
@@ -133,7 +133,7 @@ class Buy extends Component {
   }
 
   render() {
-    const {
+    let {
       stockData: { data },
       buyPricesIndex,
       updateBuyPricesIndex,
@@ -148,7 +148,7 @@ class Buy extends Component {
     const { chooseStockVisible, confirmModalVisible, stockQueryStr } = this.state;
 
     if (!data) {
-      return null;
+      data = {};
     }
 
     const tradePriceClasses = classNames({
@@ -255,6 +255,7 @@ class Buy extends Component {
 
                       return (
                         <tr
+                          key={items[3]}
                           className="item"
                           onClick={() => {
                             this.onStockItemClick(items[3]);

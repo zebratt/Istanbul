@@ -9,6 +9,7 @@ import {
   UPDATE_STOP_LOSS_RATES_INDEX,
   UPDATE_PROTOCOL_STATUS,
   GET_STOCK_SUGGEST,
+  UPDATE_CURRENT_STOCK_CODE
 } from './contants';
 import { URL_STOCK_DATA, URL_SUGGEST } from '../../../../utils/urls';
 import { notification } from 'antd';
@@ -35,16 +36,17 @@ const reducer = createActions({
   [UPDATE_BUY_PRICES_INDEX]: nextIndex => nextIndex,
   [UPDATE_STOP_LOSS_RATES_INDEX]: nextIndex => nextIndex,
   [UPDATE_PROTOCOL_STATUS]: status => status,
-  [GET_STOCK_SUGGEST]: async (queryStr)=>{
-    if(!queryStr){
+  [GET_STOCK_SUGGEST]: async queryStr => {
+    if (!queryStr) {
       return [];
     }
 
     const res = await axios.get(URL_SUGGEST + queryStr);
-    const resStr = res.match(/\".+\"/)[0].slice(1,-1);
+    const resStr = res.match(/\".+\"/)[0].slice(1, -1);
 
     return resStr.split(';');
-  }
+  },
+  [UPDATE_CURRENT_STOCK_CODE]: stockCode => stockCode
 });
 
 export default reducer;
