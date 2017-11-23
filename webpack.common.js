@@ -5,7 +5,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 let commonConfig = {
   entry: {
     main: path.resolve(__dirname, 'src/app'),
-    vendors: ['react', 'react-dom', 'redux', 'react-redux', 'react-router-dom']
+    vendors: ['react', 'react-dom', 'redux', 'react-redux', 'react-router-dom', 'echarts', 'antd']
   },
   module: {
     rules: [

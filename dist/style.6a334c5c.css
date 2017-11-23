@@ -568,6 +568,9 @@ textarea {
   font-size: inherit;
   line-height: inherit;
   color: inherit;
+}
+input[type="text"],
+textarea {
   -webkit-appearance: none;
 }
 ul,
@@ -5040,7 +5043,8 @@ html, body {
       border: #ce2629 solid 1px;
       border-radius: 5px;
       text-align: center;
-      color: #666; }
+      color: #666;
+      cursor: pointer; }
       #Buy .panel-left .switch .switch-left {
         flex-basis: 50%;
         line-height: 36px; }
@@ -5050,6 +5054,16 @@ html, body {
       #Buy .panel-left .switch .active {
         background: #ce2629;
         color: #fff; }
+    #Buy .panel-left .charts {
+      margin-top: 35px;
+      width: 100%;
+      height: 250px; }
+    #Buy .panel-left .stock-info-title {
+      margin-top: 20px; }
+    #Buy .panel-left .stock-info-table {
+      width: 100%;
+      margin-top: 10px;
+      line-height: 25px; }
   #Buy .panel-right {
     font-size: 14px;
     flex-basis: 35.5%;
@@ -7047,7 +7061,7 @@ textarea.ant-input {
 .ant-input-group.ant-input-group-compact > * {
   border-radius: 0;
   border-right-width: 0;
-  vertical-align: middle;
+  vertical-align: top;
   float: none;
   display: inline-block;
 }
