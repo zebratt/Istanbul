@@ -9,6 +9,7 @@ import { URL_PURCHASE } from '../../../../utils/urls';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import actions from './action';
+import Charts from './Charts';
 import './style.scss';
 
 // 买入金额
@@ -18,6 +19,7 @@ const buyPrices = [1, 2, 3, 5, 10, 20, 30, 50];
 const stopLossRates = [0.1, 0.1333, 0.17];
 
 class Buy extends Component {
+  chartDom = null;
   state = {
     chooseStockVisible: false,
     confirmModalVisible: false,
@@ -35,6 +37,12 @@ class Buy extends Component {
     // window.setInterval(()=>{
     // getStockData(currentStockCode)
     // }, 3000);
+  }
+
+  componentWillReceiveProps(){
+    // if(this.chartDom){
+    //   Charts(this.chartDom);
+    // }
   }
 
   onPurchaseClick(buyAmount) {
@@ -385,6 +393,9 @@ class Buy extends Component {
           <div className="switch">
             <div className="switch-left active">分时</div>
             <div className="switch-right">k线</div>
+          </div>
+          <div ref={(dom)=>{this.chartDom = dom;}} className="charts">
+
           </div>
         </div>
         <div className="panel-right">
