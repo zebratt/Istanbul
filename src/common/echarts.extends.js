@@ -3,14 +3,14 @@ var _each = require('lodash/each');
 
 export const chartK = {
   chart: undefined,
-  init: function(selector, json, full) {
+  init: function(containerDom, json, full) {
     if (!json || !json.records) return false;
     if (this.chart) {
       this.chart.clear();
       this.chart.dispose();
       this.chart = undefined;
     }
-    var myChart = echarts.init($(selector).get(0));
+    var myChart = echarts.init(containerDom);
     var xdata = [],
       ydata = [];
     //var kmin = json.records[0][3], kmax = json.records[0][2];
@@ -199,7 +199,7 @@ export const chartK = {
 
 export const chartLine = {
   chart: undefined,
-  init: function(selector, json, full, dom) {
+  init: function(containerDom, json, full) {
     if (!json || !json.records) return false;
     if (this.chart) {
       this.chart.clear();
@@ -207,9 +207,7 @@ export const chartLine = {
       this.chart = undefined;
     }
 
-    debugger
-    var myChart = echarts.init(dom);
-
+    var myChart = echarts.init(containerDom);
 
     var xdata = [],
       ydata = [];
@@ -430,7 +428,6 @@ export const chartLine = {
     myChart.setOption(config);
     //$(selector).css('background', 'none');
     this.chart = myChart;
-    //console.log(this.chart);
   },
   push: function(json, full) {
     //console.log(this.chart);

@@ -9,7 +9,7 @@ import { URL_PURCHASE } from '../../../../utils/urls';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import actions from './action';
-import Charts from './Charts';
+import {renderChartLine} from './Charts';
 import './style.scss';
 
 // 买入金额
