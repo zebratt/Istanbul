@@ -16,5 +16,3 @@ export const URL_QUERY_SCHEME_DATA = '/serverInterface/buy/querySchemeData' // �
 
 // MyHome
 export const URL_QUERY_FUNDS_DETAILS = '/serverInterface/homePage/queryFundsDetails' //资金明细
-
-export const URL = 'http://www.dyb98.com/wcp/Market/GetCurrentMarket?stockNumber=sh600036&_=1511403196640'

@@ -67,7 +67,7 @@ export default handleActions(
     },
     [UPDATE_CURRENT_STOCK_CODE]: (state, action) => {
       const {payload: newStockCode} = action;
-      const nState = _cloneDeep(newStockCode);
+      const nState = _cloneDeep(state);
 
       nState.currentStockCode = newStockCode;
 

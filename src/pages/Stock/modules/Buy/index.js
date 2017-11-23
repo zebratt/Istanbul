@@ -9,7 +9,7 @@ import { URL_PURCHASE } from '../../../../utils/urls';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import actions from './action';
-import {renderChartLine} from './Charts';
+import {renderChartLine, renderChartK} from './Charts';
 import './style.scss';
 
 // 买入金额
@@ -23,7 +23,8 @@ class Buy extends Component {
   state = {
     chooseStockVisible: false,
     confirmModalVisible: false,
-    stockQueryStr: ''
+    stockQueryStr: '',
+    isChartkActive: false
   };
 
   componentDidMount() {
@@ -39,10 +40,18 @@ class Buy extends Component {
 
   componentWillReceiveProps(nextProps){
     const {stockData: {data}} = nextProps;
+
+    if(data && this.chartDom){
+      this.renderCharts(data.gid, data.yestodEndPri);
+    }
   }
 
   renderCharts(stockCode, yestodEndPri){
     renderChartLine(this.chartDom, stockCode, yestodEndPri);
+  }
+
+  renderChartK(stockCode){
+    renderChartK(this.chartDom, stockCode);
   }
 
   onPurchaseClick(buyAmount) {
@@ -145,7 +154,7 @@ class Buy extends Component {
       suggests
     } = this.props;
 
-    const { chooseStockVisible, confirmModalVisible, stockQueryStr } = this.state;
+    const { chooseStockVisible, confirmModalVisible, stockQueryStr, isChartkActive } = this.state;
 
     if (!data) {
       data = {};
@@ -159,6 +168,16 @@ class Buy extends Component {
     const mainPriceClasses = classNames({
       'main-price': true,
       'red': data.increPer > 0
+    })
+
+    const switchLeftClass = classNames({
+      'switch-left': true,
+      'active': !isChartkActive
+    })
+
+    const switchRightClass = classNames({
+      'switch-right': true,
+      'active': isChartkActive
     })
 
     // 触发止盈
@@ -245,11 +264,13 @@ class Buy extends Component {
                   />
                   {!!suggests.length &&
                   <table className="suggests">
+                    <thead>
                     <tr className="title">
                       <td width="50%">名称</td>
                       <td width="25%">代码</td>
                       <td width="25%">简拼</td>
-                    </tr>
+                    </tr></thead>
+                    <tbody>
                     {suggests.map(suggest => {
                       const items = suggest.split(',');
 
@@ -272,7 +293,7 @@ class Buy extends Component {
                           </td>
                         </tr>
                       );
-                    })}
+                    })}</tbody>
                   </table>}
                 </div>
                 <div
@@ -392,12 +413,43 @@ class Buy extends Component {
             </div>
           </div>
           <div className="switch">
-            <div className="switch-left active">分时</div>
-            <div className="switch-right">k线</div>
+            <div className={switchLeftClass} onClick={()=>{
+              this.setState({
+                isChartkActive: false
+              });
+              this.renderCharts(data.gid, data.yestodEndPri);
+            }}>分时</div>
+            <div className={switchRightClass} onClick={()=>{
+              this.setState({
+                isChartkActive: true
+              })
+              this.renderChartK(data.gid);
+            }}>k线</div>
           </div>
           <div ref={(dom)=>{this.chartDom = dom;}} className="charts">
-
           </div>
+          <div className="stock-info-title">股票信息</div>
+          <table className="stock-info-table">
+            <tbody>
+            <tr>
+              <td>今开</td>
+              <td>{data.todayStartPri}</td>
+              <td>振幅</td>
+              <td>{data.increPer}%</td>
+              <td>最高</td>
+              <td>{data.todayMax}</td>
+              <td>最低</td>
+              <td>{data.todayMin}</td>
+            </tr>
+            <tr>
+              <td>成交量</td>
+              <td>{data.traNumber}手</td>
+              <td>成交额</td>
+              <td>{data.traAmount}元</td>
+              <td colSpan={4}></td>
+            </tr>
+            </tbody>
+          </table>
         </div>
         <div className="panel-right">
           <div>

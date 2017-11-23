@@ -2,9 +2,10 @@
  * Created by xuejian.xu on 2017/11/23.
  */
 
-import {chartLine} from '../../../../common/echarts.extends';
+import {chartLine, chartK} from '../../../../common/echarts.extends';
 import transformTool  from './lib/transformTool';
 import _each from 'lodash/each';
+import {notification} from 'antd';
 
 /**
  * 渲染日线
@@ -41,5 +42,36 @@ export const renderChartLine = (dom, stockCode, yestodEndPri)=>{
 
     var json = { "records": chartVal, "y_close": yestodEndPri };
      chartLine.init(dom, json, null);
+  })
+}
+
+export const renderChartK = (dom, stockCode)=>{
+  axios({
+    method: 'get',
+    url: '/chartk/wcp/Market/GetCurrentMarket?stockNumber=' + stockCode
+  }).then((res)=>{
+    if(res.success){
+      var data = res.data;
+      var chartVal = [];
+
+      _each(data, function (n, i) {
+        var inVal = [];
+        var xVal = n.day.substring(0, 10);
+        inVal.push(xVal);
+        inVal.push(n.open);
+        inVal.push(n.high);
+        inVal.push(n.low);
+        inVal.push(n.close);
+        inVal.push(n.volume);
+        chartVal.push(inVal);
+      });
+      var json = { "records": chartVal };
+
+      chartK.init(dom, json);
+    }else{
+      notification.error({
+        message: res.msg
+      })
+    }
   })
 }
