@@ -34,10 +34,7 @@ class Buy extends Component {
 
     getStockData(currentStockCode);
 
-    //暂时间隔三秒钟拉取一次数据
-    this.intarvalId = window.setInterval(()=>{
-      getStockData(currentStockCode)
-    }, 3000);
+    this.startInterval(currentStockCode);
   }
 
   componentWillUnmount(){
@@ -51,6 +48,16 @@ class Buy extends Component {
       this.renderCharts(data.gid, data.yestodEndPri);
       this.renderChartK(data.gid);
     }
+  }
+
+  /**
+   * 开始轮训
+   * @param code
+   */
+  startInterval(code){
+    this.intarvalId = window.setInterval(()=>{
+      this.props.getStockData(code)
+    }, 3000);
   }
 
   renderCharts(stockCode, yestodEndPri){
@@ -93,6 +100,11 @@ class Buy extends Component {
    */
   onStockItemClick(code) {
     const { getStockData, updateCurrentStockCode } = this.props;
+
+    //结束上一次轮训
+    window.clearInterval(this.intarvalId);
+
+    this.startInterval(code);
 
     this.setState(
       {
