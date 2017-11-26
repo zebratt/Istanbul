@@ -154,10 +154,22 @@
       }
     }
 
-    .charts{
+    .charts-container{
+      position: relative;
       margin-top: 35px;
-      width: 100%;
       height: 250px;
+
+      .charts{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+
+      .hidden{
+        visibility: hidden;
+      }
     }
 
     .stock-info-title{

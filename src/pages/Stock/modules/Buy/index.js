@@ -19,7 +19,8 @@ const buyPrices = [1, 2, 3, 5, 10, 20, 30, 50];
 const stopLossRates = [0.1, 0.1333, 0.17];
 
 class Buy extends Component {
-  chartDom = null;
+  chartLineDom = null;
+  chartKDom = null;
   intarvalId = null;
   state = {
     chooseStockVisible: false,
@@ -46,17 +47,18 @@ class Buy extends Component {
   componentWillReceiveProps(nextProps){
     const {stockData: {data}} = nextProps;
 
-    if(data && this.chartDom){
+    if(data && this.chartLineDom && this.chartKDom){
       this.renderCharts(data.gid, data.yestodEndPri);
+      this.renderChartK(data.gid);
     }
   }
 
   renderCharts(stockCode, yestodEndPri){
-    renderChartLine(this.chartDom, stockCode, yestodEndPri);
+    renderChartLine(this.chartLineDom, stockCode, yestodEndPri);
   }
 
   renderChartK(stockCode){
-    renderChartK(this.chartDom, stockCode);
+    renderChartK(this.chartKDom, stockCode);
   }
 
   onPurchaseClick(buyAmount) {
@@ -183,6 +185,16 @@ class Buy extends Component {
     const switchRightClass = classNames({
       'switch-right': true,
       'active': isChartkActive
+    })
+
+    const chartLineClass = classNames({
+      'charts': true,
+      'hidden': isChartkActive
+    })
+
+    const chartKClass = classNames({
+      'charts': true,
+      'hidden': !isChartkActive
     })
 
     // 触发止盈
@@ -422,16 +434,16 @@ class Buy extends Component {
               this.setState({
                 isChartkActive: false
               });
-              this.renderCharts(data.gid, data.yestodEndPri);
             }}>分时</div>
             <div className={switchRightClass} onClick={()=>{
               this.setState({
                 isChartkActive: true
               })
-              this.renderChartK(data.gid);
             }}>k线</div>
           </div>
-          <div ref={(dom)=>{this.chartDom = dom;}} className="charts">
+          <div className="charts-container">
+            <div ref={(dom)=>{this.chartLineDom = dom;}} className={chartLineClass} />
+            <div ref={(dom)=>{this.chartKDom = dom;}} className={chartKClass} />
           </div>
           <div className="stock-info-title">股票信息</div>
           <table className="stock-info-table">
