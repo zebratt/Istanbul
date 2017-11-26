@@ -20,6 +20,7 @@ const stopLossRates = [0.1, 0.1333, 0.17];
 
 class Buy extends Component {
   chartDom = null;
+  intarvalId = null;
   state = {
     chooseStockVisible: false,
     confirmModalVisible: false,
@@ -32,10 +33,14 @@ class Buy extends Component {
 
     getStockData(currentStockCode);
 
-    //暂时间隔一分钟拉取一次数据
-    // window.setInterval(()=>{
-    // getStockData(currentStockCode)
-    // }, 3000);
+    //暂时间隔三秒钟拉取一次数据
+    this.intarvalId = window.setInterval(()=>{
+      getStockData(currentStockCode)
+    }, 3000);
+  }
+
+  componentWillUnmount(){
+    window.clearInterval(this.intarvalId);
   }
 
   componentWillReceiveProps(nextProps){
