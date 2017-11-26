@@ -5054,10 +5054,18 @@ html, body {
       #Buy .panel-left .switch .active {
         background: #ce2629;
         color: #fff; }
-    #Buy .panel-left .charts {
+    #Buy .panel-left .charts-container {
+      position: relative;
       margin-top: 35px;
-      width: 100%;
       height: 250px; }
+      #Buy .panel-left .charts-container .charts {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%; }
+      #Buy .panel-left .charts-container .hidden {
+        visibility: hidden; }
     #Buy .panel-left .stock-info-title {
       margin-top: 20px; }
     #Buy .panel-left .stock-info-table {
