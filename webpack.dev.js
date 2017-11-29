@@ -18,7 +18,8 @@ module.exports = merge(common, {
     contentBase: path.resolve(__dirname, 'dist'),
     port: 9999,
     stats: 'minimal',
-    noInfo: false
+    noInfo: false,
+    historyApiFallback: true
   },
   plugins: [
     new DashboardPlugin(),
