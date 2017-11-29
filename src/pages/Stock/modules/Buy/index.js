@@ -12,6 +12,8 @@ import actions from './action';
 import {renderChartLine, renderChartK} from './Charts';
 import './style.scss';
 
+let chartsHasInited = false; // 用一个变量来保存图标是否被初始化过
+
 // 买入金额
 const buyPrices = [1, 2, 3, 5, 10, 20, 30, 50];
 
@@ -46,7 +48,18 @@ class Buy extends Component {
 
     if(data && this.chartLineDom && this.chartKDom){
       this.renderCharts(data.gid, data.yestodEndPri);
-      this.renderChartK(data.gid);
+
+      // 保证k线图只渲染一次
+      if(!chartsHasInited){
+        this.renderChartK(data.gid);
+
+        chartsHasInited = true;
+      }
+
+      // 当股票代码变化时，K线图重绘
+      if(this.props.currentStockCode !== nextProps.currentStockCode){
+        this.renderChartK(data.gid);
+      }
     }
   }
 

@@ -52,17 +52,15 @@
 
   .title{
     margin-top: 50px;
-    padding: 10px 0;
+    line-height: 25px;
+    border-bottom: #bbbbbb solid 1px;
   }
 
   .table{
+    margin-top: 10px;
     width: 100%;
     text-align: center;
     line-height: 25px;
-
-    tr.title{
-      font-weight: bold;
-    }
   }
 
   .table-nav{

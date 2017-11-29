@@ -60,10 +60,7 @@ export const chartK = {
         textStyle: { color: '#666', fontSize: 11, fontFamily: '微软雅黑' },
         padding: 10,
         formatter: function(data) {
-          var name = data[0].name;
-          var date = new Date(parseInt(name));
-          if (data[0].data[0] == '-') date = new Date();
-          var dom = date.format('yyyy年MM月dd日');
+          var dom = data[0].name;
           if (data[0].data[0] == 0)
             //开盘，收盘，最低，最高
             dom += "<br/>开盘：<span style='color:#F96900;'>" + data[0].data[0] + '</span>';

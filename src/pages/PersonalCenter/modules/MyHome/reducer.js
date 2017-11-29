@@ -1,5 +1,4 @@
 import { handleActions } from 'redux-actions';
-import { UPDATE_LOGIN } from './contants';
 import { QUERY_FUND_DETAILS } from './contants';
 import _cloneDeep from 'lodash/cloneDeep';
 
