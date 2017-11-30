@@ -19,7 +19,7 @@ class Home extends Component {
 
   onLoginHandler() {
     const { username, password } = this.state;
-    const { updateLogin } = this.props;
+    const { updateLogin, history } = this.props;
 
     if (!username || !password) {
       return notification.warning({
@@ -45,7 +45,7 @@ class Home extends Component {
 
           updateLogin(true, token, cwpCustomers);
 
-          location.replace('#/stock');
+          history.push('/stock');
         } else {
           notification.error({
             message: res.msg
@@ -55,7 +55,7 @@ class Home extends Component {
   }
 
   onRegisterHandler() {
-    location.replace('#register');
+    this.props.history.push('/register');
   }
 
   render() {

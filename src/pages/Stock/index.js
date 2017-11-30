@@ -40,10 +40,11 @@ class Stock extends Component {
 
   render() {
     const { currentTabKey } = this.state;
+    const {history} = this.props;
 
     return (
       <div id="Stock">
-        <Header />
+        <Header history={history} />
         <NavBar />
         <div className="main">
           <div className="nav">

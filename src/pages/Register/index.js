@@ -6,6 +6,7 @@ import { URL_REGISTER, URL_SEND_VERITY_CODE } from '../../utils/urls';
 import { notification } from 'antd';
 import classNames from 'classnames';
 import VCode from '../../utils/VCode';
+import {getQueryString} from '../../utils/utils';
 
 class Register extends Component {
   state = {
@@ -103,11 +104,14 @@ class Register extends Component {
       });
     }
 
+    const agentId = getQueryString('agent');
+
     axios
       .post(URL_REGISTER, {
         customerPhone: phone,
         password: password,
-        code: verifyCodeVal
+        code: verifyCodeVal,
+        parentId: agentId
       })
       .then(res => {
         if (res.code == 1) {
@@ -115,7 +119,7 @@ class Register extends Component {
             message: '注册成功！',
             duration: 1,
             onClose: () => {
-              location.replace('#/');
+              this.props.history.push('/');
             }
           });
         } else {

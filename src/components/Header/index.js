@@ -24,7 +24,7 @@ class Header extends Component {
       message: '退出成功！'
     });
 
-    location.replace('#/');
+    this.props.history.push('/');
   }
 
   render() {

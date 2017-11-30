@@ -41,6 +41,7 @@ class Buy extends Component {
 
   componentWillUnmount(){
     window.clearInterval(this.intarvalId);
+    chartsHasInited = false;
   }
 
   componentWillReceiveProps(nextProps){
