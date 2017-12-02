@@ -5,7 +5,8 @@ import {
   UPDATE_STOP_LOSS_RATES_INDEX,
   UPDATE_PROTOCOL_STATUS,
   GET_STOCK_SUGGEST,
-  UPDATE_CURRENT_STOCK_CODE
+  UPDATE_CURRENT_STOCK_CODE,
+  GET_FORBIDDEN_LIST
 } from './contants';
 import _cloneDeep from 'lodash/cloneDeep';
 
@@ -15,7 +16,8 @@ const initState = {
   stopLossRatesIndex: 0,
   protocolStatus: true,
   suggests: [],
-  currentStockCode: 'sh600036' //默认为招商银行
+  currentStockCode: 'sh600036', //默认为招商银行
+  forbiddenList: []
 };
 
 export default handleActions(
@@ -70,6 +72,14 @@ export default handleActions(
       const nState = _cloneDeep(state);
 
       nState.currentStockCode = newStockCode;
+
+      return nState;
+    },
+    [GET_FORBIDDEN_LIST]: (state, action)=>{
+      const {payload} = action;
+      const nState = _cloneDeep(state);
+
+      nState.forbiddenList = payload;
 
       return nState;
     }

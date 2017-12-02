@@ -33,9 +33,10 @@ class Buy extends Component {
   };
 
   componentDidMount() {
-    const { getStockData, currentStockCode } = this.props;
+    const { getStockData, currentStockCode, getForbiddenList } = this.props;
 
     getStockData(currentStockCode);
+    getForbiddenList();
 
     this.startInterval(currentStockCode);
   }
@@ -83,9 +84,15 @@ class Buy extends Component {
     renderChartK(this.chartKDom, stockCode);
   }
 
-  onPurchaseClick(buyAmount) {
+  onPurchaseClick(buyAmount, isStoped) {
     const { protocolStatus, loginStatus } = this.props;
     const { isBuying } = this.state;
+
+    if(isStoped){
+      return notification.warning({
+        message: '停牌股不可交易'
+      })
+    }
 
     if(isBuying){
       return;
@@ -194,13 +201,28 @@ class Buy extends Component {
       protocolStatus,
       updateProtocolStatus,
       getStockSuggest,
-      suggests
+      suggests,
+      forbiddenList,
+      currentStockCode
     } = this.props;
 
     const { chooseStockVisible, confirmModalVisible, stockQueryStr, isChartkActive, isBuying } = this.state;
 
     if (!data) {
       data = {};
+    }
+
+    let isStoped = false; //是否停牌
+
+    const stockNumer = currentStockCode.replace(/[a-z]/g, '');
+
+    for(let i=0; i<forbiddenList.length; i++){
+      const item = forbiddenList[i];
+
+      // reason_id: 2-停牌，1和3-高风险
+      if(item.number === stockNumer && item.reason_id === 2){
+        isStoped = true;
+      }
     }
 
     const tradePriceClasses = classNames({
@@ -235,7 +257,7 @@ class Buy extends Component {
 
     const btnBuyClass = classNames({
       'btn-buy': true,
-      'btn-disable': isBuying
+      'btn-disable': isBuying || isStoped
     })
 
     // 触发止盈
@@ -292,7 +314,7 @@ class Buy extends Component {
           <div className="header">
             <div className="stock-name">
               <span className="name">
-                {data.name}({data.gid})
+                {data.name}({data.gid}){isStoped && <span className="stopped">停牌</span>}
               </span>
               <span
                 className="choose"
@@ -634,7 +656,7 @@ class Buy extends Component {
           <button
             className={btnBuyClass}
             onClick={() => {
-              this.onPurchaseClick(buyAmount);
+              this.onPurchaseClick(buyAmount, isStoped);
             }}
           >
             {isBuying ? '买入中' : '点买'}

@@ -9,9 +9,10 @@ import {
   UPDATE_STOP_LOSS_RATES_INDEX,
   UPDATE_PROTOCOL_STATUS,
   GET_STOCK_SUGGEST,
-  UPDATE_CURRENT_STOCK_CODE
+  UPDATE_CURRENT_STOCK_CODE,
+  GET_FORBIDDEN_LIST
 } from './contants';
-import { URL_STOCK_DATA, URL_SUGGEST } from '../../../../utils/urls';
+import { URL_STOCK_DATA, URL_SUGGEST, URL_GET_FORBIDDEN_LIST } from '../../../../utils/urls';
 import { notification } from 'antd';
 
 const reducer = createActions({
@@ -46,7 +47,16 @@ const reducer = createActions({
 
     return resStr.split(';');
   },
-  [UPDATE_CURRENT_STOCK_CODE]: stockCode => stockCode
+  [UPDATE_CURRENT_STOCK_CODE]: stockCode => stockCode,
+  [GET_FORBIDDEN_LIST]: async ()=>{
+    const res = axios.get(URL_GET_FORBIDDEN_LIST, {
+      params: {
+        reason_id: 0
+      }
+    });
+
+    return res;
+  }
 });
 
 export default reducer;
