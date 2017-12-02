@@ -9,11 +9,14 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import actions from './action';
 import './style.scss';
+import classNames from 'classnames';
 
 class Sell extends Component {
   item = {};
   state = {
-    sellModalVisible: false
+    sellModalVisible: false,
+    currentPositionId: null,
+    isSelling: false
   };
 
   componentDidMount() {
@@ -27,16 +30,31 @@ class Sell extends Component {
   }
 
   onSellButtonClick(item) {
+    const {isSelling} = this.state;
+
+    if(item.todayTrade == 1){
+      return notification.warning({
+        message: '当天买入的股票不可卖出!'
+      })
+    }
+
+    if(isSelling){
+      return notification.warning({
+        message: '交易中，请稍后...'
+      })
+    }
+
     this.item = item;
     this.setState({
-      sellModalVisible:  true
+      sellModalVisible: true,
+      currentPositionId: item.positionId
     })
   }
 
   render() {
     const { customerId, token, sellData } = this.props;
     const { dayDeference, sumProfit, cwpPositionOmList } = sellData;
-    const { sellModalVisible } = this.state;
+    const { sellModalVisible, currentPositionId, isSelling } = this.state;
 
     if (!customerId) {
       return (
@@ -76,6 +94,15 @@ class Sell extends Component {
           <tbody>
           {cwpPositionOmList.content.map(item => {
             const openTime = new Date(item.openTime).toLocaleString();
+            const btnClass = classNames({
+              'btn-sell': true,
+              'btn-disable': item.todayTrade == 1 || (currentPositionId === item.positionId && isSelling)
+            })
+            let btnText = '点卖';
+
+            if(currentPositionId === item.positionId && isSelling){
+              btnText = '点卖中';
+            }
 
             return (
               <tr key={item.positionId}>
@@ -116,8 +143,8 @@ class Sell extends Component {
                   {item.clinchPrice}
                 </td>
                 <td>
-                  <button onClick={this.onSellButtonClick.bind(this, item)} className="btn-sell">
-                    点卖
+                  <button onClick={this.onSellButtonClick.bind(this, item)} className={btnClass}>
+                    {btnText}
                   </button>
                 </td>
               </tr>
@@ -129,6 +156,11 @@ class Sell extends Component {
           title={'点卖确认'}
           visible={sellModalVisible}
           onOk={()=>{
+            this.setState({
+              sellModalVisible: false,
+              isSelling: true
+            })
+
             axios.post(URL_SELL_OUT_STOCK, {
               positionId: this.item.positionId,
               client_token: token
@@ -139,7 +171,8 @@ class Sell extends Component {
                 });
 
                 this.setState({
-                  sellModalVisible: false
+                  isSelling: false,
+                  currentPostionId: null
                 })
 
                 this.props.getPositionData(customerId, token);

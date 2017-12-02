@@ -28,7 +28,8 @@ class Buy extends Component {
     chooseStockVisible: false,
     confirmModalVisible: false,
     stockQueryStr: '',
-    isChartkActive: false
+    isChartkActive: false,
+    isBuying: false
   };
 
   componentDidMount() {
@@ -84,6 +85,11 @@ class Buy extends Component {
 
   onPurchaseClick(buyAmount) {
     const { protocolStatus, loginStatus } = this.props;
+    const { isBuying } = this.state;
+
+    if(isBuying){
+      return;
+    }
 
     if (!loginStatus) {
       return notification.warning({
@@ -143,6 +149,10 @@ class Buy extends Component {
     const { stockData: { data }, customerId, token, stopLossRatesIndex, buyPricesIndex } = this.props;
     const { gid } = data;
     const lossAmount = -(stopLossRates[stopLossRatesIndex] * 10000 * buyPrices[buyPricesIndex]).toFixed(0);
+    this.setState({
+      confirmModalVisible: false,
+      isBuying: true
+    })
 
     axios
       .post(URL_PURCHASE, {
@@ -158,13 +168,13 @@ class Buy extends Component {
         client_token: token
       })
       .then(res => {
+        this.setState({
+          isBuying: false
+        });
+
         if (res.code == 1) {
           notification.success({
             message: '购买成功！'
-          });
-
-          this.setState({
-            confirmModalVisible: false
           });
         } else {
           notification.error({
@@ -187,7 +197,7 @@ class Buy extends Component {
       suggests
     } = this.props;
 
-    const { chooseStockVisible, confirmModalVisible, stockQueryStr, isChartkActive } = this.state;
+    const { chooseStockVisible, confirmModalVisible, stockQueryStr, isChartkActive, isBuying } = this.state;
 
     if (!data) {
       data = {};
@@ -221,6 +231,11 @@ class Buy extends Component {
     const chartKClass = classNames({
       'charts': true,
       'hidden': !isChartkActive
+    })
+
+    const btnBuyClass = classNames({
+      'btn-buy': true,
+      'btn-disable': isBuying
     })
 
     // 触发止盈
@@ -617,12 +632,12 @@ class Buy extends Component {
             </a>
           </div>
           <button
-            className="btn-buy"
+            className={btnBuyClass}
             onClick={() => {
               this.onPurchaseClick(buyAmount);
             }}
           >
-            点买
+            {isBuying ? '买入中' : '点买'}
           </button>
         </div>
         <Modal
