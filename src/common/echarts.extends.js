@@ -344,7 +344,7 @@ export const chartLine = {
           axisTick: { show: false },
           axisLabel: {
             formatter: function(data) {
-              return data.toFixed(2);
+              return data.toFixed(1);
             },
             textStyle: {
               color: function(data) {
