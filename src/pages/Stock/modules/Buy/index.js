@@ -90,7 +90,7 @@ class Buy extends Component {
 
     if(isStoped){
       return notification.warning({
-        message: '停牌股不可交易'
+        message: '停牌或高风险股不可交易'
       })
     }
 
@@ -212,7 +212,8 @@ class Buy extends Component {
       data = {};
     }
 
-    let isStoped = false; //是否停牌
+    let isStoped = false; //是否可交易
+    let reasonId = 0;
 
     const stockNumer = currentStockCode.replace(/[a-z]/g, '');
 
@@ -220,9 +221,16 @@ class Buy extends Component {
       const item = forbiddenList[i];
 
       // reason_id: 2-停牌，1和3-高风险
-      if(item.number === stockNumer && item.reason_id === 2){
+      if(item.number === stockNumer){
         isStoped = true;
+        reasonId = item.reason_id;
       }
+    }
+
+    let stopContent = '';
+
+    if(isStoped){
+      stopContent = reasonId === 2 ? <span className="stopped">停牌</span> : <span className="stopped">高风险</span>
     }
 
     const tradePriceClasses = classNames({
@@ -314,7 +322,7 @@ class Buy extends Component {
           <div className="header">
             <div className="stock-name">
               <span className="name">
-                {data.name}({data.gid}){isStoped && <span className="stopped">停牌</span>}
+                {data.name}({data.gid}){stopContent}
               </span>
               <span
                 className="choose"

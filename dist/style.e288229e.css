@@ -4966,6 +4966,9 @@ html, body {
       #Buy .panel-left .stock-name .name {
         color: #333;
         font-size: 30px; }
+      #Buy .panel-left .stock-name .stopped {
+        margin-left: 10px;
+        color: #CC2930; }
       #Buy .panel-left .stock-name .choose {
         float: right;
         background-color: #fff;
@@ -5168,6 +5171,8 @@ html, body {
       margin-left: 50px;
       border: 0;
       cursor: pointer; }
+    #Buy .panel-right .btn-disable {
+      background: #888; }
 #Sell {
   padding: 40px 50px;
   box-sizing: border-box; }
@@ -5192,6 +5197,8 @@ html, body {
       color: #fff;
       border: 0;
       cursor: pointer; }
+    #Sell .sell-table .btn-disable {
+      background: #888; }
 /* stylelint-disable at-rule-empty-line-before,at-rule-name-space-after,at-rule-no-unknown */
 /* stylelint-disable declaration-bang-space-before */
 /* stylelint-disable declaration-bang-space-before */
