@@ -3643,7 +3643,6 @@ html, body {
 #Home {
   position: relative; }
   #Home .banner {
-    height: 360px;
     width: 100%; }
   #Home .login {
     width: 1000px;
