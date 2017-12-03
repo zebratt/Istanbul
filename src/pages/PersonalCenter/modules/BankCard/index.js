@@ -10,6 +10,13 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import actions from './action';
 
+const auditStatus = [
+  '',
+  '待审核',
+  '审核通过',
+  '审核失败'
+];
+
 class BankCard extends Component{
   componentDidMount(){
     const {queryBankCard, customerId, token} = this.props;
@@ -53,7 +60,7 @@ class BankCard extends Component{
                   <td>{card.bankprovince}</td>
                   <td>{card.bankCity}</td>
                   <td>{card.bankAdress}</td>
-                  <td>{card.auditStatus}</td>
+                  <td>{auditStatus[card.auditStatus]}</td>
                 </tr>
               )
             })

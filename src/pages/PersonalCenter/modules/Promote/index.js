@@ -4,12 +4,15 @@
  * @date: 2017/11/18.
  */
 
+import './style.scss';
 import React, {Component} from 'react';
 
 class Promote extends Component{
   render(){
     return (
-      <div>Promote</div>
+      <div id="Promote">
+        <div className="title">推广赚钱</div>
+      </div>
     )
   }
 }

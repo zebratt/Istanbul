@@ -3644,13 +3644,7 @@ html, body {
   position: relative; }
   #Home .banner {
     height: 360px;
-    background-size: auto 100%; }
-  #Home .pic1 {
-    background: url("http://www.dyb98.com/i/dyb/banner1.jpg") no-repeat center; }
-  #Home .pic2 {
-    background: url("http://www.dyb98.com/i/dyb/banner2.jpg") no-repeat center; }
-  #Home .pic3 {
-    background: url("http://www.dyb98.com/i/dyb/banner3.png") no-repeat center; }
+    width: 100%; }
   #Home .login {
     width: 1000px;
     position: absolute;
@@ -7643,7 +7637,9 @@ html, body {
 #MyHome .title {
   margin-top: 50px;
   line-height: 25px;
-  border-bottom: #bbbbbb solid 1px; }
+  border-bottom: #bbbbbb solid 1px;
+  font-size: 16px;
+  padding-bottom: 8px; }
 
 #MyHome .table {
   margin-top: 10px;
@@ -7672,10 +7668,36 @@ html, body {
 #BankCard .title {
   margin-top: 20px;
   line-height: 25px;
-  border-bottom: #bbb solid 1px; }
+  border-bottom: #bbb solid 1px;
+  font-size: 16px;
+  padding-bottom: 8px; }
 
 #BankCard .table {
   margin-top: 10px;
   width: 100%; }
   #BankCard .table tr.tl {
-    text-align: center; }
+    text-align: left; }
+#AccountSafe .title {
+  line-height: 25px;
+  border-bottom: #bbb solid 1px;
+  font-size: 16px;
+  padding-bottom: 8px; }
+
+#AccountSafe .table {
+  width: 100%; }
+  #AccountSafe .table td {
+    line-height: 25px; }
+  #AccountSafe .table .btn-modify {
+    width: 60px;
+    height: 28px;
+    background-color: #ce2629;
+    font-size: 12px;
+    margin: 5px 0;
+    color: #fff;
+    border: 0;
+    cursor: pointer; }
+#Promote .title {
+  line-height: 25px;
+  border-bottom: #bbb solid 1px;
+  font-size: 16px;
+  padding-bottom: 8px; }

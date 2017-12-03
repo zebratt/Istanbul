@@ -68,16 +68,17 @@ class Home extends Component {
         <NavBar />
         <Carousel
           emulateTouch
-          showArrows={false}
+          showArrows={true}
           showThumbs={false}
           infiniteLoop
           autoPlay
           interval={3000}
           showStatus={false}
         >
-          <div className="banner pic1" />
-          <div className="banner pic2" />
-          <div className="banner pic3" />
+          <img className="banner" src="http://odl96infd.bkt.clouddn.com/dyb1.jpg" alt=""/>
+          <img className="banner" src="http://odl96infd.bkt.clouddn.com/dyb2.jpg" alt=""/>
+          <img className="banner" src="http://odl96infd.bkt.clouddn.com/dyb3.jpg" alt=""/>
+          <img className="banner" src="http://odl96infd.bkt.clouddn.com/dyb4.jpg" alt=""/>
         </Carousel>
         {!loginStatus &&
           <div className="login">

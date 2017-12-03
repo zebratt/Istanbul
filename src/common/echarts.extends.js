@@ -190,7 +190,6 @@ export const chartK = {
     config.yAxis[1].max = kmax + (kmax - kmin) / 5;
     config.series[0].data = ydata;
     myChart.setOption(config);
-    //$(selector).css('background', 'none');
     this.chart = myChart;
   }
 };
@@ -425,7 +424,6 @@ export const chartLine = {
       ]
     };
     myChart.setOption(config);
-    //$(selector).css('background', 'none');
     this.chart = myChart;
   },
   push: function(json, full) {

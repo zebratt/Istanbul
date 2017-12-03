@@ -11,6 +11,11 @@ import actions from './action';
 import './style.scss';
 import classNames from 'classnames';
 
+const positionStatus = [
+  '已平仓',
+  '已持仓'
+]
+
 class Sell extends Component {
   item = {};
   state = {
@@ -131,7 +136,7 @@ class Sell extends Component {
                   {item.positionDays}
                 </td>
                 <td>
-                  {item.positionStatus}
+                  {positionStatus[item.positionStatus]}
                 </td>
                 <td>
                   {openTime}
