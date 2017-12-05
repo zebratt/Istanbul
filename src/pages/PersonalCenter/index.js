@@ -13,6 +13,7 @@ import MyHome from './modules/MyHome';
 import BankCard from './modules/BankCard/index';
 import AccountSafe from './modules/AccountSafe/index';
 import Promote from './modules/Promote/index';
+import { connect } from 'react-redux';
 
 const tabs = [
   {
@@ -46,6 +47,9 @@ class PersonalCenter extends Component {
   }
 
   renderBody(currentTabKey) {
+    const {customerId} = this.props;
+
+
     switch (currentTabKey) {
       case 'MyHome':
         return <MyHome {...this.props} />;
@@ -93,4 +97,10 @@ class PersonalCenter extends Component {
   }
 }
 
-export default PersonalCenter;
+const mapStateToProps = state => {
+  const { Home } = state;
+
+  return Object.assign({}, Home);
+};
+
+export default connect(mapStateToProps)(PersonalCenter);
