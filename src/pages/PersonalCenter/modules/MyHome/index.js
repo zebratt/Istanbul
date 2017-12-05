@@ -35,11 +35,7 @@ class MyHome extends Component{
   }
 
   render(){
-    const {fundDetails, customerId, currentPageIndex, totalPages, cwpCustomers} = this.props;
-
-    if(!customerId){
-      return <div>请先登录！</div>
-    }
+    const {fundDetails, currentPageIndex, totalPages, cwpCustomers} = this.props;
 
     return (
       <div id="MyHome">

@@ -27,11 +27,7 @@ class BankCard extends Component{
   }
 
   render(){
-    const {customerId, bankcards} = this.props;
-
-    if(!customerId){
-      return <div>请先登录！</div>
-    }
+    const {bankcards} = this.props;
 
     return (
       <div id="BankCard">

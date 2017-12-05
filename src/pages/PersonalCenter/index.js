@@ -49,6 +49,9 @@ class PersonalCenter extends Component {
   renderBody(currentTabKey) {
     const {customerId} = this.props;
 
+    if(!customerId){
+      return <div>请先登录！</div>
+    }
 
     switch (currentTabKey) {
       case 'MyHome':
