@@ -258,7 +258,7 @@ export const chartLine = {
         show: false
       },
       grid: {
-        x: 40,
+        x: 50,
         x2: 45,
         y: 5,
         y2: 5,
@@ -343,7 +343,7 @@ export const chartLine = {
           axisTick: { show: false },
           axisLabel: {
             formatter: function(data) {
-              return data.toFixed(1);
+              return data.toFixed(2);
             },
             textStyle: {
               color: function(data) {
