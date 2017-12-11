@@ -60,7 +60,7 @@ class Home extends Component {
 
   render() {
     const { username, password } = this.state;
-    const { loginStatus } = this.props;
+    const { loginStatus, history } = this.props;
 
     return (
       <div className="g-page" id="Home">
@@ -104,6 +104,9 @@ class Home extends Component {
                   this.setState({ password: eve.target.value });
                 }}
               />
+              <div className="forget" onClick={()=>{
+                history.push('/forget');
+              }}>忘记密码</div>
               <div className="buttons">
                 <div className="left">
                   <button className="btn" onClick={::this.onLoginHandler}>登录</button>

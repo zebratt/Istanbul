@@ -16,6 +16,7 @@ import Home from 'pages/Home';
 import Stock from 'pages/Stock';
 import Register from 'pages/Register';
 import Personal from 'pages/PersonalCenter';
+import ForgetPassword from 'pages/ForgetPassword';
 
 // Global variables
 import { init } from 'utils/global';
@@ -39,6 +40,7 @@ class App extends Component{
           <Route exact path="/stock" component={Stock}/>
           <Route exact path="/register" component={Register}/>
           <Route exact path="/personal" component={Personal}/>
+          <Route exact path="/forget" component={ForgetPassword} />
         </div>
       </Router>
     );
