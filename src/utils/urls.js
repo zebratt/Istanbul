@@ -6,6 +6,8 @@ export const URL_SUGGEST = '/suggest/type=111&key=' //股票建议接口
 export const URL_SEND_VERITY_CODE = '/serverInterface/login/sendCode' //发送验证码
 export const URL_QUERY_CUSTOMER_BY_TOKEN = '/serverInterface/login/queryCustomerByToken' //使用token查询用户信息
 export const URL_GET_FORBIDDEN_LIST = '/chartK/wcp/StockForbidden/GetList' //获取停牌列表
+export const URL_CHECK_CODE = '/serverInterface/login/checkCode' //修改密码验证码校验
+export const URL_MODIFY_PASSWORD = '/serverInterface/login/forgetPassword' //修改密码
 
 // Sell
 export const URL_POSITION_DATA = '/serverInterface/buy/queryPositionData' //持仓
