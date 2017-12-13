@@ -45,7 +45,7 @@ class Home extends Component {
 
           updateLogin(true, token, cwpCustomers);
 
-          history.push('/stock');
+          history.push('/stock/buy');
         } else {
           notification.error({
             message: res.msg
