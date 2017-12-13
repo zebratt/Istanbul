@@ -22,3 +22,4 @@ export const URL_QUERY_FUNDS_DETAILS = '/serverInterface/homePage/queryFundsDeta
 
 // BankCard
 export const URL_QUERY_BANK_CARD = '/serverInterface/bank/queryBankCard' // 查询用户所有银行卡
+export const URL_WITHDRAW = '/serverInterface/homePage/withdrawalsApply' // 提现

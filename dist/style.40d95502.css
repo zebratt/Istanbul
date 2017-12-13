@@ -7664,6 +7664,77 @@ html, body {
     margin: 0 5px; }
   #MyHome .table-nav .btn {
     margin: 0 10px; }
+#Charge .charge-title {
+  line-height: 25px;
+  border-bottom: #bbb solid 1px;
+  font-size: 16px;
+  padding-bottom: 8px; }
+
+#Charge .nav {
+  margin-top: 25px; }
+  #Charge .nav li {
+    display: inline-block;
+    line-height: 30px;
+    width: 100px;
+    text-align: center;
+    font-size: 13px;
+    cursor: pointer; }
+  #Charge .nav li.active {
+    border-bottom: #d22e34 solid 2px; }
+
+#Charge .alipay .qr-code {
+  display: block;
+  margin: 20px auto; }
+
+#Charge .alipay .line {
+  margin: 10px 0; }
+
+#Charge .alipay .red {
+  color: #d22e34; }
+
+#Charge .bankcard {
+  padding: 20px 0; }
+  #Charge .bankcard .bold {
+    font-size: 14px;
+    font-weight: bold; }
+  #Charge .bankcard .line {
+    margin: 10px 0; }
+  #Charge .bankcard .charge-table {
+    width: 100%;
+    margin-top: 20px;
+    border-top: #e5e5e5 solid 1px;
+    border-left: #e5e5e5 solid 1px; }
+    #Charge .bankcard .charge-table .logo {
+      position: absolute;
+      width: 150px;
+      height: 50px; }
+    #Charge .bankcard .charge-table td {
+      border-right: #e5e5e5 solid 1px;
+      border-bottom: #e5e5e5 solid 1px;
+      padding: 12px; }
+#Withdraw .withdraw-title {
+  line-height: 25px;
+  border-bottom: #bbb solid 1px;
+  font-size: 16px;
+  padding-bottom: 8px; }
+
+#Withdraw .line {
+  margin: 10px 0; }
+  #Withdraw .line .label {
+    width: 100px;
+    line-height: 30px;
+    display: inline-block; }
+  #Withdraw .line input {
+    border: #e5e5e5 solid 1px;
+    width: 200px;
+    height: 30px; }
+  #Withdraw .line .btn-withdraw {
+    border: 0;
+    background: #D22E34;
+    padding: 4px 10px;
+    color: #fff;
+    font-size: 13px;
+    border-radius: 5px; }
 #BankCard .header {
   overflow: hidden; }
   #BankCard .header .btn-add {

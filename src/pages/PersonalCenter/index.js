@@ -27,7 +27,7 @@ class PersonalCenter extends Component {
     }
 
     onMenuTabClick(key) {
-        this.props.history.push(key);
+        this.props.history.push('/personal/' + key);
 
         this.setState({
             currentTabKey: key
@@ -43,7 +43,7 @@ class PersonalCenter extends Component {
         if (!customerId) {
             tabContent = (
                 <div className="content">
-                    <div>请先登录!</div>;
+                    <div>请先登录!</div>
                 </div>
             );
         } else {
