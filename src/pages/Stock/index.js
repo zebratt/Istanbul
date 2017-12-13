@@ -43,7 +43,7 @@ class Stock extends Component {
                                         key={tab.key}
                                         className={classes}
                                         onClick={() => {
-                                            history.push(`/stock/${tab.key}`);
+                                            history.push(tab.key);
 
                                             this.setState({
                                               currentTabKey: tab.key

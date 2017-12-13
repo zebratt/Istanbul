@@ -1,18 +1,18 @@
 export default [
     {
         name: '我的首页',
-        key: 'MyHome'
+        key: 'home'
     },
     {
         name: '银行卡管理',
-        key: 'BankCard'
+        key: 'bankcard'
     },
     {
         name: '账户安全',
-        key: 'AccountSafe'
+        key: 'safe'
     },
     {
         name: '推广赚钱',
-        key: 'Promote'
+        key: 'promote'
     }
 ];

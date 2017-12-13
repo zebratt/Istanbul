@@ -18,39 +18,44 @@ import { Route } from 'react-router-dom';
 import tabs from './tabs';
 
 class PersonalCenter extends Component {
-    state = {
-        currentTabKey: 'MyHome',
-        currentComp: MyHome
-    };
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            currentTabKey: props.match.params.tab || 'home'
+        };
+    }
 
     onMenuTabClick(key) {
+        this.props.history.push(key);
+
         this.setState({
             currentTabKey: key
         });
     }
 
-    renderBody(currentTabKey) {
-        const { customerId } = this.props;
+    render() {
+        const { currentTabKey } = this.state;
+        const { customerId, cwpCustomers: { customerName } } = this.props;
+
+        let tabContent = null;
 
         if (!customerId) {
-            return <div>请先登录！</div>;
+            tabContent = (
+                <div className="content">
+                    <div>请先登录!</div>;
+                </div>
+            );
+        } else {
+            tabContent = (
+                <div className="content">
+                    <Route path="/personal/home" component={MyHome} />
+                    <Route path="/personal/bankcard" component={BankCard} />
+                    <Route path="/personal/safe" component={AccountSafe} />
+                    <Route path="/personal/promote" component={Promote} />
+                </div>
+            );
         }
-
-        switch (currentTabKey) {
-            case 'MyHome':
-                return <MyHome {...this.props} />;
-            case 'BankCard':
-                return <BankCard {...this.props} />;
-            case 'AccountSafe':
-                return <AccountSafe {...this.props} />;
-            case 'Promote':
-                return <Promote {...this.props} />;
-        }
-    }
-
-    render() {
-        const { currentTabKey, currentComp } = this.state;
-        const { cwpCustomers: { customerName } } = this.props;
 
         return (
             <div id="PersonalCenter">
@@ -75,7 +80,7 @@ class PersonalCenter extends Component {
                             })}
                         </div>
                     </div>
-                    <div className="content">{this.renderBody(currentTabKey)}</div>
+                    {tabContent}
                 </div>
             </div>
         );
