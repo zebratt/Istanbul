@@ -7,21 +7,7 @@ import Buy from './modules/Buy';
 import Sell from './modules/Sell';
 import Settle from './modules/Settle';
 import { Route, Link } from 'react-router-dom';
-
-const tabs = [
-    {
-        name: '点买区',
-        key: 'buy'
-    },
-    {
-        name: '点卖区',
-        key: 'sell'
-    },
-    {
-        name: '结算区',
-        key: 'settle'
-    }
-];
+import tabs from './tabs';
 
 class Stock extends Component {
     state = {
