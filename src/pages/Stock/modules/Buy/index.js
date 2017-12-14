@@ -18,7 +18,7 @@ let chartsHasInited = false; // 用一个变量来保存图标是否被初始化
 const buyPrices = [1, 2, 3, 5, 10, 20, 30, 50];
 
 // 出发止损金额
-const stopLossRates = [0.1, 0.1333, 0.17];
+const stopLossRates = [0.1, 0.4 / 3, 0.17];
 
 class Buy extends Component {
   chartLineDom = null;
@@ -277,7 +277,10 @@ class Buy extends Component {
     let performingPrice = 0;
 
     if (stopLossRatesIndex < 2) {
-      performingPrice = Math.ceil(stopLossRates[stopLossRatesIndex] * buyPrices[buyPricesIndex]  * 12500);
+      const rate = stopLossRates[stopLossRatesIndex];
+      const price = buyPrices[buyPricesIndex];
+
+      performingPrice = (rate * price * 12500).toFixed(0);
     } else {
       performingPrice = buyPrices[buyPricesIndex] * 2000;
     }
