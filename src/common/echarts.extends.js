@@ -64,8 +64,8 @@ export const chartK = {
           if (data[0].data[0] == 0)
             //开盘，收盘，最低，最高
             dom += "<br/>开盘：<span style='color:#F96900;'>" + data[0].data[0] + '</span>';
-          dom += "<br/>最高：<span style='color:#DD2200;'>" + data[0].data[3] + '</span>';
-          dom += "<br/>最低：<span style='color:#00A800;'>" + data[0].data[2] + '</span>';
+          dom += "<br/>最高：<span style='color:#DD2200;'>" + data[0].data[2] + '</span>';
+          dom += "<br/>最低：<span style='color:#00A800;'>" + data[0].data[3] + '</span>';
           dom += "<br/>收盘：<span style='color:#F96900;'>" + data[0].data[1] + '</span>';
           return dom;
         },
