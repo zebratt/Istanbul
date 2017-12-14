@@ -2,93 +2,103 @@ import './style.scss';
 import * as React from 'react';
 import provinces from 'utils/provinces';
 import banks from './banks';
-import {Select, Cascader, notification} from 'antd';
-import {connect} from 'react-redux';
-import {URL_ADD_BANKCARD} from 'utils/urls';
+import { Select, Cascader, notification } from 'antd';
+import { connect } from 'react-redux';
+import { URL_ADD_BANKCARD } from 'utils/urls';
 const Option = Select.Option;
 
-class AddCard extends React.Component{
-    state={
+class AddCard extends React.Component {
+    state = {
         cardVal: '',
         bankName: '工商银行',
         province: '',
         city: '',
         branch: ''
-    }
+    };
     onProvinceChange = (value, items) => {
         this.setState({
             province: items[0].label,
             city: items[1].label
-        })
-    }
-    onBankChange = (value) => {
+        });
+    };
+    onBankChange = value => {
         this.setState({
             bankName: value
-        })
-    }
+        });
+    };
     onSubmit = () => {
-        const {customerId, token} = this.props;
-        const {cardVal, bankName, province, city, branch} = this.state;
+        const { customerId, token } = this.props;
+        const { cardVal, bankName, province, city, branch } = this.state;
 
-        if(!/^\d+$/.test(cardVal)){
+        if (!/^\d+$/.test(cardVal)) {
             return notification.warning({
                 message: '银行卡号格式有误，请重新输入！'
-            })
+            });
         }
 
-        if(!city || !province){
+        if (!city || !province) {
             return notification.warning({
                 message: '请选择省份和城市！'
-            })
+            });
         }
 
-        if(!branch){
+        if (!branch) {
             return notification.warning({
                 message: '支行名称不得为空！'
-            })
+            });
         }
 
-        axios.post(URL_ADD_BANKCARD, {
-            client_token: token,
-            bankAdress: branch,
-            bankCity: city,
-            bankprovince: province,
-            bankName: bankName,
-            customerId: customerId,
-            bankCardId: cardVal
-        }).then((res) => {
-            if(res.code != 1){
-                notification.error({
-                    message: res.msg
-                })
-            }else{
-                notification.success({
-                    message: '添加银行卡成功!'
-                });
+        axios
+            .post(URL_ADD_BANKCARD, {
+                client_token: token,
+                bankAdress: branch,
+                bankCity: city,
+                bankprovince: province,
+                bankName: bankName,
+                customerId: customerId,
+                bankCardId: cardVal
+            })
+            .then(res => {
+                if (res.code != 1) {
+                    notification.error({
+                        message: res.msg
+                    });
+                } else {
+                    notification.success({
+                        message: '添加银行卡成功!'
+                    });
 
-                this.props.history.goBack();
-            }
-        })
-    }
-    render(){
-        const {cardVal, bankName} = this.state;
+                    this.props.history.goBack();
+                }
+            });
+    };
+    render() {
+        const { cardVal, bankName } = this.state;
         return (
             <div className="add-card">
                 <div className="add-title">添加银行卡</div>
                 <div className="item">
                     <div className="label">银行卡号</div>
-                    <input type="text" className="input" maxLength={21} placeholder="请输入银行卡号" onChange={(eve) => {
-                        this.setState({
-                            cardVal: eve.target.value
-                        })
-                    }} />
+                    <input
+                        type="text"
+                        className="input"
+                        maxLength={21}
+                        placeholder="请输入银行卡号"
+                        onChange={eve => {
+                            this.setState({
+                                cardVal: eve.target.value
+                            });
+                        }}
+                    />
                 </div>
                 <div className="item">
                     <div className="label">开户银行</div>
                     <Select defaultValue="工商银行" onChange={this.onBankChange}>
-                        {
-                            banks.map((bank) => <Option key={bank} value={bank}>{bank}</Option>)
-                        }
+                        {banks.map(bank => (
+                            <Option key={bank} value={bank}>
+                                {bank}
+                            </Option>
+                        ))}
                     </Select>
                 </div>
                 <div className="item">
@@ -97,17 +107,24 @@ class AddCard extends React.Component{
                 </div>
                 <div className="item">
                     <div className="label">支行名称</div>
-                    <input type="text" className="input" placeholder="请输入支行名称" onChange={(eve) => {
-                        this.setState({
-                            branch: eve.target.value
-                        })
-                    }} />
+                    <input
+                        type="text"
+                        className="input"
+                        placeholder="请输入支行名称"
+                        onChange={eve => {
+                            this.setState({
+                                branch: eve.target.value
+                            });
+                        }}
+                    />
                 </div>
                 <div className="item">
-                    <button className="btn-submit" onClick={this.onSubmit}>提交</button>
+                    <button className="btn-submit" onClick={this.onSubmit}>
+                        提交
+                    </button>
                 </div>
             </div>
-        )
+        );
     }
 }
 
