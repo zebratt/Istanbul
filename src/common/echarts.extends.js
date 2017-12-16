@@ -168,10 +168,12 @@ export const chartK = {
               areaStyle: { type: 'default', color: '#C4E1FF' },
               color: '#DD2200',
               color0: '#00A800',
+              borderColor: '#DD2200',
+              borderColor0: '#00A800',
               lineStyle: {
                 width: 2,
                 color: '#DD2200', // 阳线边框颜色
-                color0: '#00A800' // 阴线边框颜色
+                color0: '#f00' // 阴线边框颜色
               }
             },
             emphasis: {
