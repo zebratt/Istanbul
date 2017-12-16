@@ -2,6 +2,7 @@ import './style.scss';
 import * as React from 'react';
 import { notification } from 'antd';
 import { URL_GO_REAL_NAME } from 'utils/urls';
+import { connect } from 'react-redux';
 
 class Verify extends React.Component {
     state = {
@@ -93,4 +94,10 @@ class Verify extends React.Component {
     }
 }
 
-export default Verify;
+const mapStateToProps = state => {
+    const { Home } = state;
+
+    return Object.assign({}, Home);
+};
+
+export default connect(mapStateToProps)(Verify);

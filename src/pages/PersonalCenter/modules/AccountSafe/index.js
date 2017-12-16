@@ -38,53 +38,42 @@ class AccountSafe extends Component {
         );
 
         return (
-            <div id="AccountSafe">
-                <Route path="/personal/safe/verify" render={() => <Verify {...this.props} />} />
-                <Route
-                    exact
-                    path="/personal/safe"
-                    render={() => {
-                        return (
-                            <div>
-                                <div className="title">账户安全</div>
-                                <table className="table">
-                                    <tbody>
-                                        <tr>
-                                            <td className="checked green" width={'10%'}>
-                                                <span className="icon i-checked" />
-                                            </td>
-                                            <td className="label" width={'20%'}>
-                                                绑定手机:
-                                            </td>
-                                            <td width={'50%'}>{phone}</td>
-                                            <td width={'20%'} />
-                                        </tr>
-                                        <tr>
-                                            <td className={realNameClasses} width={'10%'}>
-                                                <span className="icon i-checked" />
-                                            </td>
-                                            <td className="label" width={'20%'}>
-                                                姓名
-                                            </td>
-                                            <td width={'50%'}>{name}</td>
-                                            <td width={'20%'}>{realNameContent}</td>
-                                        </tr>
-                                        <tr>
-                                            <td className={realNameClasses} width={'10%'}>
-                                                <span className="icon i-checked" />
-                                            </td>
-                                            <td className="label" width={'20%'}>
-                                                身份证号
-                                            </td>
-                                            <td width={'50%'}>{idCard}</td>
-                                            <td width={'20%'} />
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        );
-                    }}
-                />
+            <div>
+                <div className="title">账户安全</div>
+                <table className="table">
+                    <tbody>
+                        <tr>
+                            <td className="checked green" width={'10%'}>
+                                <span className="icon i-checked" />
+                            </td>
+                            <td className="label" width={'20%'}>
+                                绑定手机:
+                            </td>
+                            <td width={'50%'}>{phone}</td>
+                            <td width={'20%'} />
+                        </tr>
+                        <tr>
+                            <td className={realNameClasses} width={'10%'}>
+                                <span className="icon i-checked" />
+                            </td>
+                            <td className="label" width={'20%'}>
+                                姓名
+                            </td>
+                            <td width={'50%'}>{name}</td>
+                            <td width={'20%'}>{realNameContent}</td>
+                        </tr>
+                        <tr>
+                            <td className={realNameClasses} width={'10%'}>
+                                <span className="icon i-checked" />
+                            </td>
+                            <td className="label" width={'20%'}>
+                                身份证号
+                            </td>
+                            <td width={'50%'}>{idCard}</td>
+                            <td width={'20%'} />
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         );
     }
@@ -100,4 +89,11 @@ const mapDispatchToProps = dispatch => {
     return bindActionCreators(actions, dispatch);
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(AccountSafe);
+export default () => {
+    return (
+        <div id="AccountSafe">
+            <Route path="/personal/safe/verify" component={Verify} />
+            <Route exact path="/personal/safe" component={connect(mapStateToProps, mapDispatchToProps)(AccountSafe)} />
+        </div>
+    );
+};

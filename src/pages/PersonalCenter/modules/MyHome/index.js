@@ -41,73 +41,71 @@ class MyHome extends Component {
         const { history, fundDetails, currentPageIndex, totalPages, cwpCustomers } = this.props;
 
         return (
-            <div id="MyHome">
-                <Route path="/personal/home/charge/:tab" component={Charge} />
-                <Route path="/personal/home/withdraw" component={Withdraw} />
-                <Route
-                    exact
-                    path="/personal/home"
-                    component={() => {
-                        return (
-                            <div>
-                                <div className="top">
-                                    <div className="flex-1">
-                                        <div className="balance">
-                                            <p>账户余额</p>
-                                            <p className="red">{_get(cwpCustomers, 'cwpFunds.balance', '获取失败')}</p>
-                                        </div>
-                                    </div>
-                                    <div className="flex-1">
-                                        <button className="btn btn-charge" onClick={() => {
-                                            history.push('home/charge/bankcard');
-                                        }}>充值</button>
-                                    </div>
-                                    <div className="flex-1">
-                                        <button className="btn btn-withdraw" onClick={() => {
-                                            history.push('home/withdraw');
-                                        }}>提现</button>
-                                    </div>
-                                </div>
-                                <div className="title">资金明细</div>
-                                <table className="table">
-                                    <thead>
-                                        <tr className="tl">
-                                            <td>流向</td>
-                                            <td>变动金额</td>
-                                            <td>剩余金额</td>
-                                            <td>变动时间</td>
-                                            <td>备注信息</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {fundDetails.map(item => {
-                                            const flowWay = item.flowWay === 0 ? '支出' : '收入';
+            <div>
+                <div className="top">
+                    <div className="flex-1">
+                        <div className="balance">
+                            <p>账户余额</p>
+                            <p className="red">{_get(cwpCustomers, 'cwpFunds.balance', '获取失败')}</p>
+                        </div>
+                    </div>
+                    <div className="flex-1">
+                        <button
+                            className="btn btn-charge"
+                            onClick={() => {
+                                history.push('home/charge/bankcard');
+                            }}
+                        >
+                            充值
+                        </button>
+                    </div>
+                    <div className="flex-1">
+                        <button
+                            className="btn btn-withdraw"
+                            onClick={() => {
+                                history.push('home/withdraw');
+                            }}
+                        >
+                            提现
+                        </button>
+                    </div>
+                </div>
+                <div className="title">资金明细</div>
+                <table className="table">
+                    <thead>
+                        <tr className="tl">
+                            <td>流向</td>
+                            <td>变动金额</td>
+                            <td>剩余金额</td>
+                            <td>变动时间</td>
+                            <td>备注信息</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {fundDetails.map(item => {
+                            const flowWay = item.flowWay === 0 ? '支出' : '收入';
 
-                                            return (
-                                                <tr key={item.fundsDetailsId}>
-                                                    <td>{flowWay}</td>
-                                                    <td>{item.amountChange}</td>
-                                                    <td>{item.amountResidual}</td>
-                                                    <td>{item.changeTime}</td>
-                                                    <td>{item.remark}</td>
-                                                </tr>
-                                            );
-                                        })}
-                                    </tbody>
-                                </table>
-                                <div className="table-nav">
-                                    <button className="btn" onClick={this.onNavButtonClick.bind(this, true)}>
-                                        上一页
-                                    </button>
-                                    当前第<span>{currentPageIndex + 1}</span>页，总共<span>{totalPages}</span>页
-                                    <button className="btn" onClick={this.onNavButtonClick.bind(this, false)}>
-                                        下一页
-                                    </button>
-                                </div>
-                            </div>
-                        );
-                    }}
-                />
+                            return (
+                                <tr key={item.fundsDetailsId}>
+                                    <td>{flowWay}</td>
+                                    <td>{item.amountChange}</td>
+                                    <td>{item.amountResidual}</td>
+                                    <td>{item.changeTime}</td>
+                                    <td>{item.remark}</td>
+                                </tr>
+                            );
+                        })}
+                    </tbody>
+                </table>
+                <div className="table-nav">
+                    <button className="btn" onClick={this.onNavButtonClick.bind(this, true)}>
+                        上一页
+                    </button>
+                    当前第<span>{currentPageIndex + 1}</span>页，总共<span>{totalPages}</span>页
+                    <button className="btn" onClick={this.onNavButtonClick.bind(this, false)}>
+                        下一页
+                    </button>
+                </div>
             </div>
         );
     }
@@ -123,4 +121,12 @@ const mapDispatchToProps = dispatch => {
     return bindActionCreators(actions, dispatch);
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(MyHome);
+export default () => {
+    return (
+        <div id="MyHome">
+            <Route path="/personal/home/charge/:tab" component={Charge} />
+            <Route path="/personal/home/withdraw" component={Withdraw} />
+            <Route exact path="/personal/home" component={connect(mapStateToProps, mapDispatchToProps)(MyHome)} />
+        </div>
+    );
+};
