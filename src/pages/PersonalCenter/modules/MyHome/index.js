@@ -71,7 +71,7 @@ class MyHome extends Component {
                                 <div className="title">资金明细</div>
                                 <table className="table">
                                     <thead>
-                                        <tr>
+                                        <tr className="tl">
                                             <td>流向</td>
                                             <td>变动金额</td>
                                             <td>剩余金额</td>

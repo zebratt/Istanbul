@@ -13,7 +13,15 @@
       line-height: 25px;
     }
 
-    .btn-modify{
+    td.checked{
+      text-align: center;
+    }
+
+    .green{
+      color: #0bbf04;
+    }
+
+    .btn{
       width: 60px;
       height: 28px;
       background-color: #ce2629;
@@ -22,6 +30,7 @@
       color: #fff;
       border: 0;
       cursor: pointer;
+      border-radius: 4px;
     }
   }
 }

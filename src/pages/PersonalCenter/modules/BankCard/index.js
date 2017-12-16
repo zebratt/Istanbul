@@ -17,10 +17,12 @@ const auditStatus = ['', '待审核', '审核通过', '审核失败'];
 class BankCard extends Component {
     componentDidMount() {
         const { queryBankCard, customerId, token } = this.props;
+        queryBankCard(customerId, token);
+    }
 
-        if (customerId) {
-            queryBankCard(customerId, token);
-        }
+    componentWillReceiveProps() {
+        const { queryBankCard, customerId, token } = this.props;
+        queryBankCard(customerId, token);
     }
 
     render() {
@@ -36,9 +38,14 @@ class BankCard extends Component {
                         return (
                             <div>
                                 <div className="header">
-                                    <button className="btn-add" onClick={() => {
-                                      this.props.history.push('bankcard/add');
-                                    }}>添加新的银行卡</button>
+                                    <button
+                                        className="btn-add"
+                                        onClick={() => {
+                                            this.props.history.push('bankcard/add');
+                                        }}
+                                    >
+                                        添加新的银行卡
+                                    </button>
                                 </div>
                                 <div className="title">我的银行卡</div>
                                 <table className="table">
@@ -55,7 +62,7 @@ class BankCard extends Component {
                                     <tbody>
                                         {bankcards.map(card => {
                                             return (
-                                                <tr>
+                                                <tr key={card.bankCardId}>
                                                     <td>{card.bankCardId}</td>
                                                     <td>{card.bankName}</td>
                                                     <td>{card.bankprovince}</td>

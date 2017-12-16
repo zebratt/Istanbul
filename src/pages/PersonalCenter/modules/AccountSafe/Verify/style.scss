@@ -1,27 +1,28 @@
-.add-card{
-    .add-title{
+#Verify{
+    .verify-title {
         line-height: 25px;
         border-bottom: #bbb solid 1px;
         font-size: 16px;
         padding-bottom: 8px;
     }
 
-    .item{
-        padding: 6px 12px;
+    .line{
+        margin: 10px 0;
 
         .label{
             width: 100px;
+            line-height: 30px;
             display: inline-block;
         }
 
-        .input{
+        input{
             border: #e5e5e5 solid 1px;
             width: 200px;
             height: 30px;
             padding-left: 5px;
         }
 
-        .btn-submit{
+        .btn{
             border: 0;
             background: #D22E34;
             padding: 4px 10px;
@@ -29,15 +30,5 @@
             font-size: 13px;
             border-radius: 5px;
         }
-
-        .ant-select-selection--single{
-            width: 142px;
-        }
-    }
-
-    .warning{
-        padding: 25px 12px;
-        line-height: 1.8;
-        font-weight: 600;
     }
 }
