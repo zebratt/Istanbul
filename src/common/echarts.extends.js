@@ -173,7 +173,7 @@ export const chartK = {
               lineStyle: {
                 width: 2,
                 color: '#DD2200', // 阳线边框颜色
-                color0: '#f00' // 阴线边框颜色
+                color0: '#00A800' // 阴线边框颜色
               }
             },
             emphasis: {
