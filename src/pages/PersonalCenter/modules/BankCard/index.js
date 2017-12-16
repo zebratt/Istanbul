@@ -19,12 +19,6 @@ class BankCard extends Component {
         const { queryBankCard, customerId, token } = this.props;
         queryBankCard(customerId, token);
     }
-
-    componentWillReceiveProps() {
-        const { queryBankCard, customerId, token } = this.props;
-        queryBankCard(customerId, token);
-    }
-
     render() {
         const { bankcards } = this.props;
 

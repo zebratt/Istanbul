@@ -8593,6 +8593,7 @@ html, body {
   padding-bottom: 8px; }
 
 #AccountSafe .table {
+  margin-top: 20px;
   width: 100%; }
   #AccountSafe .table td {
     line-height: 25px; }

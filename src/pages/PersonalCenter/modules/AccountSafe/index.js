@@ -19,15 +19,11 @@ class AccountSafe extends Component {
         const { getRealNameStatus, customerId } = this.props;
         getRealNameStatus(customerId);
     }
-    componentWillReceiveProps() {
-        const { getRealNameStatus, customerId } = this.props;
-        getRealNameStatus(customerId);
-    }
     gotoVerify = () => {
         this.props.history.push('safe/verify');
     };
     render() {
-        const { cwpCustomers, hasRealName, idCard } = this.props;
+        const { cwpCustomers, hasRealName, idCard, name } = this.props;
         const phone = _get(cwpCustomers, 'customerName');
         const realNameClasses = classNames({
             checked: true,
@@ -68,10 +64,20 @@ class AccountSafe extends Component {
                                                 <span className="icon i-checked" />
                                             </td>
                                             <td className="label" width={'20%'}>
-                                                实名认证
+                                                姓名
+                                            </td>
+                                            <td width={'50%'}>{name}</td>
+                                            <td width={'20%'}>{realNameContent}</td>
+                                        </tr>
+                                        <tr>
+                                            <td className={realNameClasses} width={'10%'}>
+                                                <span className="icon i-checked" />
+                                            </td>
+                                            <td className="label" width={'20%'}>
+                                                身份证号
                                             </td>
                                             <td width={'50%'}>{idCard}</td>
-                                            <td width={'20%'}>{realNameContent}</td>
+                                            <td width={'20%'} />
                                         </tr>
                                     </tbody>
                                 </table>

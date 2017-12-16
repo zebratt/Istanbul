@@ -11,13 +11,13 @@ export default createActions({
 
         if (res.code != 1) {
             return {
-                hasRealName: false,
-                idCard: ''
+                hasRealName: false
             };
         } else {
             return {
                 hasRealName: true,
-                idCard: res.data
+                idCard: res.data.customerCardId,
+                name: res.data.customerRealName
             };
         }
     }

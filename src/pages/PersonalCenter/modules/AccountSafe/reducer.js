@@ -3,15 +3,16 @@ import { GET_REAL_NAME_STATUS } from './contants';
 
 const initState = {
     hasRealName: false,
-    idCard: ''
+    idCard: '',
+    name: ''
 };
 
 const reducer = handleActions(
     {
         [GET_REAL_NAME_STATUS]: (state, action) => {
-            const { payload: {hasRealName, idCard} } = action;
+            const { payload: {hasRealName, idCard, name} } = action;
 
-            return { hasRealName: hasRealName, idCard: idCard };
+            return { hasRealName, idCard, name };
         }
     },
     initState
