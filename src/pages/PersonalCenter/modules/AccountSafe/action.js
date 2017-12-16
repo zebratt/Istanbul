@@ -10,9 +10,15 @@ export default createActions({
         });
 
         if (res.code != 1) {
-            return false;
+            return {
+                hasRealName: false,
+                idCard: ''
+            };
         } else {
-            return true;
+            return {
+                hasRealName: true,
+                idCard: res.data
+            };
         }
     }
 });

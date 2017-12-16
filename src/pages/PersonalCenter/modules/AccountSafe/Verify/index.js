@@ -85,6 +85,9 @@ class Verify extends React.Component {
                         提交
                     </button>
                 </div>
+                <div className="warning">
+                客户信息涉及到提款出金，请务必正确填写
+                </div>
             </div>
         );
     }

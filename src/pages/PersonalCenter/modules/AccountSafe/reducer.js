@@ -2,15 +2,16 @@ import { handleActions } from 'redux-actions';
 import { GET_REAL_NAME_STATUS } from './contants';
 
 const initState = {
-    hasRealName: false
+    hasRealName: false,
+    idCard: ''
 };
 
 const reducer = handleActions(
     {
         [GET_REAL_NAME_STATUS]: (state, action) => {
-            const { payload } = action;
+            const { payload: {hasRealName, idCard} } = action;
 
-            return { hasRealName: payload };
+            return { hasRealName: hasRealName, idCard: idCard };
         }
     },
     initState

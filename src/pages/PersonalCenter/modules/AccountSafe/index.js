@@ -19,7 +19,7 @@ class AccountSafe extends Component {
         const { getRealNameStatus, customerId } = this.props;
         getRealNameStatus(customerId);
     }
-    componentWillReceiveProps(){
+    componentWillReceiveProps() {
         const { getRealNameStatus, customerId } = this.props;
         getRealNameStatus(customerId);
     }
@@ -27,7 +27,7 @@ class AccountSafe extends Component {
         this.props.history.push('safe/verify');
     };
     render() {
-        const { cwpCustomers, hasRealName } = this.props;
+        const { cwpCustomers, hasRealName, idCard } = this.props;
         const phone = _get(cwpCustomers, 'customerName');
         const realNameClasses = classNames({
             checked: true,
@@ -61,9 +61,7 @@ class AccountSafe extends Component {
                                                 绑定手机:
                                             </td>
                                             <td width={'50%'}>{phone}</td>
-                                            <td width={'20%'}>
-                                                <button className="btn">修改</button>
-                                            </td>
+                                            <td width={'20%'} />
                                         </tr>
                                         <tr>
                                             <td className={realNameClasses} width={'10%'}>
@@ -72,7 +70,7 @@ class AccountSafe extends Component {
                                             <td className="label" width={'20%'}>
                                                 实名认证
                                             </td>
-                                            <td width={'50%'} />
+                                            <td width={'50%'}>{idCard}</td>
                                             <td width={'20%'}>{realNameContent}</td>
                                         </tr>
                                     </tbody>

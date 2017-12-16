@@ -5193,14 +5193,17 @@ html, body {
     width: 100%;
     margin-top: 20px;
     text-align: center; }
+    #Sell .sell-table tbody td {
+      padding: 2px 0; }
     #Sell .sell-table .title {
       line-height: 30px; }
     #Sell .sell-table .btn-sell {
-      width: 80px;
-      height: 35px;
+      width: 60px;
+      height: 25px;
       background-color: #ce2629;
-      font-size: 16px;
+      font-size: 13px;
       margin: 5px 0;
+      border-radius: 4px;
       color: #fff;
       border: 0;
       cursor: pointer; }
@@ -8631,6 +8634,11 @@ html, body {
     color: #fff;
     font-size: 13px;
     border-radius: 5px; }
+
+#Verify .warning {
+  padding: 15px 0;
+  line-height: 1.8;
+  font-weight: 600; }
 #Promote .title {
   line-height: 25px;
   border-bottom: #bbb solid 1px;
