@@ -167,7 +167,7 @@ export const chartK = {
             normal: {
               areaStyle: { type: 'default', color: '#C4E1FF' },
               color: '#DD2200',
-              colorO: '#00A800',
+              color0: '#00A800',
               lineStyle: {
                 width: 2,
                 color: '#DD2200', // 阳线边框颜色
