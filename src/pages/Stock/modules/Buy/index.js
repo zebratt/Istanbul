@@ -61,7 +61,7 @@ class Buy extends Component {
 
       // 当股票代码变化时，K线图重绘
       if(this.props.currentStockCode !== nextProps.currentStockCode){
-        this.renderChartK(data.gid);
+        this.renderChartK(nextProps.currentStockCode);
       }
     }
   }
