@@ -1,5 +1,5 @@
-#Withdraw{
-    .withdraw-title{
+#Verify{
+    .verify-title {
         line-height: 25px;
         border-bottom: #bbb solid 1px;
         font-size: 16px;
@@ -22,7 +22,7 @@
             padding-left: 5px;
         }
 
-        .btn-withdraw{
+        .btn{
             border: 0;
             background: #D22E34;
             padding: 4px 10px;
@@ -30,5 +30,11 @@
             font-size: 13px;
             border-radius: 5px;
         }
+    }
+
+    .warning{
+        padding: 15px 0;
+        line-height: 1.8;
+        font-weight: 600;
     }
 }

@@ -59,7 +59,7 @@ class PersonalCenter extends Component {
 
         return (
             <div id="PersonalCenter">
-                <Header />
+                <Header history={this.props.history} />
                 <NavBar />
                 <div className="main">
                     <div className="menu">
