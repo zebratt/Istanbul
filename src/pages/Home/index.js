@@ -75,10 +75,10 @@ class Home extends Component {
           interval={3000}
           showStatus={false}
         >
-          <img className="banner" src="http://odl96infd.bkt.clouddn.com/dyb1.jpg" alt=""/>
-          <img className="banner" src="http://odl96infd.bkt.clouddn.com/dyb2.jpg" alt=""/>
-          <img className="banner" src="http://odl96infd.bkt.clouddn.com/dyb3.jpg" alt=""/>
-          <img className="banner" src="http://odl96infd.bkt.clouddn.com/dyb4.jpg" alt=""/>
+          <img className="banner" src="http://odl96infd.bkt.clouddn.com/11.jpg" alt=""/>
+          <img className="banner" src="http://odl96infd.bkt.clouddn.com/22.jpg" alt=""/>
+          <img className="banner" src="http://odl96infd.bkt.clouddn.com/33.jpg" alt=""/>
+          <img className="banner" src="http://odl96infd.bkt.clouddn.com/44.jpg" alt=""/>
         </Carousel>
         {!loginStatus &&
           <div className="login">
