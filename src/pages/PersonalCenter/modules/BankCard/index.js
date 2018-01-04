@@ -21,19 +21,24 @@ class BankCard extends Component {
     }
     render() {
         const { bankcards } = this.props;
+        let addContent = null;
+
+        if (!bankcards.length) {
+            addContent = (
+                <button
+                    className="btn-add"
+                    onClick={() => {
+                        this.props.history.push('bankcard/add');
+                    }}
+                >
+                    添加新的银行卡
+                </button>
+            );
+        }
 
         return (
             <div>
-                <div className="header">
-                    <button
-                        className="btn-add"
-                        onClick={() => {
-                            this.props.history.push('bankcard/add');
-                        }}
-                    >
-                        添加新的银行卡
-                    </button>
-                </div>
+                <div className="header" >{addContent}</div>
                 <div className="title">我的银行卡</div>
                 <table className="table">
                     <thead>
