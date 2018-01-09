@@ -113,7 +113,7 @@ class Register extends Component {
                 customerPhone: phone,
                 password: password,
                 code: verifyCodeVal,
-                parentId: agentId
+                agentId: agentId
             })
             .then(res => {
                 if (res.code == 1) {
