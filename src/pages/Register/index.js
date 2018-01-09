@@ -82,7 +82,7 @@ class Register extends Component {
         }
 
         this.setState({
-            isSubmiting : true
+            isSubmiting: true
         })
 
         if (!checkStatus) {
