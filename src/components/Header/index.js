@@ -40,8 +40,6 @@ class Header extends Component {
           <div className="right">
             {name && <span>欢迎: {name}</span>}
             {loginBtnContent}
-            <span>|</span>
-            <Link to="/register">注册</Link>
           </div>
         </div>
       </div>

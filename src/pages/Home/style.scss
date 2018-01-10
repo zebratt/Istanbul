@@ -67,23 +67,13 @@
       }
 
       .buttons{
-        display: flex;
-
-        .left{
-          flex-grow: 1;
-        }
-
-        .right{
-          flex-grow: 1;
-          text-align: right;
-        }
 
         .btn{
           background-color: #d42b2e;
           color: #fff;
           height: 36px;
           font-size: 18px;
-          width: 90px;
+          width: 100%;
           text-align: center;
           line-height: 36px;
           border: 0;
