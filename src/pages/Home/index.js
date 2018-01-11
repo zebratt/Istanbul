@@ -37,10 +37,10 @@ class Home extends Component {
                     const { data: { token, cwpCustomers } } = res
 
                     notification.success({
-                        message: '登陆成功！'
+                        message: '登录成功！'
                     })
 
-                    //用户登陆信息保存30天
+                    //用户登录信息保存30天
                     Cookies.set('TOKEN', token, { expires: 30 })
 
                     updateLogin(true, token, cwpCustomers)
@@ -75,7 +75,7 @@ class Home extends Component {
                 {!loginStatus && (
                     <div className="login">
                         <div className="content">
-                            <div className="title">登陆点赢宝</div>
+                            <div className="title">登录点赢宝</div>
                             <div className="label">账号:</div>
                             <input
                                 className="input"
