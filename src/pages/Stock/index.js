@@ -8,6 +8,7 @@ import Sell from './modules/Sell';
 import Settle from './modules/Settle';
 import { Route, Link } from 'react-router-dom';
 import tabs from './tabs';
+import Footer from 'components/Footer/Footer'
 
 class Stock extends Component {
     state = {
@@ -62,6 +63,7 @@ class Stock extends Component {
                     <Route path="/stock/sell" component={Sell} />
                     <Route path="/stock/settle" component={Settle} />
                 </div>
+                <Footer />
             </div>
         );
     }

@@ -4,6 +4,7 @@ import React, { Component } from 'react'
 import { Carousel } from 'react-responsive-carousel'
 import NavBar from 'components/NavBar'
 import Header from 'components/Header/index'
+import Footer from 'components/Footer/Footer'
 import { notification } from 'antd'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
@@ -16,7 +17,7 @@ class Home extends Component {
         username: '',
         password: ''
     }
-
+    
     onLoginHandler = () => {
         const { username, password } = this.state
         const { updateLogin, history } = this.props
@@ -112,6 +113,8 @@ class Home extends Component {
                         </div>
                     </div>
                 )}
+                <div style={{height: innerHeight - 750}}></div>
+                <Footer />
             </div>
         )
     }
