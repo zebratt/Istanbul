@@ -32,7 +32,7 @@ class Header extends Component {
     const loginBtnContent = loginStatus
       ? <a onClick={this.onQuitHandler} href="javascript:void(0)">退出</a>
       : <Link to="/">登录</Link>;
-    const name = _get(cwpCustomers, 'customerName');
+    const name = cwpCustomers.customerRealName || cwpCustomers.customerName;
 
     return (
       <div id="Header">

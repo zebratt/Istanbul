@@ -1,71 +1,82 @@
-import './style.scss';
-import * as React from 'react';
-import { Route } from 'react-router-dom';
-import imgLogo from './images/bank-logo.jpg';
-import imgQr from './images/alipay.png';
-import classNames from 'classnames';
-import tabs from './tabs';
+import './style.scss'
+import * as React from 'react'
+import { Route } from 'react-router-dom'
+import imgLogo from './images/bank-logo.jpg'
+import imgQr from './images/alipay.png'
+import classNames from 'classnames'
+import tabs from './tabs'
+import { notification } from 'antd'
+import { connect } from 'react-redux'
 
 export default class Charge extends React.Component {
-    constructor(props){
-        super(props);
+    constructor(props) {
+        super(props)
 
         this.state = {
             currTab: props.match.params.tab || 'bankcard'
         }
     }
-    tabClick = (key) => {
+    tabClick = key => {
         this.setState({
             currTab: key
-        });
+        })
 
-        this.props.history.push(key);
+        this.props.history.push(key)
     }
     render() {
         return (
             <div id="Charge">
                 <div className="charge-title">账户充值</div>
                 <ul className="nav">
-                    {
-                        tabs.map((tab) => {
-                            const classes = classNames({
-                                active: tab.key === this.state.currTab
-                            });
-
-                            return (
-                                <li key={tab.key} className={classes} onClick={() => {
-                                    this.tabClick(tab.key);
-                                }}>{tab.name}</li>
-                            )
+                    {tabs.map(tab => {
+                        const classes = classNames({
+                            active: tab.key === this.state.currTab
                         })
-                    }
+
+                        return (
+                            <li
+                                key={tab.key}
+                                className={classes}
+                                onClick={() => {
+                                    this.tabClick(tab.key)
+                                }}
+                            >
+                                {tab.name}
+                            </li>
+                        )
+                    })}
                 </ul>
                 <Route exact path="/personal/home/charge/bankcard" component={Bankcard} />
                 <Route exact path="/personal/home/charge/alipay" component={Alipay} />
+                <Route
+                    exact
+                    path="/personal/home/charge/online"
+                    component={connect(state => {
+                        const { Home } = state
+
+                        return Object.assign({}, Home)
+                    })(Online)}
+                />
             </div>
-        );
+        )
     }
 }
 
 const Alipay = () => {
-    return <div className="alipay">
-        <div className="qr-code">
-            <img src={imgQr} alt=""/>
+    return (
+        <div className="alipay">
+            <div className="qr-code">
+                <img src={imgQr} alt="" />
+            </div>
+            <div className="line red">
+                请扫码充值，并务必在转账备注中填写注册手机号，这样方便我们多重信息确认您的汇款。
+            </div>
+            <div className="line">转账成功后，请拨打客服热线 4008261289 以便我们及时帮您处理</div>
+            <div className="line">账号：1793685107@qq.com‍</div>
+            <div className="line">户名：温州赢利宝资产管理有限公司</div>
         </div>
-        <div className="line red">
-        请扫码充值，并务必在转账备注中填写注册手机号，这样方便我们多重信息确认您的汇款。
-        </div>
-        <div className="line">
-转账成功后，请拨打客服热线 4008261289 以便我们及时帮您处理 
-        </div>
-        <div className="line">
-账号：1793685107@qq.com‍ 
-        </div>
-        <div className="line">
-户名：温州赢利宝资产管理有限公司
-        </div>
-    </div>;
-};
+    )
+}
 
 const Bankcard = () => {
     return (
@@ -87,7 +98,64 @@ const Bankcard = () => {
                     </tr>
                 </tbody>
             </table>
-            <div className="line">用户网银转账之后，请务必保留网银转账成功时的截图，并在资金或者转账用途中备注清自己要转入的用户名，将回单发到QQ客服，以便尽快到账！</div>
+            <div className="line">
+                用户网银转账之后，请务必保留网银转账成功时的截图，并在资金或者转账用途中备注清自己要转入的用户名，将回单发到QQ客服，以便尽快到账！
+            </div>
         </div>
-    );
-};
+    )
+}
+
+class Online extends React.Component {
+    form = null
+    state = {
+        amountVal: ''
+    }
+    onChangeHandler = eve => {
+        this.setState({
+            amountVal: eve.target.value
+        })
+    }
+    onSubmitHandler = eve => {
+        eve.preventDefault()
+
+        const { amountVal } = this.state
+
+        if (!/^\d+$/.test(amountVal)) {
+            return notification.warning({
+                message: '金额输入有误！'
+            })
+        }
+
+        this.form.submit()
+    }
+    render() {
+        const {customerId} = this.props;
+        return (
+            <div className="online">
+                <form
+                    ref={dom => {
+                        this.form = dom
+                    }}
+                    action="/serverInterface/netpay/placeOrder"
+                    method="post"
+                >
+                    <label htmlFor="chargeAmount">充值金额：</label>
+                    <input
+                        name="amount"
+                        maxLength="6"
+                        className="charge-input"
+                        id="chargeAmount"
+                        type="text"
+                        value={this.state.amountVal}
+                        onChange={this.onChangeHandler}
+                    />
+                    <input name="paymod" type="hidden" value="plain" />
+                    <input name="customerId" type="hidden" value={customerId} />
+                    <button className="btn-confirm" onClick={this.onSubmitHandler}>
+                        确定
+                    </button>
+                </form>
+            </div>
+        )
+    }
+}
