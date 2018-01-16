@@ -106,7 +106,6 @@ const Bankcard = () => {
 }
 
 class Online extends React.Component {
-    form = null
     state = {
         amountVal: ''
     }
@@ -116,9 +115,8 @@ class Online extends React.Component {
         })
     }
     onSubmitHandler = eve => {
-        eve.preventDefault()
-
         const { amountVal } = this.state
+        const { customerId } = this.props
 
         if (!/^\d+$/.test(amountVal)) {
             return notification.warning({
@@ -126,35 +124,25 @@ class Online extends React.Component {
             })
         }
 
-        this.form.submit()
+        const params = [`amount=${amountVal}`, `paymod=plain`, `customerId=${customerId}`]
+        location.href = '/serverInterface/netpay/placeOrder?' + params.join('&')
     }
     render() {
-        const {customerId} = this.props;
         return (
             <div className="online">
-                <form
-                    ref={dom => {
-                        this.form = dom
-                    }}
-                    action="/serverInterface/netpay/placeOrder"
-                    method="post"
-                >
-                    <label htmlFor="chargeAmount">充值金额：</label>
-                    <input
-                        name="amount"
-                        maxLength="6"
-                        className="charge-input"
-                        id="chargeAmount"
-                        type="text"
-                        value={this.state.amountVal}
-                        onChange={this.onChangeHandler}
-                    />
-                    <input name="paymod" type="hidden" value="plain" />
-                    <input name="customerId" type="hidden" value={customerId} />
-                    <button className="btn-confirm" onClick={this.onSubmitHandler}>
-                        确定
-                    </button>
-                </form>
+                <label htmlFor="chargeAmount">充值金额：</label>
+                <input
+                    name="amount"
+                    maxLength="6"
+                    className="charge-input"
+                    id="chargeAmount"
+                    type="text"
+                    value={this.state.amountVal}
+                    onChange={this.onChangeHandler}
+                />
+                <button className="btn-confirm" onClick={this.onSubmitHandler}>
+                    确定
+                </button>
             </div>
         )
     }
