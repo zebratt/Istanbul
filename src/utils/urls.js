@@ -1,6 +1,7 @@
 export const URL_LOGIN = '/serverInterface/login/loginCheck'; // 用户登录
 export const URL_REGISTER = '/serverInterface/login/registrationCustomer' //用户注册
-export const URL_STOCK_DATA = '/finance/stock/hs' //获取股票数据
+// export const URL_STOCK_DATA = '/finance/stock/hs' //获取股票数据
+export const URL_STOCK_DATA = '/sinajs/list' //获取股票数据
 export const URL_PURCHASE = '/serverInterface/buy/saveStockOrder' //报单接口
 export const URL_SUGGEST = '/suggest/type=111&key=' //股票建议接口
 export const URL_SEND_VERITY_CODE = '/serverInterface/login/sendCode' //发送验证码
