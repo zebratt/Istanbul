@@ -3647,6 +3647,7 @@ html, body {
   background: #FAFAFA; }
 
 #Home {
+  background: #fff;
   position: relative; }
   #Home .banner {
     width: 100%; }
@@ -3706,6 +3707,83 @@ html, body {
         line-height: 36px;
         border: 0;
         cursor: pointer; }
+  #Home .delimiter {
+    position: relative;
+    margin: 80px auto;
+    height: 2px;
+    background: #d42b2e;
+    max-width: 1000px; }
+    #Home .delimiter .text-wrapper {
+      position: absolute;
+      border: #fff solid 10px;
+      background: #d42b2e;
+      background-clip: content-box;
+      font-size: 16px;
+      left: 50%;
+      top: -35px;
+      transform: translateX(-50%); }
+      #Home .delimiter .text-wrapper .text {
+        margin: 5px;
+        border: #fff solid 1px;
+        width: 200px;
+        color: #fff;
+        text-align: center;
+        line-height: 40px; }
+  #Home .boxes {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex; }
+    #Home .boxes .box {
+      flex: 1; }
+      #Home .boxes .box .content {
+        width: 200px;
+        margin: 0 auto;
+        color: #fff;
+        border-radius: 5px;
+        text-align: center;
+        padding: 50px 0; }
+        #Home .boxes .box .content p {
+          font-size: 28px; }
+    #Home .boxes .orange {
+      background: orange; }
+    #Home .boxes .brown {
+      background: #c35e5d; }
+    #Home .boxes .blue {
+      background: #7fc0f1; }
+    #Home .boxes .red {
+      background: #d33d2b; }
+  #Home .icon-line {
+    max-width: 1000px;
+    display: flex;
+    margin: 0 auto 20px; }
+    #Home .icon-line .col {
+      flex: 1; }
+      #Home .icon-line .col img {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        margin-left: 120px; }
+      #Home .icon-line .col .text {
+        color: #666;
+        line-height: 125px;
+        vertical-align: bottom;
+        margin-left: 20px;
+        font-size: 20px; }
+  #Home .bg {
+    display: block;
+    width: 1000px;
+    margin: 80px auto 0;
+    background: url(http://odl96infd.bkt.clouddn.com/bg.jpg); }
+  #Home .faq {
+    position: relative;
+    width: 920px;
+    margin: -30px auto 0;
+    border: #7fc0f1 solid 2px;
+    border-radius: 5px;
+    padding: 30px 50px;
+    background: #fff; }
+    #Home .faq .item {
+      margin-bottom: 10px; }
 #NavBar {
   background: #fff;
   border-bottom: #e5e5e5 solid 1px; }
