@@ -20,6 +20,7 @@ export const URL_QUERY_SCHEME_DATA = '/serverInterface/buy/querySchemeData' // �
 
 // MyHome
 export const URL_QUERY_FUNDS_DETAILS = '/serverInterface/homePage/queryFundsDetails' //资金明细
+export const URL_QUERY_FUNDS = '/serverInterface/homePage/queryFunds' //查询余额
 
 // BankCard
 export const URL_QUERY_BANK_CARD = '/serverInterface/bank/queryBankCard' // 查询用户所有银行卡

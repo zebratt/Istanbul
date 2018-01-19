@@ -16,10 +16,11 @@ import Withdraw from './modules/Withdraw';
 
 class MyHome extends Component {
     componentDidMount() {
-        const { queryFundDetails, customerId, token } = this.props;
+        const { queryFundDetails, queryBalance, customerId, token } = this.props;
 
         if (customerId) {
             queryFundDetails(customerId, token, 0);
+            queryBalance(customerId, token)
         }
     }
 
@@ -38,7 +39,7 @@ class MyHome extends Component {
     }
 
     render() {
-        const { history, fundDetails, currentPageIndex, totalPages, cwpCustomers } = this.props;
+        const { history, fundDetails, currentPageIndex, totalPages, balance } = this.props;
 
         return (
             <div>
@@ -46,7 +47,7 @@ class MyHome extends Component {
                     <div className="flex-1">
                         <div className="balance">
                             <p>账户余额</p>
-                            <p className="red">{_get(cwpCustomers, 'cwpFunds.balance', '获取失败')}</p>
+                            <p className="red">{balance}</p>
                         </div>
                     </div>
                     <div className="flex-1">

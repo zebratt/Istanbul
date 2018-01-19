@@ -1,1 +1,2 @@
 export const QUERY_FUND_DETAILS = 'QUERY_FUND_DETAILS';
+export const QUERY_BALANCE = 'QUERY_BALANCE';
