@@ -4,57 +4,58 @@
  * @date: 2017/10/21.
  */
 
-import './style.scss';
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import actions from 'pages/Home/action';
-import Cookies from 'js-cookie';
-import { notification } from 'antd';
-import _get from 'lodash/get';
+import './style.scss'
+import React, { Component } from 'react'
+import { Link, withRouter } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import actions from 'pages/Home/action'
+import Cookies from 'js-cookie'
+import { notification } from 'antd'
+import _get from 'lodash/get'
 
-class Header extends Component {
-  onQuitHandler = () => {
-    Cookies.remove('TOKEN');
+@withRouter
+@connect(
+    state => {
+        const { Home: { loginStatus, cwpCustomers } } = state
 
-    this.props.updateLogin(false, '', '');
+        return { loginStatus, cwpCustomers }
+    },
+    dispatch => bindActionCreators(actions, dispatch)
+)
+export default class Header extends Component {
+    onQuitHandler = () => {
+        Cookies.remove('TOKEN')
 
-    notification.success({
-      message: '退出成功！'
-    });
+        this.props.updateLogin(false, '', '')
 
-    this.props.history.push('/');
-  }
+        notification.success({
+            message: '退出成功！'
+        })
 
-  render() {
-    const { loginStatus, cwpCustomers } = this.props;
-    const loginBtnContent = loginStatus
-      ? <a onClick={this.onQuitHandler} href="javascript:void(0)">退出</a>
-      : <Link to="/">登录</Link>;
-    const name = cwpCustomers.customerRealName || cwpCustomers.customerName;
+        this.props.history.push('/')
+    }
 
-    return (
-      <div id="Header">
-        <div className="content">
-          <div className="right">
-            {name && <span>欢迎: {name}</span>}
-            {loginBtnContent}
-          </div>
-        </div>
-      </div>
-    );
-  }
+    render() {
+        const { loginStatus, cwpCustomers } = this.props
+        const loginBtnContent = loginStatus ? (
+            <a onClick={this.onQuitHandler} href="javascript:void(0)">
+                退出
+            </a>
+        ) : (
+            <Link to="/">登录</Link>
+        )
+        const name = cwpCustomers.customerRealName || cwpCustomers.customerName
+
+        return (
+            <div id="Header">
+                <div className="content">
+                    <div className="right">
+                        {name && <span>欢迎: {name}</span>}
+                        {loginBtnContent}
+                    </div>
+                </div>
+            </div>
+        )
+    }
 }
-
-const mapStateToProps = state => {
-  const { Home: { loginStatus, cwpCustomers} } = state;
-
-  return { loginStatus, cwpCustomers };
-};
-
-const mapDispatchToProps = dispatch => {
-  return bindActionCreators(actions, dispatch);
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Header);

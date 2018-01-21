@@ -1,12 +1,11 @@
 import './style.scss'
 import React, { Component } from 'react'
-import NavBar from '../../components/NavBar/index'
-import Header from '../../components/Header/index'
 import { URL_REGISTER, URL_SEND_VERITY_CODE } from '../../utils/urls'
 import { notification } from 'antd'
 import classNames from 'classnames'
 import VCode from '../../utils/VCode'
 import { getQueryString } from '../../utils/utils'
+import Page from 'components/Page/Page'
 
 class Register extends Component {
     state = {
@@ -176,9 +175,7 @@ class Register extends Component {
         })
 
         return (
-            <div className="g-page" id="Register">
-                <Header history={this.props.history} />
-                <NavBar />
+            <Page id="Register">
                 <div className="main">
                     <div className="content">
                         <div className="register-box">
@@ -236,7 +233,7 @@ class Register extends Component {
                         </div>
                     </div>
                 </div>
-            </div>
+            </Page>
         )
     }
 }

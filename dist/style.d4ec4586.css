@@ -3784,28 +3784,9 @@ html, body {
     background: #fff; }
     #Home .faq .item {
       margin-bottom: 10px; }
-#NavBar {
-  background: #fff;
-  border-bottom: #e5e5e5 solid 1px; }
-  #NavBar .content {
-    margin: 0 auto;
-    width: 1000px;
-    overflow: hidden; }
-    #NavBar .content .tabs {
-      float: right; }
-      #NavBar .content .tabs li {
-        display: inline-block;
-        width: 90px;
-        line-height: 81px;
-        font-size: 17px;
-        cursor: pointer; }
-        #NavBar .content .tabs li a {
-          text-decoration: none;
-          color: #555; }
-          #NavBar .content .tabs li a:visited {
-            color: #555; }
-        #NavBar .content .tabs li a.active {
-          color: #CF292C; }
+    #Home .faq .to-more {
+      display: block;
+      text-align: center; }
 #Header {
   background: #f5f5f5;
   border-bottom: #e5e5e5 solid 1px; }
@@ -3824,6 +3805,32 @@ html, body {
         margin: 0 8px; }
         #Header .content .right a:visited {
           color: #555; }
+#NavBar {
+  background: #fff;
+  border-bottom: #e5e5e5 solid 1px; }
+  #NavBar .content {
+    position: relative;
+    margin: 0 auto;
+    width: 1000px;
+    overflow: hidden; }
+    #NavBar .content .logo {
+      width: 200px;
+      margin-top: 15px; }
+    #NavBar .content .tabs {
+      float: right; }
+      #NavBar .content .tabs li {
+        display: inline-block;
+        width: 90px;
+        line-height: 81px;
+        font-size: 17px;
+        cursor: pointer; }
+        #NavBar .content .tabs li a {
+          text-decoration: none;
+          color: #555; }
+          #NavBar .content .tabs li a:visited {
+            color: #555; }
+        #NavBar .content .tabs li a.active {
+          color: #cf292c; }
 .footer {
   margin-top: 100px;
   background: #4C4B48; }
@@ -7819,6 +7826,14 @@ html, body {
     padding: 4px 8px;
     border-radius: 3px;
     cursor: pointer; }
+#Withdraw .btn-add {
+  border: 0;
+  background: #d22e34;
+  padding: 4px 10px;
+  color: #fff;
+  font-size: 13px;
+  border-radius: 5px; }
+
 #Withdraw .withdraw-title {
   line-height: 25px;
   border-bottom: #bbb solid 1px;
@@ -7838,7 +7853,7 @@ html, body {
     padding-left: 5px; }
   #Withdraw .line .btn-withdraw {
     border: 0;
-    background: #D22E34;
+    background: #d22e34;
     padding: 4px 10px;
     color: #fff;
     font-size: 13px;
@@ -8794,3 +8809,12 @@ html, body {
       line-height: 30px;
       border: 0;
       cursor: pointer; }
+#Help .faq {
+  width: 920px;
+  margin: 30px auto;
+  border: #7fc0f1 solid 2px;
+  border-radius: 5px;
+  padding: 30px 50px;
+  background: #fff; }
+  #Help .faq .item {
+    margin-bottom: 10px; }

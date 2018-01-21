@@ -4,8 +4,7 @@
 
 import './style.scss';
 import React, { Component } from 'react';
-import Header from '../../components/Header';
-import NavBar from '../../components/NavBar/index';
+import Page from 'components/Page/Page'
 import classNames from 'classnames';
 import { notification } from 'antd';
 import { URL_SEND_VERITY_CODE, URL_CHECK_CODE, URL_MODIFY_PASSWORD } from '../../utils/urls';
@@ -227,9 +226,7 @@ class ForgetPassword extends Component {
         }
 
         return (
-            <div id="ForgetPassword">
-                <Header history={this.props.history} />
-                <NavBar />
+            <Page id="ForgetPassword">
                 <div className="main">
                     <div className="title">忘记密码</div>
                     <ul className="steps">
@@ -249,7 +246,7 @@ class ForgetPassword extends Component {
                     </ul>
                     {stepContent}
                 </div>
-            </div>
+            </Page>
         );
     }
 }

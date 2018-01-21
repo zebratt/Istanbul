@@ -9,6 +9,7 @@ import Settle from './modules/Settle';
 import { Route, Link } from 'react-router-dom';
 import tabs from './tabs';
 import Footer from 'components/Footer/Footer'
+import Page from 'components/Page/Page'
 
 class Stock extends Component {
     state = {
@@ -28,9 +29,7 @@ class Stock extends Component {
         const { history } = this.props;
 
         return (
-            <div id="Stock">
-                <Header history={history} />
-                <NavBar />
+            <Page id="Stock">
                 <div className="main">
                     <div className="nav">
                         <ul>
@@ -63,8 +62,7 @@ class Stock extends Component {
                     <Route path="/stock/sell" component={Sell} />
                     <Route path="/stock/settle" component={Settle} />
                 </div>
-                <Footer />
-            </div>
+            </Page>
         );
     }
 }

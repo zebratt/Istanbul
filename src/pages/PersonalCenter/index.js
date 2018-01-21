@@ -6,8 +6,6 @@
 
 import './style.scss';
 import React, { Component } from 'react';
-import NavBar from '../../components/NavBar/index';
-import Header from '../../components/Header/index';
 import classNames from 'classnames';
 import MyHome from './modules/MyHome';
 import BankCard from './modules/BankCard/index';
@@ -16,7 +14,7 @@ import Promote from './modules/Promote/index';
 import { connect } from 'react-redux';
 import { Route } from 'react-router-dom';
 import tabs from './tabs';
-import Footer from 'components/Footer/Footer'
+import Page from 'components/Page/Page'
 
 class PersonalCenter extends Component {
     constructor(props) {
@@ -60,9 +58,7 @@ class PersonalCenter extends Component {
         }
 
         return (
-            <div id="PersonalCenter">
-                <Header history={this.props.history} />
-                <NavBar />
+            <Page id="PersonalCenter">
                 <div className="main">
                     <div className="menu">
                         <div className="title">会员中心</div>
@@ -84,8 +80,7 @@ class PersonalCenter extends Component {
                     </div>
                     {tabContent}
                 </div>
-                <Footer />
-            </div>
+            </Page>
         );
     }
 }

@@ -1,28 +1,33 @@
-import './style.scss';
-import * as React from 'react';
-import { notification } from 'antd';
-import { URL_WITHDRAW } from 'utils/urls';
-import { connect } from 'react-redux';
+import './style.scss'
+import * as React from 'react'
+import { notification } from 'antd'
+import { URL_WITHDRAW } from 'utils/urls'
+import { connect } from 'react-redux'
 
-class Withdraw extends React.Component {
+@connect(state => {
+    const { Home } = state
+
+    return Object.assign({}, Home)
+})
+export default class Withdraw extends React.Component {
     state = {
         moneyVal: '',
         cardVal: ''
-    };
+    }
     onSubmit = () => {
-        const { moneyVal, cardVal } = this.state;
-        const { customerId, token } = this.props;
+        const { moneyVal, cardVal } = this.state
+        const { customerId, token } = this.props
 
         if (!/^\d+$/.test(moneyVal)) {
             return notification.warning({
                 message: '提现金额格式有误，请重新输入！'
-            });
+            })
         }
 
         if (!/^\d+$/.test(cardVal)) {
             return notification.warning({
                 message: '银行卡格式有误，请重新输入！'
-            });
+            })
         }
 
         axios
@@ -36,17 +41,18 @@ class Withdraw extends React.Component {
                 if (res.code != 1) {
                     notification.error({
                         message: res.msg
-                    });
+                    })
                 } else {
                     notification.success({
                         message: '提现成功！'
-                    });
-                    this.props.history.goBack();
+                    })
+                    this.props.history.goBack()
                 }
-            });
-    };
+            })
+    }
     render() {
-        const { moneyVal, cardVal } = this.state;
+        const { moneyVal, cardVal } = this.state
+
         return (
             <div id="Withdraw">
                 <div className="withdraw-title">我要提现</div>
@@ -60,7 +66,7 @@ class Withdraw extends React.Component {
                         onChange={eve => {
                             this.setState({
                                 moneyVal: eve.target.value
-                            });
+                            })
                         }}
                     />
                 </div>
@@ -73,7 +79,7 @@ class Withdraw extends React.Component {
                         onChange={eve => {
                             this.setState({
                                 cardVal: eve.target.value
-                            });
+                            })
                         }}
                     />
                 </div>
@@ -83,14 +89,6 @@ class Withdraw extends React.Component {
                     </button>
                 </div>
             </div>
-        );
+        )
     }
 }
-
-const mapStateToProps = state => {
-    const { Home } = state;
-
-    return Object.assign({}, Home);
-};
-
-export default connect(mapStateToProps)(Withdraw);

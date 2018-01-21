@@ -1,35 +1,41 @@
-#NavBar{
-  background: #fff;
-  border-bottom: #e5e5e5 solid 1px;
+#NavBar {
+    background: #fff;
+    border-bottom: #e5e5e5 solid 1px;
 
-  .content{
-    margin: 0 auto;
-    width: 1000px;
-    overflow: hidden;
+    .content {
+        position: relative;
+        margin: 0 auto;
+        width: 1000px;
+        overflow: hidden;
 
-    .tabs{
-      float: right;
-
-      li{
-        display: inline-block;
-        width: 90px;
-        line-height: 81px;
-        font-size: 17px;
-        cursor: pointer;
-
-        a{
-          text-decoration: none;
-          color: #555;
-
-          &:visited{
-            color: #555;
-          }
+        .logo{
+          width: 200px;
+          margin-top: 15px;
         }
 
-        a.active{
-          color: #CF292C;
+        .tabs {
+            float: right;
+
+            li {
+                display: inline-block;
+                width: 90px;
+                line-height: 81px;
+                font-size: 17px;
+                cursor: pointer;
+
+                a {
+                    text-decoration: none;
+                    color: #555;
+
+                    &:visited {
+                        color: #555;
+                    }
+                }
+
+                a.active {
+                    color: #cf292c;
+                }
+            }
         }
-      }
     }
-  }
 }
