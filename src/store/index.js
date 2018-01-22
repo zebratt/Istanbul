@@ -1,10 +1,12 @@
-import { createStore, applyMiddleware } from 'redux';
-import combinedReducers from './reducers';
-import thunk from 'redux-thunk';
-import promise from 'redux-promise';
+import { createStore, applyMiddleware } from 'redux'
+import createCombinedReducers from './reducers'
+import thunk from 'redux-thunk'
+import promise from 'redux-promise'
 
-const middlewares = [thunk, promise];
+const middlewares = [thunk, promise]
 
-const store = createStore(combinedReducers, applyMiddleware(...middlewares));
+export default function createAppStore(initState) {
+    const reducers = createCombinedReducers(initState)
 
-export default store;
+    return createStore(reducers, applyMiddleware(...middlewares))
+}

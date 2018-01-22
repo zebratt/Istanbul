@@ -20,7 +20,15 @@ const buyPrices = [1, 2, 3, 5, 10, 20, 30, 50]
 // 出发止损金额
 const stopLossRates = [0.1, 0.4 / 3, 0.17]
 
-class Buy extends Component {
+@connect(
+    state => {
+        const { Stock: { Buy }, App } = state
+
+        return Object.assign({}, Buy, App)
+    },
+    dispatch => bindActionCreators(actions, dispatch)
+)
+export default class Buy extends Component {
     chartLineDom = null
     chartKDom = null
     intarvalId = null
@@ -677,9 +685,3 @@ const mapStateToProps = state => {
 
     return Object.assign({}, Buy, Home)
 }
-
-const mapDispatchToProps = dispatch => {
-    return bindActionCreators(actions, dispatch)
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Buy)

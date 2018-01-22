@@ -35,7 +35,7 @@ export default class NavBar extends Component {
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink isActive={this.isActive} to="/personal/home">
+                            <NavLink isActive={this.isActive} to="/center/home">
                                 <span>个人中心</span>
                             </NavLink>
                         </li>

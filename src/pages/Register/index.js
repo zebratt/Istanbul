@@ -7,7 +7,7 @@ import VCode from '../../utils/VCode'
 import { getQueryString } from '../../utils/utils'
 import Page from 'components/Page/Page'
 
-class Register extends Component {
+export default class Register extends Component {
     state = {
         phone: '',
         password: '',
@@ -168,7 +168,16 @@ class Register extends Component {
     }
 
     render() {
-        const { phone, password, passwordConfirm, checkStatus, verifyUnderCounting, verifyText, verifyCodeVal, isSubmiting } = this.state
+        const {
+            phone,
+            password,
+            passwordConfirm,
+            checkStatus,
+            verifyUnderCounting,
+            verifyText,
+            verifyCodeVal,
+            isSubmiting
+        } = this.state
         const btnVerifyClasses = classNames({
             'btn-verify': true,
             disabled: verifyUnderCounting
@@ -182,13 +191,32 @@ class Register extends Component {
                             <div className="title">注册</div>
                             <div className="form">
                                 <div className="item">
-                                    <input className="phone" type="text" value={phone} maxLength={11} placeholder="请输入手机号" onChange={::this.onChangeHandler} />
+                                    <input
+                                        className="phone"
+                                        type="text"
+                                        value={phone}
+                                        maxLength={11}
+                                        placeholder="请输入手机号"
+                                        onChange={::this.onChangeHandler}
+                                    />
                                 </div>
                                 <div className="item">
-                                    <input className="password" type="password" maxLength={16} placeholder="请输入密码，长度不小于6位" onChange={::this.onChangeHandler} />
+                                    <input
+                                        className="password"
+                                        type="password"
+                                        maxLength={16}
+                                        placeholder="请输入密码，长度不小于6位"
+                                        onChange={::this.onChangeHandler}
+                                    />
                                 </div>
                                 <div className="item">
-                                    <input className="password-confirm" type="password" maxLength={16} placeholder="请再次输入密码" onChange={::this.onChangeHandler} />
+                                    <input
+                                        className="password-confirm"
+                                        type="password"
+                                        maxLength={16}
+                                        placeholder="请再次输入密码"
+                                        onChange={::this.onChangeHandler}
+                                    />
                                 </div>
                                 <div className="item verify">
                                     <div className="left">
@@ -237,5 +265,3 @@ class Register extends Component {
         )
     }
 }
-
-export default Register

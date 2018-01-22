@@ -2,26 +2,26 @@
  * Created by xuejian.xu on 2017/12/11.
  */
 
-import './style.scss';
-import React, { Component } from 'react';
+import './style.scss'
+import React, { Component } from 'react'
 import Page from 'components/Page/Page'
-import classNames from 'classnames';
-import { notification } from 'antd';
-import { URL_SEND_VERITY_CODE, URL_CHECK_CODE, URL_MODIFY_PASSWORD } from '../../utils/urls';
+import classNames from 'classnames'
+import { notification } from 'antd'
+import { URL_SEND_VERITY_CODE, URL_CHECK_CODE, URL_MODIFY_PASSWORD } from '../../utils/urls'
 
-const steps = ['手机获取验证码', '验证码校验', '修改新密码'];
+const steps = ['手机获取验证码', '验证码校验', '修改新密码']
 
-class ForgetPassword extends Component {
+export default class ForgetPassword extends Component {
     state = {
         step: 0,
         phoneVal: '',
         vcodeVal: '',
         newPasswordVal: '',
         newPasswordConfirmVal: ''
-    };
+    }
 
     renderStepOne() {
-        const { phoneVal } = this.state;
+        const { phoneVal } = this.state
 
         return (
             <div className="form">
@@ -34,7 +34,7 @@ class ForgetPassword extends Component {
                     onChange={eve => {
                         this.setState({
                             phoneVal: eve.target.value
-                        });
+                        })
                     }}
                 />
                 <button
@@ -43,7 +43,7 @@ class ForgetPassword extends Component {
                         if (!/\d{11}/.test(phoneVal)) {
                             return notification.warning({
                                 message: '手机号格式有误，请重新输入！'
-                            });
+                            })
                         }
 
                         axios
@@ -55,27 +55,27 @@ class ForgetPassword extends Component {
                                 if (res.code != 1) {
                                     notification.error({
                                         message: res.msg
-                                    });
+                                    })
                                 } else {
                                     notification.success({
                                         message: '验证码发送成功！'
-                                    });
+                                    })
 
                                     this.setState({
                                         step: 1
-                                    });
+                                    })
                                 }
-                            });
+                            })
                     }}
                 >
                     发送验证码
                 </button>
             </div>
-        );
+        )
     }
 
     renderStepTwo() {
-        const { vcodeVal, phoneVal } = this.state;
+        const { vcodeVal, phoneVal } = this.state
 
         return (
             <div className="form">
@@ -89,7 +89,7 @@ class ForgetPassword extends Component {
                     onChange={eve => {
                         this.setState({
                             vcodeVal: eve.target.value
-                        });
+                        })
                     }}
                 />
                 <button
@@ -98,7 +98,7 @@ class ForgetPassword extends Component {
                         if (!/\d{6}/.test(vcodeVal)) {
                             return notification.warning({
                                 message: '验证码格式有误！'
-                            });
+                            })
                         }
 
                         axios
@@ -110,27 +110,27 @@ class ForgetPassword extends Component {
                                 if (res.code != 1) {
                                     notification.error({
                                         message: res.msg
-                                    });
+                                    })
                                 } else {
                                     notification.success({
                                         message: '验证通过！'
-                                    });
+                                    })
 
                                     this.setState({
                                         step: 2
-                                    });
+                                    })
                                 }
-                            });
+                            })
                     }}
                 >
                     确定
                 </button>
             </div>
-        );
+        )
     }
 
     renderStepThree() {
-        const { newPasswordVal, newPasswordConfirmVal, phoneVal } = this.state;
+        const { newPasswordVal, newPasswordConfirmVal, phoneVal } = this.state
 
         return (
             <div className="form">
@@ -145,7 +145,7 @@ class ForgetPassword extends Component {
                         onChange={eve => {
                             this.setState({
                                 newPasswordVal: eve.target.value
-                            });
+                            })
                         }}
                     />
                 </div>
@@ -160,7 +160,7 @@ class ForgetPassword extends Component {
                         onChange={eve => {
                             this.setState({
                                 newPasswordConfirmVal: eve.target.value
-                            });
+                            })
                         }}
                     />
                 </div>
@@ -171,13 +171,13 @@ class ForgetPassword extends Component {
                             if (!newPasswordVal || !newPasswordConfirmVal) {
                                 return notification.warning({
                                     message: '密码不能为空！'
-                                });
+                                })
                             }
 
                             if (newPasswordVal !== newPasswordConfirmVal) {
                                 return notification.warning({
                                     message: '两次密码输入不一致，请重新输入！'
-                                });
+                                })
                             }
 
                             axios
@@ -190,39 +190,39 @@ class ForgetPassword extends Component {
                                     if (res.code != 1) {
                                         notification.error({
                                             message: res.msg
-                                        });
+                                        })
                                     } else {
                                         notification.success({
                                             message: '修改成功！',
                                             duration: 2
-                                        });
+                                        })
 
-                                        this.props.history.push('/');
+                                        this.props.history.push('/')
                                     }
-                                });
+                                })
                         }}
                     >
                         确认
                     </button>
                 </div>
             </div>
-        );
+        )
     }
 
     render() {
-        const { step } = this.state;
-        let stepContent = null;
+        const { step } = this.state
+        let stepContent = null
 
         switch (step) {
             case 0:
-                stepContent = this.renderStepOne();
-                break;
+                stepContent = this.renderStepOne()
+                break
             case 1:
-                stepContent = this.renderStepTwo();
-                break;
+                stepContent = this.renderStepTwo()
+                break
             case 2:
-                stepContent = this.renderStepThree();
-                break;
+                stepContent = this.renderStepThree()
+                break
         }
 
         return (
@@ -231,24 +231,22 @@ class ForgetPassword extends Component {
                     <div className="title">忘记密码</div>
                     <ul className="steps">
                         {steps.map((item, idx) => {
-                            const iconCtn = idx < 2 ? <span className="icon i-arrow_right" /> : '';
+                            const iconCtn = idx < 2 ? <span className="icon i-arrow_right" /> : ''
                             const classes = classNames({
                                 red: idx === step
-                            });
+                            })
 
                             return (
                                 <li key={item} className={classes}>
                                     {item}
                                     {iconCtn}
                                 </li>
-                            );
+                            )
                         })}
                     </ul>
                     {stepContent}
                 </div>
             </Page>
-        );
+        )
     }
 }
-
-export default ForgetPassword;

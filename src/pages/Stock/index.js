@@ -11,7 +11,7 @@ import tabs from './tabs';
 import Footer from 'components/Footer/Footer'
 import Page from 'components/Page/Page'
 
-class Stock extends Component {
+export default class Stock extends Component {
     state = {
         currentTabKey: 'buy'
     };
@@ -66,5 +66,3 @@ class Stock extends Component {
         );
     }
 }
-
-export default Stock;

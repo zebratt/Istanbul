@@ -4,7 +4,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 let commonConfig = {
     entry: {
-        main: path.resolve(__dirname, 'src/app'),
+        main: path.resolve(__dirname, 'src/index'),
         vendors: ['react', 'react-dom', 'redux', 'react-redux', 'react-router-dom', 'echarts', 'antd']
     },
     module: {
@@ -42,7 +42,8 @@ let commonConfig = {
             styles: path.resolve(__dirname, 'src/styles/'),
             components: path.resolve(__dirname, 'src/components'),
             utils: path.resolve(__dirname, 'src/utils'),
-            images: path.resolve(__dirname, 'images')
+            images: path.resolve(__dirname, 'images'),
+            app: path.resolve(__dirname, 'src/App')
         },
         extensions: ['.js']
     },

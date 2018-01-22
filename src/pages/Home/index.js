@@ -6,16 +6,18 @@ import { Carousel } from 'react-responsive-carousel'
 import { notification } from 'antd'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import actions from './action'
-import { URL_LOGIN } from '../../utils/urls'
+import { URL_LOGIN } from 'utils/urls'
 import Cookies from 'js-cookie'
 import { Link } from 'react-router-dom'
+import AppActions from 'app/AppActions'
 
 @connect(
     state => {
-        return { loginStatus: state.Home.loginStatus }
+        const {App: {loginStatus}} = state
+
+        return {loginStatus}
     },
-    dispatch => bindActionCreators(actions, dispatch)
+    dispatch => bindActionCreators(AppActions, dispatch)
 )
 export default class Home extends Component {
     state = {

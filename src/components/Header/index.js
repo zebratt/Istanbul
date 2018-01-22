@@ -9,25 +9,25 @@ import React, { Component } from 'react'
 import { Link, withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import actions from 'pages/Home/action'
 import Cookies from 'js-cookie'
 import { notification } from 'antd'
 import _get from 'lodash/get'
+import AppActions from 'app/AppActions'
 
 @withRouter
 @connect(
     state => {
-        const { Home: { loginStatus, cwpCustomers } } = state
+        const { App: { loginStatus, user } } = state
 
-        return { loginStatus, cwpCustomers }
+        return { loginStatus, user }
     },
-    dispatch => bindActionCreators(actions, dispatch)
+    dispatch => bindActionCreators(AppActions, dispatch)
 )
 export default class Header extends Component {
     onQuitHandler = () => {
         Cookies.remove('TOKEN')
 
-        this.props.updateLogin(false, '', '')
+        this.props.updateLogin(false, null, null)
 
         notification.success({
             message: '退出成功！'
@@ -37,7 +37,7 @@ export default class Header extends Component {
     }
 
     render() {
-        const { loginStatus, cwpCustomers } = this.props
+        const { loginStatus, user } = this.props
         const loginBtnContent = loginStatus ? (
             <a onClick={this.onQuitHandler} href="javascript:void(0)">
                 退出
@@ -45,7 +45,7 @@ export default class Header extends Component {
         ) : (
             <Link to="/">登录</Link>
         )
-        const name = cwpCustomers.customerRealName || cwpCustomers.customerName
+        const name = user ? user.customerRealName || user.customerName : ''
 
         return (
             <div id="Header">

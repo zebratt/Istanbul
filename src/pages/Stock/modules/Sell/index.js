@@ -2,78 +2,88 @@
  * Created by xuejian.xu on 2017/11/3.
  */
 
-import React, { Component } from 'react';
-import { Modal, notification } from 'antd';
-import { URL_SELL_OUT_STOCK } from '../../../../utils/urls';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import actions from './action';
-import './style.scss';
-import classNames from 'classnames';
+import React, { Component } from 'react'
+import { Modal, notification } from 'antd'
+import { URL_SELL_OUT_STOCK } from '../../../../utils/urls'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import actions from './action'
+import './style.scss'
+import classNames from 'classnames'
 
-const positionStatus = ['已平仓', '已持仓'];
+const positionStatus = ['已平仓', '已持仓']
 
-class Sell extends Component {
-    item = {};
+@connect(
+    state => {
+        const { Stock: { Sell }, App } = state
+
+        return Object.assign({}, Sell, App)
+    },
+    dispatch => bindActionCreators(actions, dispatch)
+)
+export default class Sell extends Component {
+    item = {}
     state = {
         sellModalVisible: false,
         currentPositionId: null,
         isSelling: false
-    };
+    }
 
     componentDidMount() {
-        const { customerId, token, getPositionData } = this.props;
+        const { userId, token, getPositionData } = this.props
 
-        if (!customerId) {
-            return;
+        if (!userId) {
+            return
         }
 
-        getPositionData(customerId, token);
+        getPositionData(userId, token)
     }
 
     onSellButtonClick(item) {
-        const { isSelling } = this.state;
+        const { isSelling } = this.state
 
         if (item.todayTrade == 1) {
             return notification.warning({
                 message: '当天买入的股票不可卖出!'
-            });
+            })
         }
 
         if (isSelling) {
             return notification.warning({
                 message: '交易中，请稍后...'
-            });
+            })
         }
 
-        this.item = item;
+        this.item = item
         this.setState({
             sellModalVisible: true,
             currentPositionId: item.positionId
-        });
+        })
     }
 
     render() {
-        const { customerId, token, sellData } = this.props;
-        const { dayDeference, sumProfit, cwpPositionOmList } = sellData;
-        const { sellModalVisible, currentPositionId, isSelling } = this.state;
+        const { userId, token, sellData } = this.props
+        const { dayDeference, sumProfit, cwpPositionOmList } = sellData
+        const { sellModalVisible, currentPositionId, isSelling } = this.state
 
-        if (!customerId) {
+        if (!userId) {
             return (
                 <div id="Sell">
                     <div>请先登录!</div>
                 </div>
-            );
+            )
         }
 
         if (!cwpPositionOmList) {
-            return null;
+            return null
         }
 
         return (
             <div id="Sell">
                 <div className="tip">
-                    当前持仓所需递延费<span className="red">{dayDeference}</span>元(周末及节假日免费),持仓盈利总计：<span className="red">{sumProfit}</span>元
+                    当前持仓所需递延费<span className="red">{dayDeference}</span>元(周末及节假日免费),持仓盈利总计：<span className="red">
+                        {sumProfit}
+                    </span>元
                 </div>
                 <table className="sell-table">
                     <thead>
@@ -95,15 +105,16 @@ class Sell extends Component {
                     </thead>
                     <tbody>
                         {cwpPositionOmList.content.map(item => {
-                            const openTime = new Date(item.openTime).toLocaleString();
+                            const openTime = new Date(item.openTime).toLocaleString()
                             const btnClass = classNames({
                                 'btn-sell': true,
-                                'btn-disable': item.todayTrade == 1 || (currentPositionId === item.positionId && isSelling)
-                            });
-                            let btnText = '点卖';
+                                'btn-disable':
+                                    item.todayTrade == 1 || (currentPositionId === item.positionId && isSelling)
+                            })
+                            let btnText = '点卖'
 
                             if (currentPositionId === item.positionId && isSelling) {
-                                btnText = '点卖中';
+                                btnText = '点卖中'
                             }
 
                             return (
@@ -126,7 +137,7 @@ class Sell extends Component {
                                         </button>
                                     </td>
                                 </tr>
-                            );
+                            )
                         })}
                     </tbody>
                 </table>
@@ -137,7 +148,7 @@ class Sell extends Component {
                         this.setState({
                             sellModalVisible: false,
                             isSelling: true
-                        });
+                        })
 
                         axios
                             .post(URL_SELL_OUT_STOCK, {
@@ -148,21 +159,21 @@ class Sell extends Component {
                                 if (res.code == 1) {
                                     notification.success({
                                         message: '交易成功！'
-                                    });
+                                    })
 
                                     this.setState({
                                         isSelling: false,
                                         currentPostionId: null
-                                    });
+                                    })
 
-                                    this.props.getPositionData(customerId, token);
+                                    this.props.getPositionData(userId, token)
                                 }
-                            });
+                            })
                     }}
                     onCancel={() => {
                         this.setState({
                             sellModalVisible: false
-                        });
+                        })
                     }}
                 >
                     <p>
@@ -174,18 +185,6 @@ class Sell extends Component {
                     <p>浮动盈亏：{this.item.realTimeProfitLoss}</p>
                 </Modal>
             </div>
-        );
+        )
     }
 }
-
-const mapStateToProps = state => {
-    const { Sell, Home } = state;
-
-    return Object.assign({}, Sell, Home);
-};
-
-const mapDispatchToProps = dispatch => {
-    return bindActionCreators(actions, dispatch);
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Sell);
