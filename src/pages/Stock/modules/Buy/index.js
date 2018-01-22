@@ -161,7 +161,7 @@ export default class Buy extends Component {
      * @param deferCondition 递延条件
      */
     onPurchaseConfirm(performingPrice, stopProfit, tradeCost, deferCost, deferCondition) {
-        const { stockData: { data }, customerId, token, stopLossRatesIndex, buyPricesIndex } = this.props
+        const { stockData: { data }, userId, token, stopLossRatesIndex, buyPricesIndex } = this.props
         const { gid } = data
         const lossAmount = -(stopLossRates[stopLossRatesIndex] * 10000 * buyPrices[buyPricesIndex]).toFixed(0)
         this.setState({
@@ -171,7 +171,7 @@ export default class Buy extends Component {
 
         axios
             .post(URL_PURCHASE, {
-                customerId: customerId,
+                customerId: userId,
                 stockCode: gid,
                 requiredMargin: performingPrice,
                 profitAmount: stopProfit,
