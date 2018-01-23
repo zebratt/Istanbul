@@ -12,7 +12,7 @@ import {
     UPDATE_CURRENT_STOCK_CODE,
     GET_FORBIDDEN_LIST
 } from './contants'
-import { URL_STOCK_DATA, URL_SUGGEST, URL_GET_FORBIDDEN_LIST } from '../../../../utils/urls'
+import { URL_STOCK_DATA, URL_SUGGEST, URL_GET_FORBIDDEN_LIST } from 'utils/urls'
 import { notification } from 'antd'
 
 const reducer = createActions({

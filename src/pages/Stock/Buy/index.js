@@ -5,7 +5,7 @@
 import React, { Component } from 'react'
 import classNames from 'classnames'
 import { notification, Modal } from 'antd'
-import { URL_PURCHASE } from '../../../../utils/urls'
+import { URL_PURCHASE } from 'utils/urls'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import actions from './action'
@@ -678,10 +678,4 @@ export default class Buy extends Component {
             </div>
         )
     }
-}
-
-const mapStateToProps = state => {
-    const { Buy, Home } = state
-
-    return Object.assign({}, Buy, Home)
 }

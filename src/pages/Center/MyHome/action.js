@@ -1,6 +1,6 @@
 import { createActions } from 'redux-actions'
 import { QUERY_FUND_DETAILS, QUERY_BALANCE } from './contants'
-import { URL_QUERY_FUNDS_DETAILS, URL_QUERY_FUNDS } from '../../../../utils/urls'
+import { URL_QUERY_FUNDS_DETAILS, URL_QUERY_FUNDS } from 'utils/urls'
 import { notification } from 'antd'
 
 export default createActions({

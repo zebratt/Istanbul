@@ -1,6 +1,6 @@
 import { createActions } from 'redux-actions';
 import { GET_REAL_NAME_STATUS } from './contants';
-import { URL_REAL_NAME } from '../../../../utils/urls';
+import { URL_REAL_NAME } from 'utils/urls';
 import { notification } from 'antd';
 
 export default createActions({

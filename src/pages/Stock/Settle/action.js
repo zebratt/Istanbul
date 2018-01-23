@@ -4,18 +4,22 @@
 
 import { createActions } from 'redux-actions';
 import {
-  GET_POSITION_DATA
+  QUERY_SCHEME_DATA
 } from './contants';
-import { URL_POSITION_DATA } from '../../../../utils/urls';
+import { URL_QUERY_SCHEME_DATA } from 'utils/urls';
 import { notification } from 'antd';
 
 const reducer = createActions({
-  [GET_POSITION_DATA]: async (customerId, token)=>{
-    const res = await axios.post(URL_POSITION_DATA, {
-      customerId: customerId,
+  [QUERY_SCHEME_DATA]: async (customerId, token, options)=>{
+    const res = await axios.post(URL_QUERY_SCHEME_DATA, {
+      customerId,
       client_token: token,
       pageNumber: 0,
-      pageSize: 50
+      pageSize: 50,
+      endDate: options.endTime,
+      startDate: options.startTime,
+      stockName: options.stockName,
+      stockCode: options.stockCode
     });
 
     if(res.code == 1){
@@ -23,7 +27,7 @@ const reducer = createActions({
     }else{
       notification.error({
         message: res.msg
-      })
+      });
     }
   }
 });

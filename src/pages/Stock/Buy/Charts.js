@@ -2,7 +2,7 @@
  * Created by xuejian.xu on 2017/11/23.
  */
 
-import {chartLine, chartK} from '../../../../common/echarts.extends';
+import {chartLine, chartK} from '../../../common/echarts.extends';
 import transformTool  from './lib/transformTool';
 import _each from 'lodash/each';
 import {notification} from 'antd';

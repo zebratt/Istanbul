@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux'
 
-import Buy from './modules/Buy/reducer'
-import Sell from './modules/Sell/reducer'
-import Settle from './modules/Settle/reducer'
+import Buy from './Buy/reducer'
+import Sell from './Sell/reducer'
+import Settle from './Settle/reducer'
 
 export default combineReducers({ Buy, Sell, Settle })

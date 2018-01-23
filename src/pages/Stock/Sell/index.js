@@ -4,7 +4,7 @@
 
 import React, { Component } from 'react'
 import { Modal, notification } from 'antd'
-import { URL_SELL_OUT_STOCK } from '../../../../utils/urls'
+import { URL_SELL_OUT_STOCK } from 'utils/urls'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import actions from './action'

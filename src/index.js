@@ -13,19 +13,19 @@ import 'utils/global'
 
 async function Launch() {
     const token = Cookies.get('TOKEN')
-    const initState = { token }
+    const initState = { App: { token } }
 
     if (token) {
         const { data } = await axios.post(URL_QUERY_CUSTOMER_BY_TOKEN, { token })
 
-        Object.assign(initState, {
+        Object.assign(initState.App, {
             loginStatus: true,
             userId: data.customerId,
             user: data
         })
     }
 
-    const store = window.store = createAppStore(initState)
+    const store = (window.store = createAppStore(initState))
 
     ReactDOM.render(
         <Provider store={store}>

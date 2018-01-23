@@ -3,9 +3,9 @@ import React, { Component } from 'react';
 import NavBar from 'components/NavBar/index';
 import Header from '../../components/Header/index';
 import classNames from 'classnames';
-import Buy from './modules/Buy';
-import Sell from './modules/Sell';
-import Settle from './modules/Settle';
+import Buy from './Buy';
+import Sell from './Sell';
+import Settle from './Settle';
 import { Route, Link } from 'react-router-dom';
 import tabs from './tabs';
 import Footer from 'components/Footer/Footer'
