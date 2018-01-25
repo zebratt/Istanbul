@@ -200,4 +200,31 @@
           text-align: center;
       }
     }
+
+    .mocks{
+        width: 1000px;
+        margin: 60px auto 0;
+        display: flex;
+
+        .box{
+            flex: 1;
+            padding: 0 10px;
+
+            .row{
+                display: flex;
+                justify-content: space-between;
+                line-height: 40px;
+                padding: 0 20px;
+                background: #FCFCFC;
+
+                &:nth-child(odd){
+                    background: #EAEAEA;
+                }
+
+                .col{
+                    flex: 1;
+                }
+            }
+        }
+    }
 }

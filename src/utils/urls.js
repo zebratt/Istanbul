@@ -9,6 +9,8 @@ export const URL_QUERY_CUSTOMER_BY_TOKEN = '/serverInterface/login/queryCustomer
 export const URL_GET_FORBIDDEN_LIST = '/chartK/wcp/StockForbidden/GetList' //获取停牌列表
 export const URL_CHECK_CODE = '/serverInterface/login/checkCode' //修改密码验证码校验
 export const URL_MODIFY_PASSWORD = '/serverInterface/login/forgetPassword' //修改密码
+export const URL_QUERY_RANDOM_INFO = '/serverInterface/display/queryRandomInfo' // 模拟数据
+export const URL_QUERY_FIXED_INFO = '/serverInterface/display/queryFixedInfo'
 
 // Sell
 export const URL_POSITION_DATA = '/serverInterface/buy/queryPositionData' //持仓
