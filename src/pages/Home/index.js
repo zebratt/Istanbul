@@ -11,6 +11,7 @@ import Cookies from 'js-cookie'
 import { Link } from 'react-router-dom'
 import AppActions from 'app/AppActions'
 import { actions } from './HomeRedux'
+import News from './modules/News'
 
 @connect(
     state => {
@@ -27,11 +28,12 @@ export default class Home extends Component {
     }
 
     componentDidMount() {
-        const { getRandomInfo, getFixedInfo, loginStatus, user } = this.props
+        const { getRandomInfo, getFixedInfo, getNews, loginStatus, user } = this.props
 
         if (loginStatus) {
             getRandomInfo(user.customerPhone)
             getFixedInfo()
+            getNews()
         }
     }
 
@@ -118,7 +120,7 @@ export default class Home extends Component {
     }
 
     render() {
-        const { loginStatus, randoms, fixes } = this.props
+        const { loginStatus, randoms, fixes, news } = this.props
 
         return (
             <Page id="Home">
@@ -231,6 +233,7 @@ export default class Home extends Component {
                         }
                     </div>
                 </div>
+                <News news={news} />
                 <img className="bg" src="http://odl96infd.bkt.clouddn.com/bg.jpg" alt="" />
                 <div className="faq">
                     <div className="item">

@@ -1,8 +1,10 @@
 import { createActions, handleActions } from 'redux-actions'
 import { URL_QUERY_RANDOM_INFO, URL_QUERY_FIXED_INFO } from 'utils/urls'
+import jsonp from 'jsonp'
 
 const GET_RANDOM_INFO = 'GET_RANDOM_INFO'
 const GET_FIXED_INFO = 'GET_FIXED_INFO'
+const GET_NEWS = 'GET_NEWS'
 
 export const actions = createActions({
     [GET_RANDOM_INFO]: async phone => {
@@ -16,6 +18,11 @@ export const actions = createActions({
         const res = await axios.post(URL_QUERY_FIXED_INFO)
 
         return res.data
+    },
+    [GET_NEWS]: async () => {
+        const res = await axios.get('/news/api/roll/get?pageid=155&lid=1686&num=10&page=1')
+
+        return res.result.data
     }
 })
 
@@ -30,10 +37,16 @@ export const reducer = handleActions(
             state.fixes = action.payload
 
             return Object.assign({}, state)
+        },
+        [GET_NEWS]: (state, action) => {
+            state.news = action.payload
+
+            return Object.assign({}, state)
         }
     },
     {
         randoms: [],
-        fixes: []
+        fixes: [],
+        news: []
     }
 )

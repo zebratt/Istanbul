@@ -3860,6 +3860,26 @@ html, body {
       line-height: 40px; }
       .footer .content p .right {
         float: right; }
+.news {
+  width: 1000px;
+  margin: 30px auto;
+  color: #333; }
+  .news .block-title {
+    font-size: 26px;
+    border-left: #CE2629 solid 4px;
+    line-height: 40px;
+    padding-left: 20px; }
+  .news .list {
+    margin-top: 10px; }
+    .news .list .item {
+      width: 50%; }
+      .news .list .item .title {
+        font-size: 17px;
+        padding: 5px 20px; }
+      .news .list .item .intro {
+        color: #888;
+        font-size: 14px;
+        padding: 5px 20px; }
 #Stock .main {
   width: 1000px;
   margin: 40px auto;

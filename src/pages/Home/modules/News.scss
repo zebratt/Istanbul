@@ -1,0 +1,31 @@
+.news{
+    width: 1000px;
+    margin: 30px auto;
+    color: #333;
+
+    .block-title{
+        font-size: 26px;
+        border-left: #CE2629 solid 4px;
+        line-height: 40px;
+        padding-left: 20px;
+    }
+
+    .list{
+        margin-top: 10px;
+
+        .item{
+            width: 50%;
+
+            .title{
+                font-size: 17px;
+                padding: 5px 20px;
+            }
+
+            .intro{
+                color: #888;
+                font-size: 14px;
+                padding: 5px 20px;
+            }
+        }
+    }
+}
