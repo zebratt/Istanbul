@@ -1,6 +1,5 @@
 import { createActions, handleActions } from 'redux-actions'
 import { URL_QUERY_RANDOM_INFO, URL_QUERY_FIXED_INFO } from 'utils/urls'
-import jsonp from 'jsonp'
 
 const GET_RANDOM_INFO = 'GET_RANDOM_INFO'
 const GET_FIXED_INFO = 'GET_FIXED_INFO'
